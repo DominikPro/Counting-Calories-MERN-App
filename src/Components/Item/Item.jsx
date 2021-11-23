@@ -9,10 +9,10 @@ const Item = (props) => {
 	console.log(portion);
 	return (
 		<>
-			<Grid item xs={4}>
+			<Grid item xs={3}>
 				<Typography>{name}</Typography>
 			</Grid>
-			<Grid item xs={1}>
+			<Grid item xs={2}>
 				<Typography align="center">{portion}</Typography>
 			</Grid>
 			<Grid item xs={2}>

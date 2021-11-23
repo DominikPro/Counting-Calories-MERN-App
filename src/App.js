@@ -2,7 +2,7 @@ import React from "react";
 //==========================================
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 //==========================================
-import Navigation from "./Components/Navigation.jsx";
+import Navigation from "./Components/Navigation/Navigation.jsx";
 import Home from "./Pages/Home";
 import Statistic from "./Pages/Statistic";
 import AddProduct from "./Pages/AddProduct";

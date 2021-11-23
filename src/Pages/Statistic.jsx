@@ -1,10 +1,10 @@
 import React from "react";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Header from "../Components/Header/Header";
-import CategoryHeader from "../Components/CategoryHeader/CategoryHeader";
 //=============================================
-import Item from "../Components/Item";
+import Container from "@mui/material/Container";
+//=============================================
+import Header from "../Components/Header/Header";
+import Table from "../Components/Table/Table";
+//=============================================
 
 const data = [
 	{ name: "Cupcake", portion: 500, amountOfKclIn100g: 10, remarks: "Uwagi do produktu" },
@@ -18,40 +18,15 @@ const Statistic = () => {
 		<>
 			<Container maxWidth="lg">
 				<Header title="Statystyki" size={20} />
-				<Grid container spacing={1}>
-					<Grid item xs={4}>
-						<CategoryHeader title="Nazwa" />
-					</Grid>
-					<Grid item xs={1}>
-						<CategoryHeader title="Porcja" />
-					</Grid>
-					<Grid item xs={2}>
-						<CategoryHeader title="Kcl w 110 g/ml" />
-					</Grid>
-					<Grid item xs={1}>
-						<CategoryHeader title="Ilość kalorii" />
-					</Grid>
-					<Grid item xs={2}>
-						<CategoryHeader title="Uwagi" />
-					</Grid>
-					<Grid item xs={2}>
-						<CategoryHeader title="Edytcja" />
-					</Grid>
-
-					{data.map((item) => {
-						return (
-							<Item
-								key={item.name}
-								name={item.name}
-								portion={item.portion}
-								amountOfKclIn100g={
-									item.amountOfKclIn100g
-								}
-								remarks={item.remarks}
-							/>
-						);
-					})}
-				</Grid>
+				<Table
+					data={data}
+					col1Title="Nazwa"
+					col2Title="Porcja"
+					col3Title="Kcl w 110 g/ml"
+					col4Title="Ilość kalorii"
+					col5Title="Uwagi"
+					col6Title="Edytcja"
+				/>
 			</Container>
 		</>
 	);
