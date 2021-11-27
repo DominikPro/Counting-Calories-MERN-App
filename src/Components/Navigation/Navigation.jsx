@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 //==========================================
 import logo from "../../Images/logo.png";
 import Button from "@mui/material/Button";
@@ -27,7 +26,6 @@ const Navigation = () => {
 
 	return (
 		<>
-			<div></div>
 			<Box sx={{ flexGrow: 1 }}>
 				<AppBar position="static">
 					<Toolbar>

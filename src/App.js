@@ -14,10 +14,6 @@ import { createTheme, ThemeProvider } from "@material-ui/core";
 
 //==========================================
 
-// const them = createTheme(){
-
-// }
-
 const App = () => {
 	return (
 		<>

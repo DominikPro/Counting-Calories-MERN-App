@@ -4,6 +4,8 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 //=============================================
+import { useDispatch } from "react-redux";
+//=============================================
 import Container from "@mui/material/Container";
 import Header from "../Components/Header/Header";
 //=============================================
@@ -31,6 +33,13 @@ const Settings = () => {
 						/>
 						<TextField
 							id="filled-basic"
+							label="Dzienna ilość kalorii:"
+							variant="filled"
+							fullWidth
+							required
+						/>
+						<TextField
+							id="filled-basic"
 							label="Waga:"
 							variant="filled"
 							fullWidth
@@ -44,6 +53,9 @@ const Settings = () => {
 							required
 						/>
 					</form>
+					<Button variant="contained" color="error">
+						Usuń dane
+					</Button>
 					<Button variant="contained"> Zapisz </Button>
 				</Stack>
 			</Container>
