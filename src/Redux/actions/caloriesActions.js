@@ -1,6 +1,7 @@
-export const addCalories = () => {
+export const addCalories = (product) => {
     return {
-        type: "ADD_CALORIES"
+        type: "ADD_CALORIES",
+        payload: product
     }
 };
 

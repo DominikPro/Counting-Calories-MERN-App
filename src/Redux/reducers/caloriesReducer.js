@@ -5,8 +5,7 @@ const caloriesReducer = (calories = [
 ], action) => {
     switch (action.type) {
         case 'ADD_CALORIES':
-
-            return calories;
+            return [...calories, action.payload]
         case 'REMOVE_CALORIES':
 
             return calories

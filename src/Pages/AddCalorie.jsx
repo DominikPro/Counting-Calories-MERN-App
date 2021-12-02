@@ -2,7 +2,6 @@ import React, { useState } from "react";
 //=============================================
 import { useDispatch, useSelector } from "react-redux";
 import { addCalories } from "../Redux/actions/caloriesActions";
-
 //=============================================
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
@@ -13,6 +12,7 @@ import Header from "../Components/Header/Header";
 //=============================================
 
 const AddCalorie = () => {
+	const dispatch = useDispatch();
 	const [selectedProduct, setselectedProduct] = useState({
 		name: "",
 		defaultPortion: 0,
@@ -24,7 +24,6 @@ const AddCalorie = () => {
 
 	const addtoform = (product) => {
 		setselectedProduct(product);
-		setSerchedProductName("");
 	};
 
 	const handleChange = (e) => {
@@ -52,6 +51,7 @@ const AddCalorie = () => {
 							onChange={(e) => {
 								setSerchedProductName(e.target.value);
 							}}
+							value={serchedProductName}
 							id="filled-basic"
 							label="Wyszukaj produkt:"
 							variant="outlined"
@@ -112,8 +112,9 @@ const AddCalorie = () => {
 						/>
 
 						<TextField
-							// onChange={()=>}
+							onChange={(e) => handleChange(e)}
 							value={selectedProduct.caloriesIn100}
+							name="caloriesIn100"
 							id="filled-basic"
 							label="Ilość kcl w 100g:"
 							variant="filled"
@@ -121,8 +122,9 @@ const AddCalorie = () => {
 						/>
 
 						<TextField
-							// onChange={()=>}
+							onChange={(e) => handleChange(e)}
 							value={selectedProduct.defaultPortion}
+							name="defaultPortion"
 							id="filled-basic"
 							label="Waga porcji:"
 							variant="filled"
@@ -133,14 +135,28 @@ const AddCalorie = () => {
 							value={selectedProduct.remarks}
 							id="outlined-multiline-flexible"
 							name="remarks"
-							variant="outlined"
+							variant="filled"
 							fullWidth
 							label="Uwagi:"
 							multiline
 							minRows={4}
 						/>
 					</form>
-					<Button variant="contained"> Dodaj </Button>
+					<Button
+						onClick={() => {
+							dispatch(addCalories(selectedProduct));
+							setSerchedProductName("null");
+							setselectedProduct({
+								name: "",
+								defaultPortion: 0,
+								caloriesIn100: 0,
+								remarks: "",
+							});
+						}}
+						variant="contained"
+					>
+						Dodaj
+					</Button>
 				</Stack>
 			</Container>
 		</>
