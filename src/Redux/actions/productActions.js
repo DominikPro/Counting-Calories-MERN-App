@@ -1,6 +1,7 @@
-export const addProduct = () => {
+export const addProduct = (product) => {
     return {
-        type: "ADD_PRODUCT"
+        type: "ADD_PRODUCT",
+        payload: product
     }
 }
 export const removeProduct = () => {

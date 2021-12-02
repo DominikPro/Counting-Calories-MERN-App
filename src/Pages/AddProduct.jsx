@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+//=============================================
+import { useDispatch } from "react-redux";
+import { addProduct } from "../Redux/actions/productActions";
 //=============================================
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Header from "../Components/Header/Header";
-import { makeStyles } from "@mui/styles";
-import { ClassNames } from "@emotion/react";
 //=============================================
 
 const AddProduct = () => {
+	const [product, setProduct] = useState({ name: "", defaultPortion: "", caloriesIn100: "", remarks: "" });
+	const dispatch = useDispatch();
+	//=============================================
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		setProduct((prevState) => ({
+			...prevState,
+			[name]: value,
+		}));
+	};
+	//=============================================
+	const clearLocalProductState = () => {
+		setProduct({ name: "", defaultPortion: "", caloriesIn100: "", remarks: "" });
+	};
+	//=============================================
+
 	return (
 		<>
 			<Container maxWidth="sm">
@@ -22,7 +39,9 @@ const AddProduct = () => {
 					<Header title="Dodaj nowy produkt do katalogu" size={20} />
 					<form noValidate autoComplete="off">
 						<TextField
-							// className={classes.field}
+							onChange={(e) => handleChange(e)}
+							name="name"
+							value={product.name}
 							id="filled-basic"
 							label="Nazwa produktu:"
 							variant="filled"
@@ -31,6 +50,9 @@ const AddProduct = () => {
 						/>
 
 						<TextField
+							onChange={(e) => handleChange(e)}
+							name="caloriesIn100"
+							value={product.caloriesIn100}
 							id="filled-basic"
 							label="Ilość kcl w 100g:"
 							variant="filled"
@@ -39,6 +61,9 @@ const AddProduct = () => {
 						/>
 
 						<TextField
+							onChange={(e) => handleChange(e)}
+							name="defaultPortion"
+							value={product.defaultPortion}
 							id="filled-basic"
 							label="Domyślna waga porcji:"
 							variant="filled"
@@ -46,17 +71,26 @@ const AddProduct = () => {
 							required
 						/>
 						<TextField
+							onChange={(e) => handleChange(e)}
+							name="remarks"
+							value={product.remarks}
 							id="outlined-multiline-flexible"
 							variant="filled"
 							fullWidth
 							label="Uwagi:"
 							multiline
 							minRows={4}
-							// value={value}
-							// onChange={handleChange}
 						/>
 					</form>
-					<Button variant="contained"> Dodaj </Button>
+					<Button
+						onClick={() => {
+							dispatch(addProduct(product));
+							clearLocalProductState();
+						}}
+						variant="contained"
+					>
+						Dodaj
+					</Button>
 				</Stack>
 			</Container>
 		</>

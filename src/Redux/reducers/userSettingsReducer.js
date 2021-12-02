@@ -1,11 +1,15 @@
-const userSettingsReducer = (settingsUserData = { name: "", weight: 0, finalWeight: 0, dailyAmountOfCalories: 0 }, action) => {
+const userSettingsReducer = (userData = { name: "Jan", weight: 120, finalWeight: 82, dailyAmountOfCalories: 2800 }, action) => {
     switch (action.type) {
         case 'UPDATE_DATA':
-            return settingsUserData;
+            return {
+                ...userData,
+                [action.payload.name]: action.payload.value
+            }
         case "REMOVE_DATA":
-            return settingsUserData;
+            return userData = { name: "", weight: 0, finalWeight: 0, dailyAmountOfCalories: 0 }
+
         default:
-            return settingsUserData;
+            return userData;
     }
 };
 export default userSettingsReducer;

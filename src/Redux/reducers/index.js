@@ -4,7 +4,7 @@ import productsReducer from "./productsReducer";
 import caloriesReducer from "./caloriesReducer";
 
 export default combineReducers({
-    userSettingsReducer,
-    productsReducer,
-    caloriesReducer,
+    userSettings: userSettingsReducer,
+    products: productsReducer,
+    calories: caloriesReducer,
 })

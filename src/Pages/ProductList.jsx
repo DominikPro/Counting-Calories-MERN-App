@@ -4,13 +4,10 @@ import Container from "@mui/material/Container";
 import Header from "../Components/Header/Header";
 import Table from "../Components/Table/Table";
 //=============================================
-const data = [
-	{ name: "Cupcake", portion: 500, amountOfKclIn100g: 10, remarks: "" },
-	{ name: "Cola", portion: 500, amountOfKclIn100g: 60, remarks: "" },
-	{ name: "Kanapka z pomidorem", portion: 350, amountOfKclIn100g: 80, remarks: "z majonezem" },
-	{ name: "Woda", portion: 500, amountOfKclIn100g: 1, remarks: "" },
-];
+import { useSelector } from "react-redux";
+//=============================================
 const ProductList = () => {
+	const data = useSelector((state) => state.products);
 	return (
 		<>
 			<Container maxWidth="lg">

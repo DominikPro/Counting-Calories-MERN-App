@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 //=============================================
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 //=============================================
-import { useDispatch } from "react-redux";
-//=============================================
 import Container from "@mui/material/Container";
 import Header from "../Components/Header/Header";
 //=============================================
+import { useDispatch, useSelector } from "react-redux";
+import { updateData, removeData } from "../Redux/actions/SettingsActions";
+//=============================================
 
 const Settings = () => {
+	const dispatch = useDispatch();
+	const userData = useSelector((state) => state.userSettings);
+
 	return (
 		<>
 			<Container maxWidth="lg">
@@ -25,13 +29,19 @@ const Settings = () => {
 				>
 					<form noValidate autoComplete="off">
 						<TextField
+							value={userData.name}
+							onChange={(e) => dispatch(updateData(e.target))}
 							id="filled-basic"
+							name="name"
 							label="Imię:"
 							variant="filled"
 							fullWidth
 							required
 						/>
 						<TextField
+							value={userData.dailyAmountOfCalories}
+							onChange={(e) => dispatch(updateData(e.target))}
+							name="dailyAmountOfCalories"
 							id="filled-basic"
 							label="Dzienna ilość kalorii:"
 							variant="filled"
@@ -39,6 +49,9 @@ const Settings = () => {
 							required
 						/>
 						<TextField
+							value={userData.weight}
+							onChange={(e) => dispatch(updateData(e.target))}
+							name="weight"
 							id="filled-basic"
 							label="Waga:"
 							variant="filled"
@@ -46,6 +59,9 @@ const Settings = () => {
 							required
 						/>
 						<TextField
+							value={userData.finalWeight}
+							onChange={(e) => dispatch(updateData(e.target))}
+							name="finalWeight"
 							id="filled-basic"
 							label="Waga docelowa:"
 							variant="filled"
@@ -53,10 +69,13 @@ const Settings = () => {
 							required
 						/>
 					</form>
-					<Button variant="contained" color="error">
+					<Button
+						onClick={() => dispatch(removeData())}
+						variant="contained"
+						color="error"
+					>
 						Usuń dane
 					</Button>
-					<Button variant="contained"> Zapisz </Button>
 				</Stack>
 			</Container>
 		</>

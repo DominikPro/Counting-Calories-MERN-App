@@ -34,8 +34,8 @@ const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, co
 						<Item
 							key={item.name}
 							name={item.name}
-							portion={item.portion}
-							amountOfKclIn100g={item.amountOfKclIn100g}
+							portion={item.defaultPortion}
+							amountOfKclIn100g={item.caloriesIn100}
 							remarks={item.remarks}
 						/>
 					);

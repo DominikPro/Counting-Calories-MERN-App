@@ -19,7 +19,9 @@ const Item = (props) => {
 				<Typography align="center">{amountOfKclIn100g}</Typography>
 			</Grid>
 			<Grid item xs={1}>
-				<Typography align="center">{(portion / 100) * amountOfKclIn100g}</Typography>
+				<Typography align="center">
+					{Math.round((portion / 100) * amountOfKclIn100g)}
+				</Typography>
 			</Grid>
 			<Grid item xs={2}>
 				<Typography align="center">{remarks}</Typography>
