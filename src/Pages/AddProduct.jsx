@@ -42,9 +42,10 @@ const AddProduct = () => {
 							onChange={(e) => handleChange(e)}
 							name="name"
 							value={product.name}
+							style={{ marginBottom: "10px" }}
 							id="filled-basic"
 							label="Nazwa produktu:"
-							variant="filled"
+							variant="outlined"
 							fullWidth
 							required
 						/>
@@ -53,9 +54,10 @@ const AddProduct = () => {
 							onChange={(e) => handleChange(e)}
 							name="caloriesIn100"
 							value={product.caloriesIn100}
+							style={{ marginBottom: "10px" }}
 							id="filled-basic"
 							label="Ilość kcl w 100g:"
-							variant="filled"
+							variant="outlined"
 							fullWidth
 							required
 						/>
@@ -64,9 +66,10 @@ const AddProduct = () => {
 							onChange={(e) => handleChange(e)}
 							name="defaultPortion"
 							value={product.defaultPortion}
+							style={{ marginBottom: "10px" }}
 							id="filled-basic"
 							label="Domyślna waga porcji:"
-							variant="filled"
+							variant="outlined"
 							fullWidth
 							required
 						/>
@@ -75,7 +78,7 @@ const AddProduct = () => {
 							name="remarks"
 							value={product.remarks}
 							id="outlined-multiline-flexible"
-							variant="filled"
+							variant="outlined"
 							fullWidth
 							label="Uwagi:"
 							multiline

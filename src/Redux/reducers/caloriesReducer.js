@@ -1,7 +1,7 @@
 const caloriesReducer = (calories = [
-    { name: "Jabłko", defaultPortion: 170, caloriesIn100: 38, remarks: "" },
-    { name: "Gruszka", defaultPortion: 140, caloriesIn100: 42, remarks: "" },
-    { name: "Banan", defaultPortion: 135, caloriesIn100: 53, remarks: "" },
+    { name: "Jabłko", defaultPortion: 170, caloriesIn100: 38, remarks: "", date: "04.12.2021" },
+    { name: "Gruszka", defaultPortion: 140, caloriesIn100: 42, remarks: "", date: "04.12.2021" },
+    { name: "Banan", defaultPortion: 135, caloriesIn100: 53, remarks: "", date: "04.12.2021" },
 ], action) => {
     switch (action.type) {
         case 'ADD_CALORIES':

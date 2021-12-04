@@ -1,29 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 //=============================================
 import { useDispatch, useSelector } from "react-redux";
 import { addCalories } from "../Redux/actions/caloriesActions";
 //=============================================
-import Grid from "@mui/material/Grid";
+import dayjs from "dayjs";
+//=============================================
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Header from "../Components/Header/Header";
+import SerchedItem from "../Components/SerchedItem/SerchedItem";
 //=============================================
 
 const AddCalorie = () => {
+	const serchedProductRef = useRef();
 	const dispatch = useDispatch();
 	const [selectedProduct, setselectedProduct] = useState({
 		name: "",
 		defaultPortion: 0,
 		caloriesIn100: 0,
 		remarks: "",
+		date: "",
 	});
-	const [serchedProductName, setSerchedProductName] = useState(null);
+	const [serchedProductName, setSerchedProductName] = useState("");
 	const products = useSelector((state) => state.products);
 
 	const addtoform = (product) => {
 		setselectedProduct(product);
+		const actDate = dayjs().format("DD.MM.YYYY");
+		setselectedProduct((prevState) => ({
+			...prevState,
+			date: actDate,
+		}));
 	};
 
 	const handleChange = (e) => {
@@ -38,12 +49,7 @@ const AddCalorie = () => {
 	return (
 		<>
 			<Container maxWidth="sm">
-				<Stack
-					direction="column"
-					justifyContent="flex-start"
-					alignItems="center"
-					spacing={2}
-				>
+				<Stack justifyContent="flex-start" alignItems="center" spacing={2}>
 					<Header title="Dodaj produkt do dzisiejszej listy" size={20} />
 
 					<form noValidate autoComplete="off">
@@ -52,15 +58,19 @@ const AddCalorie = () => {
 								setSerchedProductName(e.target.value);
 							}}
 							value={serchedProductName}
+							style={{ marginBottom: "20px" }}
+							ref={serchedProductRef}
 							id="filled-basic"
 							label="Wyszukaj produkt:"
 							variant="outlined"
+							color="secondary"
+							size="large"
 							fullWidth
 						></TextField>
 						{products
 							.filter((product) => {
 								if (
-									serchedProductName === null ||
+									serchedProductName === "" ||
 									serchedProductName.length <= 1
 								) {
 									return "";
@@ -75,83 +85,81 @@ const AddCalorie = () => {
 								}
 							})
 							.map((product) => {
-								console.log(product);
 								return (
-									<Grid
-										container
-										alignItems="center"
-										justifyContent="center"
-										key={product.name}
-									>
-										<Grid item xs={8}>
-											{
-												product.name
-											}
-										</Grid>
-										<Grid item xs={2}>
-											<Button
-												onClick={() =>
-													addtoform(
-														product
-													)
-												}
-												variant="outlined"
-											>
-												Wybierz
-											</Button>
-										</Grid>
-									</Grid>
+									<SerchedItem
+										product={product}
+										addtoform={
+											addtoform
+										}
+										setSerchedProductName={
+											setSerchedProductName
+										}
+									/>
 								);
 							})}
 						<TextField
 							value={selectedProduct.name}
-							id="filled-basic"
+							style={{ marginTop: "10px" }}
+							inputProps={{ readOnly: true }}
+							id="outlined-disabled"
 							label="Nazwa produktu:"
-							variant="filled"
+							variant="outlined"
 							fullWidth
 						/>
 
 						<TextField
 							onChange={(e) => handleChange(e)}
 							value={selectedProduct.caloriesIn100}
+							style={{ marginTop: "10px" }}
 							name="caloriesIn100"
 							id="filled-basic"
 							label="Ilość kcl w 100g:"
-							variant="filled"
+							variant="outlined"
 							fullWidth
 						/>
 
 						<TextField
 							onChange={(e) => handleChange(e)}
 							value={selectedProduct.defaultPortion}
+							style={{ marginTop: "10px" }}
 							name="defaultPortion"
 							id="filled-basic"
 							label="Waga porcji:"
-							variant="filled"
+							variant="outlined"
 							fullWidth
 						/>
 						<TextField
 							onChange={(e) => handleChange(e)}
 							value={selectedProduct.remarks}
+							style={{ marginTop: "10px" }}
 							id="outlined-multiline-flexible"
 							name="remarks"
-							variant="filled"
+							variant="outlined"
 							fullWidth
 							label="Uwagi:"
 							multiline
 							minRows={4}
 						/>
 					</form>
+
 					<Button
-						onClick={() => {
-							dispatch(addCalories(selectedProduct));
-							setSerchedProductName("null");
-							setselectedProduct({
-								name: "",
-								defaultPortion: 0,
-								caloriesIn100: 0,
-								remarks: "",
-							});
+						onClick={(e) => {
+							if (selectedProduct.name !== "") {
+								dispatch(addCalories(selectedProduct));
+								setSerchedProductName("");
+								setselectedProduct({
+									name: "",
+									defaultPortion: 0,
+									caloriesIn100: 0,
+									remarks: "",
+									date: "",
+								});
+								console.log(selectedProduct);
+							} else {
+								alert(
+									"Sprawdź czy poprawnie wprowadziłeś informacje o produkcie"
+								);
+							}
 						}}
 						variant="contained"
 					>

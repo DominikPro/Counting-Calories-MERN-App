@@ -62,9 +62,9 @@ const Navigation = () => {
 							<MenuItem
 								onClick={handleClose}
 								component={Link}
-								to="/addProduct"
+								to="/statistic"
 							>
-								Dodaj Produkt
+								Statystyki
 							</MenuItem>
 							<MenuItem
 								onClick={handleClose}
@@ -76,16 +76,16 @@ const Navigation = () => {
 							<MenuItem
 								onClick={handleClose}
 								component={Link}
-								to="/productList"
+								to="/addProduct"
 							>
-								Lista Produktów
+								Dodaj Produkt
 							</MenuItem>
 							<MenuItem
 								onClick={handleClose}
 								component={Link}
-								to="/statistic"
+								to="/productList"
 							>
-								Statystyki
+								Lista Produktów
 							</MenuItem>
 							<MenuItem
 								onClick={handleClose}
