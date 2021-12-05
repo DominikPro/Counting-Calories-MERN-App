@@ -38,7 +38,6 @@ const AddCalorie = () => {
 	};
 
 	const handleChange = (e) => {
-		console.log(selectedProduct);
 		const { name, value } = e.target;
 		setselectedProduct((prevState) => ({
 			...prevState,

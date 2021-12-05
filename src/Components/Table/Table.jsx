@@ -6,11 +6,11 @@ import Item from "../Item/Item";
 
 //=============================================
 
-const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, col6Title }) => {
+const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, col6Title, col7Title }) => {
 	return (
 		<>
 			<Grid container spacing={1}>
-				<Grid item xs={3}>
+				<Grid item xs={2}>
 					<CategoryHeader title={col1Title} />
 				</Grid>
 				<Grid item xs={2}>
@@ -25,8 +25,11 @@ const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, co
 				<Grid item xs={2}>
 					<CategoryHeader title={col5Title} />
 				</Grid>
-				<Grid item xs={2}>
+				<Grid item xs={1}>
 					<CategoryHeader title={col6Title} />
+				</Grid>
+				<Grid item xs={2}>
+					<CategoryHeader title={col7Title} />
 				</Grid>
 
 				{data.map((item) => {
@@ -37,6 +40,7 @@ const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, co
 							portion={item.defaultPortion}
 							amountOfKclIn100g={item.caloriesIn100}
 							remarks={item.remarks}
+							date={item.date}
 						/>
 					);
 				})}

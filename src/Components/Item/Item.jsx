@@ -5,15 +5,15 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 
 const Item = (props) => {
-	const { name, portion, amountOfKclIn100g, remarks } = props;
-	console.log(portion);
+	const { name, portion, amountOfKclIn100g, remarks, date } = props;
+
 	return (
 		<>
 			<Grid item xs={3}>
 				<Typography>{name}</Typography>
 			</Grid>
-			<Grid item xs={2}>
-				<Typography align="center">{portion}</Typography>
+			<Grid item xs={1}>
+				<Typography align="left">{portion}</Typography>
 			</Grid>
 			<Grid item xs={2}>
 				<Typography align="center">{amountOfKclIn100g}</Typography>
@@ -25,6 +25,9 @@ const Item = (props) => {
 			</Grid>
 			<Grid item xs={2}>
 				<Typography align="center">{remarks}</Typography>
+			</Grid>
+			<Grid item xs={1}>
+				<Typography align="center">{date}</Typography>
 			</Grid>
 			<Grid item xs={1}>
 				<Button variant="outlined">Usyń</Button>
