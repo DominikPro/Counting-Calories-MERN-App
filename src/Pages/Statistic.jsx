@@ -1,27 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 //=============================================
 import Container from "@mui/material/Container";
 //=============================================
 import { useSelector } from "react-redux";
+
 //=============================================
 import Header from "../Components/Header/Header";
 import Table from "../Components/Table/Table";
+import SelectDate from "../Components/SelectDate/SelectDate";
 //=============================================
 
 const Statistic = () => {
-	const data = useSelector((state) => state.calories);
+	const [dateSelected, setDateSelected] = useState(null);
 
-	const distinctDate = [...new Set(data.map((item) => item.date))];
 	useEffect(() => {
-		console.log(distinctDate);
-	}, [data]);
+		console.log(dateSelected);
+	}, [dateSelected]);
 
 	return (
 		<>
 			<Container maxWidth="lg">
 				<Header title="Statystyki" size={20} />
+				<SelectDate setDateSelected={setDateSelected} dateSelected={dateSelected} />
+
 				<Table
-					data={data}
+					data={dateSelected}
 					col1Title="Nazwa"
 					col2Title="Porcja"
 					col3Title="Kcl w 110 g/ml"
