@@ -19,7 +19,8 @@ const ProductList = () => {
 					col3Title="Kcl w 110 g/ml"
 					col4Title="Ilość kalorii"
 					col5Title="Uwagi"
-					col6Title="Edytcja"
+					col6Title="Data"
+					col7Title="Edytcja"
 				/>
 			</Container>
 		</>

@@ -5,8 +5,9 @@ export const addCalories = (product) => {
     }
 };
 
-export const removeCaloris = () => {
+export const removeCaloris = (productId) => {
     return {
-        type: "REMOVE_CALORIES"
+        type: "REMOVE_CALORIES",
+        payload: productId
     }
 }

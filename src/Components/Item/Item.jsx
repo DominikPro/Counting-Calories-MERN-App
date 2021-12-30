@@ -1,11 +1,15 @@
 import React from "react";
-import Box from "@mui/material/Box";
+//=============================================
+import { useDispatch } from "react-redux";
+import { removeCaloris } from "../../Redux/actions/caloriesActions";
+//=============================================
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 
 const Item = (props) => {
-	const { name, portion, amountOfKclIn100g, remarks, date } = props;
+	const dispatch = useDispatch();
+	const { productId, name, portion, amountOfKclIn100g, remarks, date } = props;
 
 	return (
 		<>
@@ -30,7 +34,9 @@ const Item = (props) => {
 				<Typography align="center">{date}</Typography>
 			</Grid>
 			<Grid item xs={1}>
-				<Button variant="outlined">Usyń</Button>
+				<Button onClick={() => dispatch(removeCaloris(productId))} variant="outlined">
+					Usyń
+				</Button>
 			</Grid>
 			<Grid item xs={1}>
 				<Button variant="contained">Edytuj</Button>

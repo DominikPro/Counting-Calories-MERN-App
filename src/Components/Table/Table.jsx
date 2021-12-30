@@ -7,8 +7,9 @@ import Item from "../Item/Item";
 //=============================================
 
 const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, col6Title, col7Title }) => {
+	// eslint-disable-next-line no-lone-blocks
 	{
-		if (data === null) {
+		if (data === "") {
 			return <h3>Brak danych</h3>;
 		} else {
 			return (
@@ -37,9 +38,11 @@ const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, co
 						</Grid>
 
 						{data.map((item) => {
+							console.log(item.id);
 							return (
 								<Item
-									key={item.name}
+									key={item.id}
+									productId={item.id}
 									name={item.name}
 									portion={item.defaultPortion}
 									amountOfKclIn100g={

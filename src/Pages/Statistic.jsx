@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 //=============================================
 import { useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux";
+import { removeCaloris } from "../Redux/actions/caloriesActions";
 //=============================================
 import Header from "../Components/Header/Header";
 import Table from "../Components/Table/Table";
@@ -11,7 +12,7 @@ import SelectDate from "../Components/SelectDate/SelectDate";
 //=============================================
 
 const Statistic = () => {
-	const [dateSelected, setDateSelected] = useState(null);
+	const [dateSelected, setDateSelected] = useState("");
 
 	useEffect(() => {
 		console.log(dateSelected);
