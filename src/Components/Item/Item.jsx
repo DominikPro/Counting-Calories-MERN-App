@@ -2,14 +2,22 @@ import React from "react";
 //=============================================
 import { useDispatch } from "react-redux";
 import { removeCaloris } from "../../Redux/actions/caloriesActions";
+import { removeProduct } from "../../Redux/actions/productActions";
 //=============================================
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 
 const Item = (props) => {
+	const { listType, productId, name, portion, amountOfKclIn100g, remarks, date } = props;
 	const dispatch = useDispatch();
-	const { productId, name, portion, amountOfKclIn100g, remarks, date } = props;
+	const checkListTypeAndDisptach = () => {
+		if (listType === "Statistic") {
+			return dispatch(removeCaloris(productId));
+		} else if (listType === "Products") {
+			return dispatch(removeProduct(productId));
+		}
+	};
 
 	return (
 		<>
@@ -34,9 +42,15 @@ const Item = (props) => {
 				<Typography align="center">{date}</Typography>
 			</Grid>
 			<Grid item xs={1}>
-				<Button onClick={() => dispatch(removeCaloris(productId))} variant="outlined">
+				{/* <Button onClick={() => console.log(productId)} variant="outlined">
+					Usyń
+				</Button> */}
+				<Button onClick={() => checkListTypeAndDisptach()} variant="outlined">
 					Usyń
 				</Button>
+				{/* <Button onClick={() => dispatch(removeCaloris(productId))} variant="outlined">
+					Usyń
+				</Button> */}
 			</Grid>
 			<Grid item xs={1}>
 				<Button variant="contained">Edytuj</Button>

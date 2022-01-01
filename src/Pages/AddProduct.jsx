@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 //=============================================
+import { v4 as uuidv4 } from "uuid";
+//=============================================
 import { useDispatch } from "react-redux";
 import { addProduct } from "../Redux/actions/productActions";
 //=============================================
@@ -8,10 +10,18 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Header from "../Components/Header/Header";
+import GoToButton from "../Components/GoToButton/GoToButton";
 //=============================================
 
 const AddProduct = () => {
-	const [product, setProduct] = useState({ name: "", defaultPortion: "", caloriesIn100: "", remarks: "" });
+	const [product, setProduct] = useState({
+		listType: "Products",
+		id: uuidv4(),
+		name: "",
+		defaultPortion: "",
+		caloriesIn100: "",
+		remarks: "",
+	});
 	const dispatch = useDispatch();
 	//=============================================
 	const handleChange = (e) => {
@@ -94,6 +104,10 @@ const AddProduct = () => {
 					>
 						Dodaj
 					</Button>
+					<GoToButton
+						goToButtonName="Dodaj do listy kalorii"
+						to="/addCalorie"
+					/>
 				</Stack>
 			</Container>
 		</>

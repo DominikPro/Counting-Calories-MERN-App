@@ -1,24 +1,28 @@
 import React, { useState, useRef } from "react";
 //=============================================
+import { v4 as uuidv4 } from "uuid";
+//=============================================
 import { useDispatch, useSelector } from "react-redux";
 import { addCalories } from "../Redux/actions/caloriesActions";
 //=============================================
 import dayjs from "dayjs";
 //=============================================
 import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import Alert from "@mui/material/Alert";
-import AlertTitle from "@mui/material/AlertTitle";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Header from "../Components/Header/Header";
 import SerchedItem from "../Components/SerchedItem/SerchedItem";
+import GoToButton from "../Components/GoToButton/GoToButton";
 //=============================================
 
 const AddCalorie = () => {
 	const serchedProductRef = useRef();
 	const dispatch = useDispatch();
 	const [selectedProduct, setselectedProduct] = useState({
+		listType: "",
+		id: "",
 		name: "",
 		defaultPortion: 0,
 		caloriesIn100: 0,
@@ -34,6 +38,7 @@ const AddCalorie = () => {
 		setselectedProduct((prevState) => ({
 			...prevState,
 			date: actDate,
+			listType: "Statistic",
 		}));
 	};
 
@@ -65,7 +70,7 @@ const AddCalorie = () => {
 							color="secondary"
 							size="large"
 							fullWidth
-						></TextField>
+						/>
 						{products
 							.filter((product) => {
 								if (
@@ -96,6 +101,20 @@ const AddCalorie = () => {
 									/>
 								);
 							})}
+						{serchedProductName.length > 1 && (
+							<Box
+								m={2}
+								display="flex"
+								justifyContent="center"
+								alignItems="center"
+							>
+								<GoToButton
+									goToButtonName="Stwórz nowy produtk"
+									to="/addProduct"
+								/>
+							</Box>
+						)}
+
 						<TextField
 							value={selectedProduct.name}
 							style={{ marginTop: "10px" }}
@@ -147,6 +166,8 @@ const AddCalorie = () => {
 								dispatch(addCalories(selectedProduct));
 								setSerchedProductName("");
 								setselectedProduct({
+									listType: "",
+									id: "",
 									name: "",
 									defaultPortion: 0,
 									caloriesIn100: 0,

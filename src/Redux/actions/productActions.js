@@ -4,8 +4,9 @@ export const addProduct = (product) => {
         payload: product
     }
 }
-export const removeProduct = () => {
+export const removeProduct = (productId) => {
     return {
-        type: "REMOVE_PRODUCT"
+        type: "REMOVE_PRODUCT",
+        payload: productId
     }
 }

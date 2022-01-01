@@ -23,7 +23,6 @@ const SelectDate = ({ dateSelected, setDateSelected }) => {
 
 	let productsForTheDate = data.filter((product) => {
 		if (product.date === selectedDay) {
-			console.log(data.length);
 			return product;
 		}
 	});

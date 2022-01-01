@@ -38,9 +38,11 @@ const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, co
 						</Grid>
 
 						{data.map((item) => {
-							console.log(item.id);
+							console.log(data);
 							return (
 								<Item
+									listType={item.listType}
+									date={item.date}
 									key={item.id}
 									productId={item.id}
 									name={item.name}
@@ -49,7 +51,6 @@ const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, co
 										item.caloriesIn100
 									}
 									remarks={item.remarks}
-									date={item.date}
 								/>
 							);
 						})}
