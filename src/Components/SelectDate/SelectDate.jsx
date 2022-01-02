@@ -35,7 +35,7 @@ const SelectDate = ({ dateSelected, setDateSelected }) => {
 				<FormControl fullWidth>
 					<InputLabel id="demo-simple-select-label">Data</InputLabel>
 					<Select
-						style={{ width: 150 }}
+						style={{ width: 130 }}
 						labelId="demo-simple-select-label"
 						id="demo-simple-select"
 						value={selectedDay}

@@ -16,8 +16,7 @@ const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, co
 			return (
 				<>
 					<Grid container spacing={1}>
-						<CalorieCounter dataToCount={data} />
-
+						{/* <CalorieCounter dataToCount={data} /> */}
 						<Grid item xs={2}>
 							<CategoryHeader title={col1Title} />
 						</Grid>
