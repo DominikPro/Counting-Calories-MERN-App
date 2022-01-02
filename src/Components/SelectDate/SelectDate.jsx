@@ -4,12 +4,7 @@ import dayjs from "dayjs";
 //=============================================
 import { useSelector } from "react-redux";
 //=============================================
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+import { Grid, InputLabel, MenuItem, FormControl, Select } from "@mui/material/";
 
 const SelectDate = ({ dateSelected, setDateSelected }) => {
 	const data = useSelector((state) => state.calories);
@@ -52,13 +47,10 @@ const SelectDate = ({ dateSelected, setDateSelected }) => {
 								<MenuItem value={date}>{date}</MenuItem>
 							))
 						) : (
-							<MenuItem>Brak danych</MenuItem>
+							<MenuItem>Brak wpisów</MenuItem>
 						)}
 					</Select>
 				</FormControl>
-			</Grid>
-			<Grid xs={4} justify="center" item>
-				{selectedDay ? null : <h2>Wybierz date</h2>}
 			</Grid>
 		</Grid>
 	);

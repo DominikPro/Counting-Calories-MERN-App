@@ -9,6 +9,7 @@ import { removeCaloris } from "../Redux/actions/caloriesActions";
 import Header from "../Components/Header/Header";
 import Table from "../Components/Table/Table";
 import SelectDate from "../Components/SelectDate/SelectDate";
+
 //=============================================
 
 const Statistic = () => {
@@ -22,6 +23,7 @@ const Statistic = () => {
 		<>
 			<Container maxWidth="lg">
 				<Header title="Statystyki" size={20} />
+
 				<SelectDate setDateSelected={setDateSelected} dateSelected={dateSelected} />
 
 				<Table

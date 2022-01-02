@@ -4,9 +4,8 @@ import { useDispatch } from "react-redux";
 import { removeCaloris } from "../../Redux/actions/caloriesActions";
 import { removeProduct } from "../../Redux/actions/productActions";
 //=============================================
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
+import { Typography, Button, Grid } from "@mui/material/";
+//=============================================
 
 const Item = (props) => {
 	const { listType, productId, name, portion, amountOfKclIn100g, remarks, date } = props;
@@ -42,15 +41,9 @@ const Item = (props) => {
 				<Typography align="center">{date}</Typography>
 			</Grid>
 			<Grid item xs={1}>
-				{/* <Button onClick={() => console.log(productId)} variant="outlined">
-					Usyń
-				</Button> */}
 				<Button onClick={() => checkListTypeAndDisptach()} variant="outlined">
 					Usyń
 				</Button>
-				{/* <Button onClick={() => dispatch(removeCaloris(productId))} variant="outlined">
-					Usyń
-				</Button> */}
 			</Grid>
 			<Grid item xs={1}>
 				<Button variant="contained">Edytuj</Button>

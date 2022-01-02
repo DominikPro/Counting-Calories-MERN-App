@@ -1,20 +1,23 @@
 import React from "react";
 //=============================================
-import Grid from "@mui/material/Grid";
+import { Grid } from "@mui/material/";
 import CategoryHeader from "../CategoryHeader/CategoryHeader";
 import Item from "../Item/Item";
-
+import CalorieCounter from "../CalorieCounter/CalorieCounter";
 //=============================================
 
 const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, col6Title, col7Title }) => {
 	// eslint-disable-next-line no-lone-blocks
 	{
+		console.log(data);
 		if (data === "") {
 			return <h3>Brak danych</h3>;
 		} else {
 			return (
 				<>
 					<Grid container spacing={1}>
+						<CalorieCounter dataToCount={data} />
+
 						<Grid item xs={2}>
 							<CategoryHeader title={col1Title} />
 						</Grid>
@@ -38,7 +41,7 @@ const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, co
 						</Grid>
 
 						{data.map((item) => {
-							console.log(data);
+							// console.log(data);
 							return (
 								<Item
 									listType={item.listType}
@@ -54,6 +57,16 @@ const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, co
 								/>
 							);
 						})}
+						<Grid
+							container
+							xs={12}
+							alignItems="center"
+							justify="center"
+							direction="column"
+							item
+						>
+							{data.length === 0 && <h2>Wybierz date</h2>}
+						</Grid>
 					</Grid>
 				</>
 			);
