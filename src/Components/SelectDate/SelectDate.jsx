@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 //=============================================
-import dayjs from "dayjs";
-//=============================================
 import { useSelector } from "react-redux";
 //=============================================
 import { Grid, InputLabel, MenuItem, FormControl, Select } from "@mui/material/";
@@ -9,7 +7,7 @@ import { Grid, InputLabel, MenuItem, FormControl, Select } from "@mui/material/"
 const SelectDate = ({ dateSelected, setDateSelected }) => {
 	const data = useSelector((state) => state.calories);
 	const [datesAvailable, setDatesAvailable] = useState(true);
-	const [selectedDay, setSelectedDay] = useState();
+	const [selectedDay, setSelectedDay] = useState("");
 	const distinctDate = [...new Set(data.map((item) => item.date))];
 
 	const handleChange = (e) => {

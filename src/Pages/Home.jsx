@@ -1,10 +1,7 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
-import ImageListItemBar from "@mui/material/ImageListItemBar";
-import Container from "@mui/material/Container";
+//====================================================
+import { Box, ImageList, ImageListItem, ImageListItemBar, Container } from "@mui/material/";
+//====================================================
 import Header from "../Components/Header/Header";
 //====================================================
 import food from "../Images/products/food.jpg";

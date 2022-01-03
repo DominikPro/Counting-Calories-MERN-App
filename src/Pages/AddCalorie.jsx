@@ -1,7 +1,5 @@
 import React, { useState, useRef } from "react";
 //=============================================
-import { v4 as uuidv4 } from "uuid";
-//=============================================
 import dayjs from "dayjs";
 //=============================================
 import { useDispatch, useSelector } from "react-redux";
@@ -87,8 +85,10 @@ const AddCalorie = () => {
 								}
 							})
 							.map((product) => {
+								console.log();
 								return (
 									<SerchedItem
+										key={product.id}
 										product={product}
 										addtoform={
 											addtoform

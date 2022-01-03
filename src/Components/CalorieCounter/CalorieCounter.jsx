@@ -7,19 +7,16 @@ import { Grid, Typography, Divider } from "@mui/material/";
 
 const CalorieCounter = ({ dataToCount }) => {
 	const userCalorieLimit = useSelector((state) => state.userSettings.dailyAmountOfCalories);
-	useEffect(() => {
-		sumCalorieFormData();
-		console.log(dataToCount);
-	}, [dataToCount]);
 	const [sumCalorie, setSumCalorie] = useState(0);
 
-	const sumCalorieFormData = () => {
+	useEffect(() => {
 		let sumCalorie = 0;
+		console.log(dataToCount);
 		dataToCount.map((item) => {
 			sumCalorie += Math.round((item.defaultPortion / 100) * item.caloriesIn100);
 		});
 		setSumCalorie(sumCalorie);
-	};
+	}, [dataToCount]);
 
 	return (
 		<>

@@ -10,7 +10,6 @@ import AddCalorie from "./Pages/AddCalorie";
 import ProductList from "./Pages/ProductList";
 import Settings from "./Pages/Settings";
 import CssBaseline from "@mui/material/CssBaseline";
-import { createTheme, ThemeProvider } from "@material-ui/core";
 
 //==========================================
 
