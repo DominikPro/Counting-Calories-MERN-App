@@ -1,8 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 //=============================================
 import { useDispatch } from "react-redux";
 import { removeCaloris } from "../../Redux/actions/caloriesActions";
 import { removeProduct } from "../../Redux/actions/productActions";
+//=============================================
+import EditDialogWindow from "../EditDialogWindow/EditDialogWindow";
 //=============================================
 import { Typography, Button, Grid } from "@mui/material/";
 //=============================================
@@ -45,11 +48,23 @@ const Item = (props) => {
 					Usyń
 				</Button>
 			</Grid>
-			<Grid item xs={1}>
+			{/* <Grid item xs={1}>
 				<Button variant="contained">Edytuj</Button>
+			</Grid> */}
+			<Grid item xs={1}>
+				<EditDialogWindow />
 			</Grid>
 		</>
 	);
 };
 
+Item.propTypes = {
+	listType: PropTypes.string,
+	productId: PropTypes.number,
+	name: PropTypes.string,
+	portion: PropTypes.number,
+	amountOfKclIn100g: PropTypes.number,
+	remarks: PropTypes.string,
+	date: PropTypes.string,
+};
 export default Item;

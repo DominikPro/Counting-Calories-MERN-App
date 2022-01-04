@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 //=============================================
 import dayjs from "dayjs";
+import { v4 as uuidv4 } from "uuid";
 //=============================================
 import { useDispatch, useSelector } from "react-redux";
 import { addCalories } from "../Redux/actions/caloriesActions";
@@ -35,11 +36,12 @@ const AddCalorie = () => {
 			...prevState,
 			date: actDate,
 			listType: "Statistic",
+			id: uuidv4(),
 		}));
 	};
 
 	const handleChange = (e) => {
-		const { name, value } = e.target;
+		const { name, value, id } = e.target;
 		setselectedProduct((prevState) => ({
 			...prevState,
 			[name]: value,

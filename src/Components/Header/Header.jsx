@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+//=============================================
 import Box from "@mui/material/Box";
 
 const Header = ({ title, size }) => {
@@ -15,6 +17,11 @@ const Header = ({ title, size }) => {
 			{title}
 		</Box>
 	);
+};
+
+Header.propTypes = {
+	title: PropTypes.string,
+	size: PropTypes.number,
 };
 
 export default Header;

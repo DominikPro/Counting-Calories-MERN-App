@@ -9,16 +9,17 @@ import { Container } from "@mui/material/";
 import Header from "../Components/Header/Header";
 import Table from "../Components/Table/Table";
 import SelectDate from "../Components/SelectDate/SelectDate";
-// import CalorieCounter from "../Components/CalorieCounter/CalorieCounter";
+import CalorieCounter from "../Components/CalorieCounter/CalorieCounter";
 //=============================================
 
 const Statistic = () => {
-	const [dateSelected, setDateSelected] = useState("");
+	const [dateSelected, setDateSelected] = useState([]);
 
 	return (
 		<>
 			<Container maxWidth="lg">
 				<Header title="Statystyki" size={20} />
+				<CalorieCounter dataToCount={dateSelected} />
 				<SelectDate setDateSelected={setDateSelected} dateSelected={dateSelected} />
 				{/* <CalorieCounter dataToCount={dateSelected} /> */}
 				<Table

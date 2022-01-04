@@ -1,5 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 //=============================================
+import { v4 as uuidv4 } from "uuid";
+//=============================================
+import EditDialogWindow from "../EditDialogWindow/EditDialogWindow";
 import { Grid } from "@mui/material/";
 import CategoryHeader from "../CategoryHeader/CategoryHeader";
 import Item from "../Item/Item";
@@ -16,7 +20,7 @@ const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, co
 			return (
 				<>
 					<Grid container spacing={1}>
-						<CalorieCounter dataToCount={data} />
+						{/* <CalorieCounter dataToCount={data} /> */}
 						<Grid item xs={2}>
 							<CategoryHeader title={col1Title} />
 						</Grid>
@@ -45,7 +49,7 @@ const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, co
 								<Item
 									listType={item.listType}
 									date={item.date}
-									key={item.id}
+									key={uuidv4()}
 									productId={item.id}
 									name={item.name}
 									portion={item.defaultPortion}
@@ -71,6 +75,17 @@ const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, co
 			);
 		}
 	}
+};
+
+Table.propTypes = {
+	data: PropTypes.array,
+	col1Title: PropTypes.string,
+	col2Title: PropTypes.string,
+	col3Title: PropTypes.string,
+	col4Title: PropTypes.string,
+	col5Title: PropTypes.string,
+	col6Title: PropTypes.string,
+	col7Title: PropTypes.string,
 };
 
 export default Table;

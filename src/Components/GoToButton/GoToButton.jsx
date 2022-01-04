@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 //=============================================
 import Button from "@mui/material/Button";
@@ -12,15 +13,21 @@ const GoToButton = ({ goToButtonName, to }) => {
 				to={to}
 				component={Link}
 				size="small"
+				variant="outlined"
 				onClick={(e) => {
 					console.log("Przejdź");
 				}}
-				variant="outlined"
 			>
 				{goToButtonName}
 			</Button>
 		</Box>
 	);
 };
+GoToButton.propTypes = {
+	goToButtonName: PropTypes.string,
+	to: PropTypes.string,
+};
 
 export default GoToButton;
+// ddc46149 - d6f3 - 4324 - 9f17 - bb42575d39c8
+// ddc46149 - d6f3 - 4324 - 9f17 - bb42575d39c8

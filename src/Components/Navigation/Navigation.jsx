@@ -2,16 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 //==========================================
 import logo from "../../Images/logo.png";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 //==========================================
-import Avatar from "@mui/material/Avatar";
-import Stack from "@mui/material/Stack";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
+import { Button, Menu, MenuItem, Avatar, AppBar, Box, Toolbar, Typography, Stack } from "@mui/material/";
 //==========================================
 
 const Navigation = () => {

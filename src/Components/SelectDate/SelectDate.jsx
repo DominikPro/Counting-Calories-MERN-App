@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 //=============================================
 import { useSelector } from "react-redux";
 //=============================================
@@ -42,7 +43,9 @@ const SelectDate = ({ dateSelected, setDateSelected }) => {
 					>
 						{datesAvailable ? (
 							distinctDate.map((date) => (
-								<MenuItem value={date}>{date}</MenuItem>
+								<MenuItem key={date} value={date}>
+									{date}
+								</MenuItem>
 							))
 						) : (
 							<MenuItem>Brak wpisów</MenuItem>
@@ -54,4 +57,8 @@ const SelectDate = ({ dateSelected, setDateSelected }) => {
 	);
 };
 
+SelectDate.propTypes = {
+	dateSelected: PropTypes.array,
+	setDateSelected: PropTypes.func,
+};
 export default SelectDate;
