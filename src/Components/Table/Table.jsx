@@ -11,9 +11,10 @@ import CalorieCounter from "../CalorieCounter/CalorieCounter";
 //=============================================
 
 const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, col6Title, col7Title }) => {
+	console.log(data);
 	// eslint-disable-next-line no-lone-blocks
 	{
-		console.log(data);
+		// console.log(data);
 		if (data === "") {
 			return <h3>Brak danych</h3>;
 		} else {
@@ -44,7 +45,7 @@ const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, co
 						</Grid>
 
 						{data.map((item) => {
-							// console.log(data);
+							console.log(item.listType);
 							return (
 								<Item
 									listType={item.listType}

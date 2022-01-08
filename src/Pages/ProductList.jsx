@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 //=============================================
 const ProductList = () => {
 	const data = useSelector((state) => state.products);
+	console.log(data);
 	return (
 		<>
 			<Container maxWidth="lg">

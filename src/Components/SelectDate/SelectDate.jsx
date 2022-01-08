@@ -20,6 +20,9 @@ const SelectDate = ({ dateSelected, setDateSelected }) => {
 			return product;
 		}
 	});
+	useEffect(() => {
+		console.log("aktualizacja stanu");
+	}, [data]);
 
 	useEffect(() => {
 		setDateSelected(productsForTheDate);

@@ -12,6 +12,20 @@ const productsReducer = (products = [
         case "REMOVE_PRODUCT":
 
             return products.filter(item => item.id !== action.payload);
+        case "MODIFY_PRODUCT":
+            const index = products.findIndex((item, index) => { return item.id === action.payload.id })
+
+            const calories2 = [...products]
+            calories2[index] = action.payload
+            console.log(calories2)
+            console.log(products[index])
+            console.log(products[index].defaultPortion)
+
+            return calories2
+
+
+
+            return products
 
         default:
             return products;

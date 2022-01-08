@@ -11,3 +11,10 @@ export const removeCaloris = (productId) => {
         payload: productId
     }
 }
+
+export const modifyCalories = (changedProduct) => {
+    return {
+        type: "MODIFY_CALORIES",
+        payload: changedProduct
+    }
+}

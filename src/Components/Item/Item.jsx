@@ -12,11 +12,15 @@ import { Typography, Button, Grid } from "@mui/material/";
 
 const Item = (props) => {
 	const { listType, productId, name, portion, amountOfKclIn100g, remarks, date } = props;
+	// console.log(listType);
+	// console.log(productId);
 	const dispatch = useDispatch();
 	const checkListTypeAndDisptach = () => {
+		console.log(listType);
 		if (listType === "Statistic") {
 			return dispatch(removeCaloris(productId));
 		} else if (listType === "Products") {
+			console.log("wchodzi");
 			return dispatch(removeProduct(productId));
 		}
 	};
@@ -48,11 +52,12 @@ const Item = (props) => {
 					Usyń
 				</Button>
 			</Grid>
-			{/* <Grid item xs={1}>
-				<Button variant="contained">Edytuj</Button>
-			</Grid> */}
 			<Grid item xs={1}>
-				<EditDialogWindow />
+				<EditDialogWindow
+					listType={listType}
+					productId={productId}
+					productName={name}
+				/>
 			</Grid>
 		</>
 	);

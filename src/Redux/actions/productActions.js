@@ -10,3 +10,11 @@ export const removeProduct = (productId) => {
         payload: productId
     }
 }
+
+export const modifyProduct = (changedProduct) => {
+    return {
+        type: "MODIFY_PRODUCT",
+        payload: changedProduct
+    }
+}
+
