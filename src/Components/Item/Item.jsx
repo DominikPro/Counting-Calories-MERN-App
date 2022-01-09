@@ -12,15 +12,13 @@ import { Typography, Button, Grid } from "@mui/material/";
 
 const Item = (props) => {
 	const { listType, productId, name, portion, amountOfKclIn100g, remarks, date } = props;
-	// console.log(listType);
-	// console.log(productId);
+
 	const dispatch = useDispatch();
 	const checkListTypeAndDisptach = () => {
 		console.log(listType);
 		if (listType === "Statistic") {
 			return dispatch(removeCaloris(productId));
 		} else if (listType === "Products") {
-			console.log("wchodzi");
 			return dispatch(removeProduct(productId));
 		}
 	};

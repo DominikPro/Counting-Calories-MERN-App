@@ -8,6 +8,7 @@ import { modifyCalories } from "../../Redux/actions/caloriesActions";
 
 import { modifyProduct } from "../../Redux/actions/productActions";
 //=============================================
+import { DialogTitle } from "@mui/material";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import List from "@mui/material/List";
@@ -18,7 +19,7 @@ import Avatar from "@mui/material/Avatar";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
-import DialogTitle from "@mui/material/DialogTitle";
+
 import PersonIcon from "@mui/icons-material/Person";
 import AddIcon from "@mui/icons-material/Add";
 import Typography from "@mui/material/Typography";
@@ -71,11 +72,8 @@ function SimpleDialog({ onClose, selectedValue, open, listType, editedProduct })
 
 	return (
 		<Dialog onClose={handleClose} open={open}>
-			{/* <DialogTitle>Edycja roduktu:</DialogTitle> */}
-
-			{/* Poprawić miejsce pobierania doanych odnosnie typu listy */}
 			<TitleEditWindow listType={listType} />
-			<List sx={{ m: 2 }}>
+			<List sx={{ ml: 1, mr: 2, mt: 0, mb: 2 }}>
 				<Stack
 					direction="column"
 					justifyContent="flex-start"
@@ -99,7 +97,7 @@ function SimpleDialog({ onClose, selectedValue, open, listType, editedProduct })
 								required
 							/>
 						) : (
-							<h3>{`Edytowany produkt: ${changedProduct.name}`}</h3>
+							<DialogTitle>{`Edytowany produkt: ${changedProduct.name}`}</DialogTitle>
 						)}
 
 						<TextField
@@ -141,7 +139,7 @@ function SimpleDialog({ onClose, selectedValue, open, listType, editedProduct })
 
 					<Button
 						size="small"
-						variant="outlined"
+						variant="contained"
 						onClick={() => {
 							console.log(editedProduct);
 							if (changedProduct.listType === "Statistic") {

@@ -1,15 +1,31 @@
 import React, { useEffect, setState } from "react";
 import PropTypes from "prop-types";
 //=============================================
-import { DialogTitle } from "@mui/material";
+import { Typography } from "@mui/material";
 //=============================================
 
 const TitleEditWindow = ({ listType }) => {
 	const checkListType = () => {
 		if (listType === "Products") {
-			return <DialogTitle>Edycja produktu w katalogu:</DialogTitle>;
+			return (
+				<Typography
+					align="center"
+					variant="h5"
+					style={{ marginTop: 10, marginBottom: 10 }}
+				>
+					Edycja produktu w katalogu:
+				</Typography>
+			);
 		} else if (listType === "Statistic") {
-			return <DialogTitle>Modyfikacja porcji:</DialogTitle>;
+			return (
+				<Typography
+					align="center"
+					variant="h5"
+					style={{ marginTop: 10, marginBottom: 10 }}
+				>
+					Modyfikacja porcji:
+				</Typography>
+			);
 		}
 	};
 

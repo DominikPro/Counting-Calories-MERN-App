@@ -5,6 +5,7 @@ import Header from "../Components/Header/Header";
 import Table from "../Components/Table/Table";
 //=============================================
 import { useSelector } from "react-redux";
+import BottomNav from "../Components/BottomNav/BottomNav";
 //=============================================
 const ProductList = () => {
 	const data = useSelector((state) => state.products);
@@ -23,6 +24,7 @@ const ProductList = () => {
 					col6Title="Data"
 					col7Title="Edytcja"
 				/>
+				<BottomNav pageName={"productList"} />
 			</Container>
 		</>
 	);

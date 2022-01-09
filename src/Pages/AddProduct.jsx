@@ -5,12 +5,11 @@ import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../Redux/actions/productActions";
 //=============================================
-import Container from "@mui/material/Container";
-import Stack from "@mui/material/Stack";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+import { Button, TextField, Stack, Container } from "@mui/material/";
+//=============================================
 import Header from "../Components/Header/Header";
 import GoToButton from "../Components/GoToButton/GoToButton";
+import BottomNav from "../Components/BottomNav/BottomNav";
 //=============================================
 
 const AddProduct = () => {
@@ -104,10 +103,7 @@ const AddProduct = () => {
 					>
 						Dodaj
 					</Button>
-					<GoToButton
-						goToButtonName="Dodaj do listy kalorii"
-						to="/addCalorie"
-					/>
+					<BottomNav pageName="addProduct" />
 				</Stack>
 			</Container>
 		</>

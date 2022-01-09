@@ -11,6 +11,7 @@ import { Container, Box, Stack, TextField, Button } from "@mui/material/";
 import Header from "../Components/Header/Header";
 import SerchedItem from "../Components/SerchedItem/SerchedItem";
 import GoToButton from "../Components/GoToButton/GoToButton";
+import BottomNav from "../Components/BottomNav/BottomNav";
 
 //=============================================
 
@@ -185,7 +186,7 @@ const AddCalorie = () => {
 					>
 						Dodaj
 					</Button>
-					<GoToButton goToButtonName="Przejdź do statystyk" to="/Statistic" />
+					<BottomNav pageName="addCalorie" />
 				</Stack>
 			</Container>
 		</>
