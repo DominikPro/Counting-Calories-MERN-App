@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 //=============================================
 import { Paper, BottomNavigationAction, BottomNavigation } from "@mui/material/";
-
-import RestoreIcon from "@mui/icons-material/Restore";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ArchiveIcon from "@mui/icons-material/Archive";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
+//=============================================
 import GoToButton from "../GoToButton/GoToButton";
-
+import CircularProgressCalorie from "../CircularProgressCalorie/CircularProgressCalorie";
 //=============================================
 
 const BottomNav = ({ pageName }) => {
@@ -39,8 +35,6 @@ const BottomNav = ({ pageName }) => {
 		<Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }} elevation={3}>
 			<BottomNavigation>
 				{page.map((item) => {
-					console.log(page);
-					console.log(item.menu);
 					return (
 						<>
 							<GoToButton
@@ -52,6 +46,7 @@ const BottomNav = ({ pageName }) => {
 					);
 				})}
 			</BottomNavigation>
+			<CircularProgressCalorie value={1} />
 		</Paper>
 	);
 };

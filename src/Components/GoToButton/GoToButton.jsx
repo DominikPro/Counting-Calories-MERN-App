@@ -29,5 +29,3 @@ GoToButton.propTypes = {
 };
 
 export default GoToButton;
-// ddc46149 - d6f3 - 4324 - 9f17 - bb42575d39c8
-// ddc46149 - d6f3 - 4324 - 9f17 - bb42575d39c8

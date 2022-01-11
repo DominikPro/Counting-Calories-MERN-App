@@ -1,4 +1,5 @@
-const userSettingsReducer = (userData = { name: "Jan", weight: 120, finalWeight: 82, dailyAmountOfCalories: 2800 }, action) => {
+const userSettingsReducer = (userData =
+    { name: "Jan", weight: 120, finalWeight: 82, dailyAmountOfCalories: 2800 }, action) => {
     switch (action.type) {
         case 'UPDATE_DATA':
             return {
