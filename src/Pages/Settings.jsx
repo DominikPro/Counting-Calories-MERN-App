@@ -1,14 +1,14 @@
 import React from "react";
 //=============================================
+import { useDispatch, useSelector } from "react-redux";
+import { updateData, removeData } from "../Redux/actions/SettingsActions";
+//=============================================
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 //=============================================
 import Container from "@mui/material/Container";
 import Header from "../Components/Header/Header";
-//=============================================
-import { useDispatch, useSelector } from "react-redux";
-import { updateData, removeData } from "../Redux/actions/SettingsActions";
 //=============================================
 
 const Settings = () => {

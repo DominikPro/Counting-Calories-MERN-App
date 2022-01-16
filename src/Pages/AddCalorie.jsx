@@ -12,7 +12,7 @@ import Header from "../Components/Header/Header";
 import SerchedItem from "../Components/SerchedItem/SerchedItem";
 import GoToButton from "../Components/GoToButton/GoToButton";
 import BottomNav from "../Components/BottomNav/BottomNav";
-
+import FavoriteList from "../Components/FavoriteList/FavoriteList";
 //=============================================
 
 const AddCalorie = () => {
@@ -26,6 +26,7 @@ const AddCalorie = () => {
 		caloriesIn100: 0,
 		remarks: "",
 		date: "",
+		Favorite: "",
 	});
 	const [serchedProductName, setSerchedProductName] = useState("");
 	const products = useSelector((state) => state.products);
@@ -54,6 +55,8 @@ const AddCalorie = () => {
 			<Container maxWidth="sm">
 				<Stack justifyContent="flex-start" alignItems="center" spacing={2}>
 					<Header title="Dodaj produkt do dzisiejszej listy" size={20} />
+					<FavoriteList addtoform={addtoform} />
+					{/* <FavoriteList2 addtoform={addtoform} /> */}
 
 					<form noValidate autoComplete="off">
 						<TextField
@@ -174,6 +177,7 @@ const AddCalorie = () => {
 									caloriesIn100: 0,
 									remarks: "",
 									date: "",
+									Favorite: "",
 								});
 								console.log(selectedProduct);
 							} else {

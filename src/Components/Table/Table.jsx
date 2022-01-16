@@ -1,31 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 //=============================================
 import { v4 as uuidv4 } from "uuid";
 //=============================================
-import EditDialogWindow from "../EditDialogWindow/EditDialogWindow";
-import { Grid } from "@mui/material/";
 import CategoryHeader from "../CategoryHeader/CategoryHeader";
 import Item from "../Item/Item";
-import CalorieCounter from "../CalorieCounter/CalorieCounter";
+//=============================================
+import { Grid, Typography } from "@mui/material/";
 //=============================================
 
-const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, col6Title, col7Title }) => {
-	console.log(data);
+const Table = ({ listType, data, col1Title, col2Title, col3Title, col4Title, col5Title, col6Title, col7Title }) => {
+	const [noDataToDisplay, setNoDataToDisplay] = useState();
+
+	useEffect(() => {
+		if (data.length === 0) {
+			return setNoDataToDisplay(
+				<Typography mt={5} variant="h4">
+					Wybierz datę
+				</Typography>
+			);
+		} else if (data.length === 0 && listType === "Products") {
+			return setNoDataToDisplay(
+				<Typography mt={5} variant="h4">
+					Brak produktów
+				</Typography>
+			);
+		} else if (data.length > 0) {
+			setNoDataToDisplay();
+		}
+	}, [data, listType]);
 	// eslint-disable-next-line no-lone-blocks
 	{
-		// console.log(data);
-		if (data === "") {
+		if (data.length === "") {
 			return <h3>Brak danych</h3>;
 		} else {
 			return (
 				<>
 					<Grid container spacing={1}>
-						{/* <CalorieCounter dataToCount={data} /> */}
-						<Grid item xs={2}>
+						<Grid item xs={3}>
 							<CategoryHeader title={col1Title} />
 						</Grid>
-						<Grid item xs={2}>
+						<Grid item xs={1}>
 							<CategoryHeader title={col2Title} />
 						</Grid>
 						<Grid item xs={2}>
@@ -34,7 +49,7 @@ const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, co
 						<Grid item xs={1}>
 							<CategoryHeader title={col4Title} />
 						</Grid>
-						<Grid item xs={2}>
+						<Grid item xs={1}>
 							<CategoryHeader title={col5Title} />
 						</Grid>
 						<Grid item xs={1}>
@@ -69,7 +84,7 @@ const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, co
 							direction="column"
 							item
 						>
-							{data.length === 0 && <h2>Wybierz date</h2>}
+							{noDataToDisplay}
 						</Grid>
 					</Grid>
 				</>
@@ -80,6 +95,7 @@ const Table = ({ data, col1Title, col2Title, col3Title, col4Title, col5Title, co
 
 Table.propTypes = {
 	data: PropTypes.array,
+	listType: PropTypes.string,
 	col1Title: PropTypes.string,
 	col2Title: PropTypes.string,
 	col3Title: PropTypes.string,

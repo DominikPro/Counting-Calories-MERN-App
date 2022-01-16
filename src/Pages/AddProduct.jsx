@@ -8,7 +8,6 @@ import { addProduct } from "../Redux/actions/productActions";
 import { Button, TextField, Stack, Container } from "@mui/material/";
 //=============================================
 import Header from "../Components/Header/Header";
-import GoToButton from "../Components/GoToButton/GoToButton";
 import BottomNav from "../Components/BottomNav/BottomNav";
 //=============================================
 
@@ -20,6 +19,7 @@ const AddProduct = () => {
 		defaultPortion: "",
 		caloriesIn100: "",
 		remarks: "",
+		favorite: "",
 	});
 	const dispatch = useDispatch();
 	//=============================================
@@ -32,7 +32,7 @@ const AddProduct = () => {
 	};
 	//=============================================
 	const clearLocalProductState = () => {
-		setProduct({ name: "", defaultPortion: "", caloriesIn100: "", remarks: "" });
+		setProduct({ name: "", defaultPortion: "", caloriesIn100: "", remarks: "", favorite: "" });
 	};
 	//=============================================
 

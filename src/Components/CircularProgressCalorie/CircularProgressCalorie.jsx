@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
+//=============================================
+import { useSelector } from "react-redux";
 //=============================================
 import dayjs from "dayjs";
 //=============================================
-// import { amber } from "@mui/material/colors";
-import CircularProgress from "@mui/material/CircularProgress";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import { CircularProgress, Typography, Box } from "@mui/material/";
 //=============================================
 
 function CircularProgressCalorie(props) {
@@ -43,7 +41,7 @@ function CircularProgressCalorie(props) {
 	}, [usedCalorieInPercent]);
 
 	return (
-		<Box display="flex" justifyContent="center" alignItems="center">
+		<Box mb={1} display="flex" justifyContent="center" alignItems="center">
 			<Box mr={1}>
 				<Typography variant="overline" component="div" color="text.secondary">
 					{message1}
@@ -99,21 +97,20 @@ CircularProgressCalorie.propTypes = {
 };
 
 export default function CircularStatic() {
-	const [progress, setProgress] = useState(); // Przyjmuje number - wartość 1-100. Genereuje na tej podstawie okrą w %.
-	const actDate = dayjs().format("DD.MM.YYYY"); // Generuje dzisiejszą datę.
-	const dailyCaloriesLimit = useSelector((state) => state.userSettings.dailyAmountOfCalories); // limit kalorii
-	const toDayData = useSelector((state) => state.calories.filter((item) => item.date === actDate)); // Tablica obietków z dzisiejszą datą
+	const [progress, setProgress] = useState();
+	const actDate = dayjs().format("DD.MM.YYYY");
+	const dailyCaloriesLimit = useSelector((state) => state.userSettings.dailyAmountOfCalories);
+	const toDayData = useSelector((state) => state.calories.filter((item) => item.date === actDate));
 
 	const calcCalorie = () => {
-		console.log(toDayData);
 		if (toDayData.length > 0) {
 			const usedCalorie = toDayData
 				.map((item) => {
-					let sum = (item.defaultPortion * item.caloriesIn100) / 100; // Oblicza kalorie dla poszególnego produktu i zwraca tablice sum.
+					let sum = (item.defaultPortion * item.caloriesIn100) / 100;
 					return sum;
 				})
 				.reduce((a, b) => {
-					return a + b; // sumuje pozycje tablice zwraca number / wartość zjedzonych kalorii.
+					return a + b;
 				});
 
 			const usedCalorieInPercent = Math.round(usedCalorie / (dailyCaloriesLimit / 100));
@@ -121,25 +118,10 @@ export default function CircularStatic() {
 		} else return setProgress(0);
 	};
 
-	// const usedCalorie = toDayData
-	// 	.map((item) => {
-	// 		let sum = (item.defaultPortion * item.caloriesIn100) / 100; // Oblicza kalorie dla poszególnego produktu i zwraca tablice sum.
-	// 		return sum;
-	// 	})
-	// 	.reduce((a, b) => {
-	// 		return a + b; // sumuje pozycje tablice zwraca number / wartość zjedzonych kalorii.
-	// 	});
-
-	// const usedCalorieInPercent = Math.round(usedCalorie / (dailyCaloriesLimit / 100)); // Oblicza ile procent z dostępnych kalorii zostało zużyte
-
 	useEffect(() => {
 		setProgress(calcCalorie());
 		console.log(calcCalorie());
 	}, [toDayData]);
-
-	console.log(actDate);
-	console.log(toDayData);
-	console.log(dailyCaloriesLimit);
 
 	return <CircularProgressCalorie value={progress} usedCalorieInPercent={progress} />;
 }

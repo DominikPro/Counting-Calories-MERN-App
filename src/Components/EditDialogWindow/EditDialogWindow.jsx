@@ -1,11 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-//=============================================
 import PropTypes from "prop-types";
 //=============================================
 import { useSelector, useDispatch } from "react-redux";
-//=============================================
 import { modifyCalories } from "../../Redux/actions/caloriesActions";
-
 import { modifyProduct } from "../../Redux/actions/productActions";
 //=============================================
 import { DialogTitle } from "@mui/material";
@@ -14,23 +11,9 @@ import Dialog from "@mui/material/Dialog";
 import List from "@mui/material/List";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
-// import Grid from "@mui/material/Grid";
-// import Avatar from "@mui/material/Avatar";
-// import ListItem from "@mui/material/ListItem";
-// import ListItemAvatar from "@mui/material/ListItemAvatar";
-// import ListItemText from "@mui/material/ListItemText";
-
-// import PersonIcon from "@mui/icons-material/Person";
-// import AddIcon from "@mui/icons-material/Add";
-// import Typography from "@mui/material/Typography";
-// import { blue } from "@mui/material/colors";
 //=============================================
 import TitleEditWindow from "./TitleEditWindow/TitleEditWindow";
 //=============================================
-
-// const emails = ["username@gmail.com", "user02@gmail.com"];
-//doczytać o shallowEqual
-//
 
 function SimpleDialog({ onClose, selectedValue, open, listType, editedProduct }) {
 	const dispatch = useDispatch();
@@ -80,7 +63,6 @@ function SimpleDialog({ onClose, selectedValue, open, listType, editedProduct })
 					alignItems="center"
 					spacing={2}
 				>
-					{/* <Header title="Dodaj nowy produkt do katalogu" size={20} /> */}
 					<form noValidate autoComplete="off">
 						{changedProduct.listType === "Products" ? (
 							<TextField

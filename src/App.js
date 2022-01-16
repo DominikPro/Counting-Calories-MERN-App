@@ -9,8 +9,8 @@ import AddProduct from "./Pages/AddProduct";
 import AddCalorie from "./Pages/AddCalorie";
 import ProductList from "./Pages/ProductList";
 import Settings from "./Pages/Settings";
+//==========================================
 import CssBaseline from "@mui/material/CssBaseline";
-
 //==========================================
 
 const App = () => {

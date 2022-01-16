@@ -6,8 +6,6 @@ import logo from "../../Images/logo.png";
 import { Button, Menu, MenuItem, Avatar, AppBar, Box, Toolbar, Typography, Stack } from "@mui/material/";
 //==========================================
 
-//==========================================
-
 const Navigation = () => {
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const open = Boolean(anchorEl);

@@ -18,3 +18,10 @@ export const modifyProduct = (changedProduct) => {
     }
 }
 
+export const changeProductFavorite = (productId) => {
+    return {
+        type: "CHANGE_PRODUCT_FAVORITE",
+        payload: productId
+    }
+}
+

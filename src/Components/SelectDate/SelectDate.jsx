@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 //=============================================
+import dayjs from "dayjs";
+//=============================================
 import { useSelector } from "react-redux";
 //=============================================
 import { Grid, InputLabel, MenuItem, FormControl, Select } from "@mui/material/";
 
 const SelectDate = ({ dateSelected, setDateSelected }) => {
+	const actDate = dayjs().format("DD.MM.YYYY");
 	const data = useSelector((state) => state.calories);
 	const [datesAvailable, setDatesAvailable] = useState(true);
 	const [selectedDay, setSelectedDay] = useState("");
@@ -20,12 +23,17 @@ const SelectDate = ({ dateSelected, setDateSelected }) => {
 			return product;
 		}
 	});
-	useEffect(() => {
-		console.log("aktualizacja stanu");
-	}, [data]);
 
 	useEffect(() => {
+		if (data.some((item) => item.date === actDate)) {
+			setSelectedDay(actDate);
+		}
+	}, []);
+
+	useEffect(() => {
+		console.log(data);
 		setDateSelected(productsForTheDate);
+
 		if (data.length === 0) {
 			return setDatesAvailable(false), setSelectedDay(true);
 		}
@@ -45,7 +53,7 @@ const SelectDate = ({ dateSelected, setDateSelected }) => {
 						onChange={(e) => handleChange(e)}
 					>
 						{datesAvailable ? (
-							distinctDate.map((date) => (
+							distinctDate.reverse().map((date) => (
 								<MenuItem key={date} value={date}>
 									{date}
 								</MenuItem>

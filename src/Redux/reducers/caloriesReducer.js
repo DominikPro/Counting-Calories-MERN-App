@@ -11,7 +11,12 @@ const caloriesReducer = (calories = [
     { listType: "Statistic", id: 100, name: "Banan", defaultPortion: 100, caloriesIn100: 250, remarks: "", date: "11.01.2022" },
     { listType: "Statistic", id: 101, name: "Gruszka", defaultPortion: 300, caloriesIn100: 10, remarks: "", date: "11.01.2022" },
     { listType: "Statistic", id: 103, name: "Jabłko", defaultPortion: 700, caloriesIn100: 10, remarks: "", date: "11.01.2022" },
-    { listType: "Statistic", id: 103, name: "Jabłko", defaultPortion: 700, caloriesIn100: 10, remarks: "", date: "11.01.2022" },
+    { listType: "Statistic", id: 104, name: "Jabłko", defaultPortion: 700, caloriesIn100: 10, remarks: "", date: "11.01.2022" },
+    { listType: "Statistic", id: 105, name: "Jabłko", defaultPortion: 700, caloriesIn100: 10, remarks: "", date: "12.01.2022" },
+    { listType: "Statistic", id: 106, name: "Jabłko", defaultPortion: 700, caloriesIn100: 10, remarks: "", date: "12.01.2022" },
+    { listType: "Statistic", id: 107, name: "Jabłko", defaultPortion: 700, caloriesIn100: 10, remarks: "", date: "12.01.2022" },
+    { listType: "Statistic", id: 108, name: "Jabłko", defaultPortion: 700, caloriesIn100: 10, remarks: "", date: "14.01.2022" },
+    { listType: "Statistic", id: 109, name: "Jabłko", defaultPortion: 700, caloriesIn100: 10, remarks: "", date: "15.01.2022" },
 ], action) => {
 
     switch (action.type) {
@@ -27,10 +32,6 @@ const caloriesReducer = (calories = [
 
             const calories2 = [...calories]
             calories2[index] = action.payload
-            console.log(calories2)
-            console.log(calories[index])
-            console.log(calories[index].defaultPortion)
-
             return calories2
 
         default:

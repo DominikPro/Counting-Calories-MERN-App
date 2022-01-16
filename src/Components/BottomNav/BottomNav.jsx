@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 //=============================================
-import { Paper, BottomNavigationAction, BottomNavigation } from "@mui/material/";
+import { Paper, BottomNavigation } from "@mui/material/";
 //=============================================
 import GoToButton from "../GoToButton/GoToButton";
 import CircularProgressCalorie from "../CircularProgressCalorie/CircularProgressCalorie";
