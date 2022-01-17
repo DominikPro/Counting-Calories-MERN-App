@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 //=============================================
 import { useSelector, useDispatch } from "react-redux";
@@ -34,10 +34,6 @@ function SimpleDialog({ onClose, selectedValue, open, listType, editedProduct })
 	const handleListItemClick = (value) => {
 		onClose(value);
 	};
-
-	useEffect(() => {
-		console.log(editedProduct);
-	}, [changedProduct]);
 
 	useEffect(() => {
 		if (editedProduct !== undefined) {
@@ -135,7 +131,6 @@ function SimpleDialog({ onClose, selectedValue, open, listType, editedProduct })
 								dispatch(modifyProduct(changedProduct));
 								handleListItemClick();
 							}
-							// console.log(changedProduct);
 						}}
 					>
 						Zapisz
@@ -170,9 +165,7 @@ export default function EditDialogWindow({ listType, productId }) {
 			setEditedProduct(productList.find((item) => item.id === productId));
 		}
 	};
-	useEffect(() => {
-		// console.log(editedProduct);
-	}, [editedProduct]);
+	useEffect(() => {}, [editedProduct]);
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -184,10 +177,12 @@ export default function EditDialogWindow({ listType, productId }) {
 
 	return (
 		<>
-			{/* <Button open={open} onClick={handleClickOpen} variant="contained"> */}
 			<Button
 				open={open}
-				onClick={() => (findEditedProduct(), handleClickOpen())}
+				onClick={() => {
+					findEditedProduct();
+					handleClickOpen();
+				}}
 				variant="contained"
 			>
 				Edytuj

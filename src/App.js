@@ -8,7 +8,7 @@ import Statistic from "./Pages/Statistic";
 import AddProduct from "./Pages/AddProduct";
 import AddCalorie from "./Pages/AddCalorie";
 import ProductList from "./Pages/ProductList";
-import Settings from "./Pages/Settings";
+import User from "./Pages/User";
 //==========================================
 import CssBaseline from "@mui/material/CssBaseline";
 //==========================================
@@ -25,7 +25,7 @@ const App = () => {
 					<Route path="/addCalorie" component={AddCalorie} />
 					<Route path="/productList" component={ProductList} />
 					<Route path="/statistic" component={Statistic} />
-					<Route path="/settings" component={Settings} />
+					<Route path="/user" component={User} />
 				</Switch>
 			</Router>
 		</>

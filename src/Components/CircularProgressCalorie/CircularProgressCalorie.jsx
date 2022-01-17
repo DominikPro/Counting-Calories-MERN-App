@@ -8,8 +8,7 @@ import dayjs from "dayjs";
 import { CircularProgress, Typography, Box } from "@mui/material/";
 //=============================================
 
-function CircularProgressCalorie(props) {
-	const { usedCalorieInPercent } = props;
+function CircularProgressCalorie({ usedCalorieInPercent }) {
 	const userName = useSelector((state) => state.userSettings.name);
 	const [color, setColor] = useState("success");
 	const [message1, setMessage1] = useState("");
@@ -53,7 +52,7 @@ function CircularProgressCalorie(props) {
 						<CircularProgress
 							color={color}
 							variant="determinate"
-							{...props}
+							{...usedCalorieInPercent}
 						/>
 						<Box
 							sx={{
@@ -93,7 +92,7 @@ CircularProgressCalorie.propTypes = {
 	 * Value between 0 and 100.
 	 * @default 0
 	 */
-	value: PropTypes.number.isRequired,
+	usedCalorieInPercent: PropTypes.number,
 };
 
 export default function CircularStatic() {
@@ -120,7 +119,6 @@ export default function CircularStatic() {
 
 	useEffect(() => {
 		setProgress(calcCalorie());
-		console.log(calcCalorie());
 	}, [toDayData]);
 
 	return <CircularProgressCalorie value={progress} usedCalorieInPercent={progress} />;

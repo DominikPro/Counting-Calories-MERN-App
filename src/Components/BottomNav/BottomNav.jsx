@@ -8,26 +8,76 @@ import CircularProgressCalorie from "../CircularProgressCalorie/CircularProgress
 
 const BottomNav = ({ pageName }) => {
 	const [page, setPage] = useState([]);
-	const navVariants = [
-		{ name: "statistic", goToButtonName: "Dodaj Kalorie", to: "/addCalorie" },
-		{ name: "statistic", goToButtonName: "Dodaj Produkt", to: "/addProduct" },
-		{ name: "statistic", goToButtonName: "Lista produktów", to: "/productList" },
-		//=============================================
-
-		{ name: "addCalorie", goToButtonName: "Statystyki", to: "/statistic" },
-		{ name: "addCalorie", goToButtonName: "Utwórz produkt", to: "/addProduct" },
-		{ name: "addCalorie", goToButtonName: "Lista produktów", to: "/productList" },
-		//=============================================
-		{ name: "addProduct", goToButtonName: "Statystyki", to: "/statistic" },
-		{ name: "addProduct", goToButtonName: "Dodaj Kalorie", to: "/addCalorie" },
-		{ name: "addProduct", goToButtonName: "Lista produktów", to: "/productList" },
-		//=============================================
-		{ name: "productList", goToButtonName: "Statystyki", to: "/statistic" },
-		{ name: "productList", goToButtonName: "Dodaj Kalorie", to: "/addCalorie" },
-		{ name: "productList", goToButtonName: "Dodaj produkt", to: "/addProduct" },
-	];
 
 	useEffect(() => {
+		const navVariants = [
+			{
+				id: "statistic1",
+				name: "statistic",
+				goToButtonName: "Dodaj Kalorie",
+				to: "/addCalorie",
+			},
+			{
+				id: "statistic2",
+				name: "statistic",
+				goToButtonName: "Dodaj Produkt",
+				to: "/addProduct",
+			},
+			{
+				id: "statistic3",
+				name: "statistic",
+				goToButtonName: "Lista produktów",
+				to: "/productList",
+			},
+			//=============================================
+
+			{ id: "addCalorie1", name: "addCalorie", goToButtonName: "Statystyki", to: "/statistic" },
+			{
+				id: "addCalorie2",
+				name: "addCalorie",
+				goToButtonName: "Utwórz produkt",
+				to: "/addProduct",
+			},
+			{
+				id: "addCalorie3",
+				name: "addCalorie",
+				goToButtonName: "Lista produktów",
+				to: "/productList",
+			},
+			//=============================================
+			{ id: "addProduct1", name: "addProduct", goToButtonName: "Statystyki", to: "/statistic" },
+			{
+				id: "addProduct2",
+				name: "addProduct",
+				goToButtonName: "Dodaj Kalorie",
+				to: "/addCalorie",
+			},
+			{
+				id: "addProduct3",
+				name: "addProduct",
+				goToButtonName: "Lista produktów",
+				to: "/productList",
+			},
+			//=============================================
+			{
+				id: "productList1",
+				name: "productList",
+				goToButtonName: "Statystyki",
+				to: "/statistic",
+			},
+			{
+				id: "productList2",
+				name: "productList",
+				goToButtonName: "Dodaj Kalorie",
+				to: "/addCalorie",
+			},
+			{
+				id: "productList3",
+				name: "productList",
+				goToButtonName: "Dodaj produkt",
+				to: "/addProduct",
+			},
+		];
 		setPage(navVariants.filter((item) => item.name === pageName));
 	}, [pageName]);
 
@@ -36,13 +86,12 @@ const BottomNav = ({ pageName }) => {
 			<BottomNavigation>
 				{page.map((item) => {
 					return (
-						<>
-							<GoToButton
-								label="Add new product"
-								goToButtonName={item.goToButtonName}
-								to={item.to}
-							/>
-						</>
+						<GoToButton
+							key={item.id}
+							label="Add new product"
+							goToButtonName={item.goToButtonName}
+							to={item.to}
+						/>
 					);
 				})}
 			</BottomNavigation>

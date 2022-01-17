@@ -12,9 +12,9 @@ const CalorieCounter = ({ dataToCount }) => {
 
 	useEffect(() => {
 		let sumCalorie = 0;
-		console.log(dataToCount);
+
 		dataToCount.map((item) => {
-			sumCalorie += Math.round((item.defaultPortion / 100) * item.caloriesIn100);
+			return (sumCalorie += Math.round((item.defaultPortion / 100) * item.caloriesIn100));
 		});
 		setSumCalorie(sumCalorie);
 	}, [dataToCount]);

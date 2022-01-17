@@ -31,7 +31,6 @@ const SelectDate = ({ dateSelected, setDateSelected }) => {
 	}, []);
 
 	useEffect(() => {
-		console.log(data);
 		setDateSelected(productsForTheDate);
 
 		if (data.length === 0) {

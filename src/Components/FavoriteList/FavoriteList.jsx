@@ -64,7 +64,11 @@ function SimpleDialog({ onClose, selectedValue, open, addtoform, favoriteProduct
 			<Divider variant="middle" />
 			<List sx={{ pt: 0 }}>
 				{favoriteProducts.map((product) => (
-					<ListItem button onClick={() => handleListItemClick(product)}>
+					<ListItem
+						key={product.id}
+						button
+						onClick={() => handleListItemClick(product)}
+					>
 						<ListItemAvatar>
 							<AddIcon color="success" />
 						</ListItemAvatar>
@@ -82,5 +86,5 @@ SimpleDialog.propTypes = {
 	favoriteProducts: PropTypes.array,
 	onClose: PropTypes.func.isRequired,
 	open: PropTypes.bool.isRequired,
-	selectedValue: PropTypes.string.isRequired,
+	selectedValue: PropTypes.string,
 };

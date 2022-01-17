@@ -82,9 +82,9 @@ const Navigation = () => {
 							<MenuItem
 								onClick={handleClose}
 								component={Link}
-								to="/settings"
+								to="/user"
 							>
-								Ustawienia
+								Użytkownik
 							</MenuItem>
 						</Menu>
 						<Button
