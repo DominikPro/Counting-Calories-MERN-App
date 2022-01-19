@@ -7,7 +7,7 @@ import { Stack, TextField, Button, Grid } from "@mui/material/";
 //=============================================
 import Container from "@mui/material/Container";
 import Header from "../Components/Header/Header";
-import WightList from "../Components/WightList/WightList";
+import WightInput from "../Components/WightList/WightInput";
 //=============================================
 
 const Settings = () => {
@@ -19,10 +19,10 @@ const Settings = () => {
 			<Container maxWidth="lg">
 				<Header title="O Tobie" size={20} />
 			</Container>
-			<Grid mt={2} justifyContent="center" container spacing={1}>
+			<Grid mt={1} justifyContent="center" container spacing={1}>
 				<Grid item xs={5} alignItems="center" justifyContent="center">
 					<Header title="Dane użytkownika" size={18} />
-					<Container maxWidth="sm">
+					<Container maxWidth="xs">
 						<Stack
 							direction="column"
 							justifyContent="flex-start"
@@ -39,10 +39,13 @@ const Settings = () => {
 											)
 										)
 									}
+									style={{
+										marginBottom: "10px",
+									}}
 									id="filled-basic"
 									name="name"
 									label="Imię:"
-									variant="filled"
+									variant="outlined"
 									fullWidth
 									required
 								/>
@@ -57,10 +60,13 @@ const Settings = () => {
 											)
 										)
 									}
+									style={{
+										marginBottom: "10px",
+									}}
 									name="dailyAmountOfCalories"
 									id="filled-basic"
 									label="Dzienna ilość kalorii:"
-									variant="filled"
+									variant="outlined"
 									fullWidth
 									required
 								/>
@@ -73,10 +79,13 @@ const Settings = () => {
 											)
 										)
 									}
+									style={{
+										marginBottom: "10px",
+									}}
 									name="weight"
 									id="filled-basic"
 									label="Waga początkowa:"
-									variant="filled"
+									variant="outlined"
 									fullWidth
 									required
 								/>
@@ -92,7 +101,7 @@ const Settings = () => {
 									name="finalWeight"
 									id="filled-basic"
 									label="Waga docelowa:"
-									variant="filled"
+									variant="outlined"
 									fullWidth
 									required
 								/>
@@ -108,7 +117,7 @@ const Settings = () => {
 					</Container>
 				</Grid>
 				<Grid item maxWidth="xs" xs={5} alignItems="center" justifyContent="center">
-					<WightList />
+					<WightInput />
 				</Grid>
 			</Grid>
 		</>
