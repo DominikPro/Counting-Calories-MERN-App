@@ -14,6 +14,7 @@ import Header from "../Header/Header";
 
 const WightInput = () => {
 	const dispatch = useDispatch();
+
 	const [weight, setWeight] = useState({ id: "", weight: "", date: "" });
 
 	const handleChange = (e) => {
@@ -33,9 +34,10 @@ const WightInput = () => {
 				<Grid item style={{ display: "flex" }}>
 					<TextField
 						onChange={(e) => handleChange(e)}
+						value={weight.weight}
 						name="ActualWight"
 						type="number"
-						inputProps={{ min: "0", step: "0.1" }}
+						inputProps={{ min: "0", step: "0.1", max: "300" }}
 						style={{ marginBottom: "10px" }}
 						id="filled-basic"
 						label="Waga w kg:"
@@ -47,7 +49,14 @@ const WightInput = () => {
 
 				<Grid item>
 					<Button
-						onClick={() => dispatch(addWeight(weight))}
+						onClick={() => {
+							dispatch(addWeight(weight));
+							setWeight({
+								id: "",
+								weight: "",
+								date: "",
+							});
+						}}
 						variant="outlined"
 					>
 						Dodaj wagę

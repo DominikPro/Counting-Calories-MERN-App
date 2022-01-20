@@ -28,7 +28,7 @@ const caloriesReducer = (calories = [
             return calories.filter(item => item.id !== action.payload)
 
         case "MODIFY_CALORIES":
-            const index = calories.findIndex((item, index) => { return item.id === action.payload.id })
+            const index = calories.findIndex((item) => { return item.id === action.payload.id })
 
             const calories2 = [...calories]
             calories2[index] = action.payload

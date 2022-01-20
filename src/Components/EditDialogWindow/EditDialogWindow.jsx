@@ -36,6 +36,7 @@ function SimpleDialog({ onClose, selectedValue, open, listType, editedProduct })
 	};
 
 	useEffect(() => {
+		console.log(editedProduct);
 		if (editedProduct !== undefined) {
 			return setChangedProduct(editedProduct);
 		}
