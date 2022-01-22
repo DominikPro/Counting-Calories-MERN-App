@@ -15,6 +15,8 @@ function CircularProgressCalorie({ usedCalorieInPercent }) {
 	const [message2, setMessage2] = useState("");
 
 	useEffect(() => {
+		console.log(typeof usedCalorieInPercent);
+		console.log(usedCalorieInPercent);
 		if (usedCalorieInPercent === 0) {
 			setMessage1("Nie dodałeś szisiaj jeszcze rzadnych produktów do listy");
 		} else if (usedCalorieInPercent > 0 && usedCalorieInPercent <= 25) {
@@ -46,7 +48,7 @@ function CircularProgressCalorie({ usedCalorieInPercent }) {
 					{message1}
 				</Typography>
 			</Box>
-			{usedCalorieInPercent === 0 ? null : (
+			{usedCalorieInPercent ? (
 				<>
 					<Box sx={{ position: "relative", display: "inline-flex" }}>
 						<CircularProgress
@@ -76,7 +78,7 @@ function CircularProgressCalorie({ usedCalorieInPercent }) {
 						</Box>
 					</Box>
 				</>
-			)}
+			) : null}
 			<Box ml={1}>
 				<Typography variant="overline" component="div" color="text.secondary">
 					{message2}
@@ -96,10 +98,14 @@ CircularProgressCalorie.propTypes = {
 };
 
 export default function CircularStatic() {
-	const [progress, setProgress] = useState();
+	const [progress, setProgress] = useState(0);
 	const actDate = dayjs().format("DD.MM.YYYY");
 	const dailyCaloriesLimit = useSelector((state) => state.userSettings.dailyAmountOfCalories);
 	const toDayData = useSelector((state) => state.calories.filter((item) => item.date === actDate));
+
+	useEffect(() => {
+		setProgress(calcCalorie(0));
+	}, [toDayData]);
 
 	const calcCalorie = () => {
 		if (toDayData.length > 0) {
@@ -112,14 +118,10 @@ export default function CircularStatic() {
 					return a + b;
 				});
 
-			const usedCalorieInPercent = Math.round(usedCalorie / (dailyCaloriesLimit / 100));
+			let usedCalorieInPercent = Math.round(usedCalorie / (dailyCaloriesLimit / 100));
 			return usedCalorieInPercent;
 		} else return setProgress(0);
 	};
-
-	useEffect(() => {
-		setProgress(calcCalorie());
-	}, [toDayData]);
 
 	return <CircularProgressCalorie value={progress} usedCalorieInPercent={progress} />;
 }
