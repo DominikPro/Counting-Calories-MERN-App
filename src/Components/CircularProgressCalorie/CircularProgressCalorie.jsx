@@ -8,7 +8,7 @@ import dayjs from "dayjs";
 import { CircularProgress, Typography, Box } from "@mui/material/";
 //=============================================
 
-function CircularProgressCalorie({ usedCalorieInPercent }) {
+function CircularProgressCalorie({ valueProgress, usedCalorieInPercent }) {
 	const userCalorieLimit = useSelector((state) => state.userSettings.dailyAmountOfCalories);
 	const userName = useSelector((state) => state.userSettings.name);
 	const [color, setColor] = useState("success");
@@ -16,10 +16,8 @@ function CircularProgressCalorie({ usedCalorieInPercent }) {
 	const [message2, setMessage2] = useState("");
 
 	useEffect(() => {
-		console.log(typeof usedCalorieInPercent);
-		console.log(usedCalorieInPercent);
-		if (usedCalorieInPercent == 0) {
-			setMessage1("Nie dodałeś szisiaj jeszcze rzadnych produktów do listy");
+		if (usedCalorieInPercent === 0) {
+			setMessage1("Nie dodałeś dziś jeszcze rzadnych produktów do listy");
 		} else if (usedCalorieInPercent > 0 && usedCalorieInPercent <= 25) {
 			setMessage1(`Hej, ${userName}! Wykorzystałeś `);
 			setMessage2("kalorii");
@@ -54,9 +52,11 @@ function CircularProgressCalorie({ usedCalorieInPercent }) {
 					<>
 						<Box sx={{ position: "relative", display: "inline-flex" }}>
 							<CircularProgress
+								value={valueProgress}
 								color={color}
 								variant="determinate"
 								{...usedCalorieInPercent}
+								// {...usedCalorieInPercent}
 							/>
 							<Box
 								sx={{
@@ -103,7 +103,7 @@ CircularProgressCalorie.propTypes = {
 };
 
 export default function CircularStatic() {
-	const [progress, setProgress] = useState(0);
+	const [progress, setProgress] = useState(5);
 	const actDate = dayjs().format("DD.MM.YYYY");
 	const dailyCaloriesLimit = useSelector((state) => state.userSettings.dailyAmountOfCalories);
 	const toDayData = useSelector((state) => state.calories.filter((item) => item.date === actDate));
@@ -128,5 +128,5 @@ export default function CircularStatic() {
 		} else return 0;
 	};
 
-	return <CircularProgressCalorie value={progress} usedCalorieInPercent={progress} />;
+	return <CircularProgressCalorie valueProgress={progress} usedCalorieInPercent={progress} />;
 }

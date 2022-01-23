@@ -45,6 +45,7 @@ const Settings = () => {
 			<Grid item xs={12} mb={2} alignItems="center" justifyContent="center">
 				<Container maxWidth="xs">
 					<Header title="Dane użytkownika" size={18} />
+
 					<Stack
 						direction="column"
 						justifyContent="flex-start"
@@ -109,13 +110,17 @@ const Settings = () => {
 								fullWidth
 								required
 							/>
+							<Header
+								title="Zmianyzapisywane są automatycznie"
+								size={14}
+							/>
 						</form>
 						<Button
 							onClick={() => dispatch(removeData())}
 							variant="contained"
 							color="error"
 						>
-							Usuń dane
+							Wyczyść dane o użytkowniku
 						</Button>
 					</Stack>
 				</Container>
