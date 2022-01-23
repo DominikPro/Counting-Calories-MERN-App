@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 //=============================================
 import { useDispatch, useSelector } from "react-redux";
 import { updateData, removeData } from "../Redux/actions/SettingsActions";
@@ -9,11 +9,25 @@ import Container from "@mui/material/Container";
 import Header from "../Components/Header/Header";
 import WightInput from "../Components/WightList/WightInput";
 import WeightChart from "../Components/WightList/WeightChart/WeightChart";
+import { useEffect } from "react";
 //=============================================
 
 const Settings = () => {
 	const dispatch = useDispatch();
 	const userData = useSelector((state) => state.userSettings);
+	const [validationError, setValidationError] = useState();
+
+	const handleChange = (e) => {
+		dispatch(updateData(e.target));
+	};
+
+	useEffect(() => {
+		if (userData.dailyAmountOfCalories === 0 || userData.dailyAmountOfCalories === "") {
+			setValidationError(true);
+		} else if (userData.dailyAmountOfCalories > 0) {
+			setValidationError(false);
+		}
+	}, [userData]);
 
 	return (
 		<>
@@ -56,7 +70,8 @@ const Settings = () => {
 							<TextField
 								value={userData.name}
 								onChange={(e) =>
-									dispatch(updateData(e.target))
+									// dispatch(updateData(e.target))
+									handleChange(e)
 								}
 								style={{
 									marginBottom: "10px",
@@ -71,22 +86,26 @@ const Settings = () => {
 							<TextField
 								value={userData.dailyAmountOfCalories}
 								onChange={(e) =>
-									dispatch(updateData(e.target))
+									// dispatch(updateData(e.target))
+									handleChange(e)
 								}
 								style={{
 									marginBottom: "10px",
 								}}
+								type="number"
 								name="dailyAmountOfCalories"
 								id="filled-basic"
-								label="Dzienna ilość kalorii:"
+								label="Dzienny limit kalorii:"
 								variant="outlined"
 								fullWidth
 								required
+								error={validationError}
 							/>
 							<TextField
 								value={userData.weight}
 								onChange={(e) =>
-									dispatch(updateData(e.target))
+									// dispatch(updateData(e.target))
+									handleChange(e)
 								}
 								style={{
 									marginBottom: "10px",
@@ -101,7 +120,8 @@ const Settings = () => {
 							<TextField
 								value={userData.finalWeight}
 								onChange={(e) =>
-									dispatch(updateData(e.target))
+									// dispatch(updateData(e.target))
+									handleChange(e)
 								}
 								name="finalWeight"
 								id="filled-basic"

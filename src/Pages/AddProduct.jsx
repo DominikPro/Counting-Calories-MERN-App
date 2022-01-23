@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //=============================================
 import { v4 as uuidv4 } from "uuid";
 //=============================================
@@ -12,6 +12,12 @@ import BottomNav from "../Components/BottomNav/BottomNav";
 //=============================================
 
 const AddProduct = () => {
+	const [validation, setValidation] = useState({
+		name: true,
+		caloriesIn100: true,
+		defaultPortion: true,
+	});
+
 	const [product, setProduct] = useState({
 		listType: "Products",
 		id: uuidv4(),
@@ -23,12 +29,31 @@ const AddProduct = () => {
 	});
 	const dispatch = useDispatch();
 	//=============================================
+	const checkForm = (name) => {
+		if (product.name.length < 2) {
+			setValidation((prevState) => ({ ...prevState, [name]: true }));
+		} else
+			setValidation((prevState) => ({
+				...prevState,
+				[name]: false,
+			}));
+	};
+	//=============================================
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setProduct((prevState) => ({
 			...prevState,
 			[name]: value,
 		}));
+		checkForm(name);
+	};
+	//=============================================
+	const handleAddProduct = () => {
+		const { name, caloriesIn100, defaultPortion } = validation;
+		if (name === false && caloriesIn100 === false && defaultPortion === false) {
+			dispatch(addProduct(product));
+			clearLocalProductState();
+		} else alert("Uzupęłnij pola podświetlone na czerwono");
 	};
 	//=============================================
 	const clearLocalProductState = () => {
@@ -57,6 +82,7 @@ const AddProduct = () => {
 							variant="outlined"
 							fullWidth
 							required
+							error={validation.name}
 						/>
 
 						<TextField
@@ -69,6 +95,7 @@ const AddProduct = () => {
 							variant="outlined"
 							fullWidth
 							required
+							error={validation.caloriesIn100}
 						/>
 
 						<TextField
@@ -81,6 +108,7 @@ const AddProduct = () => {
 							variant="outlined"
 							fullWidth
 							required
+							error={validation.defaultPortion}
 						/>
 						<TextField
 							onChange={(e) => handleChange(e)}
@@ -96,8 +124,7 @@ const AddProduct = () => {
 					</form>
 					<Button
 						onClick={() => {
-							dispatch(addProduct(product));
-							clearLocalProductState();
+							handleAddProduct();
 						}}
 						variant="contained"
 					>

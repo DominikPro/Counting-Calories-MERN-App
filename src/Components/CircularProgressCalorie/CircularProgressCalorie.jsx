@@ -19,7 +19,7 @@ function CircularProgressCalorie({ valueProgress, usedCalorieInPercent }) {
 		if (usedCalorieInPercent === 0) {
 			setMessage1("Nie dodałeś dziś jeszcze rzadnych produktów do listy");
 		} else if (usedCalorieInPercent > 0 && usedCalorieInPercent <= 25) {
-			setMessage1(`Hej, ${userName}! Wykorzystałeś `);
+			setMessage1(`Hej ${userName}! Wykorzystałeś `);
 			setMessage2("kalorii");
 		} else if (usedCalorieInPercent > 25 && usedCalorieInPercent <= 75) {
 			setMessage1("Wykorzystałeś");

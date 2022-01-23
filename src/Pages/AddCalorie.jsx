@@ -13,11 +13,17 @@ import SerchedItem from "../Components/SerchedItem/SerchedItem";
 import GoToButton from "../Components/GoToButton/GoToButton";
 import BottomNav from "../Components/BottomNav/BottomNav";
 import FavoriteList from "../Components/FavoriteList/FavoriteList";
+import { useEffect } from "react";
 //=============================================
 
 const AddCalorie = () => {
 	const serchedProductRef = useRef();
 	const dispatch = useDispatch();
+
+	const [validation, setValidation] = useState({
+		defaultPortion: "",
+		caloriesIn100: "",
+	});
 	const [selectedProduct, setselectedProduct] = useState({
 		listType: "",
 		id: "",
@@ -48,6 +54,32 @@ const AddCalorie = () => {
 			...prevState,
 			[name]: value,
 		}));
+	};
+
+	useEffect(() => {
+		if (selectedProduct.defaultPortion.length < 2) {
+			return setValidation((prevState) => ({ ...prevState, defaultPortion: true }));
+		} else if (selectedProduct.caloriesIn100.length < 2) {
+			return setValidation((prevState) => ({ ...prevState, caloriesIn100: true }));
+		} else setValidation({ defaultPortion: false, caloriesIn100: false });
+	}, [selectedProduct]);
+
+	const handleAddCalorie = () => {
+		const { defaultPortion, caloriesIn100 } = validation;
+		if (defaultPortion === false && caloriesIn100 === false) {
+			dispatch(addCalories(selectedProduct));
+			setSerchedProductName("");
+			setselectedProduct({
+				listType: "",
+				id: "",
+				name: "",
+				defaultPortion: 0,
+				caloriesIn100: 0,
+				remarks: "",
+				date: "",
+				Favorite: "",
+			});
+		} else alert("Uzupęłnij pola podświetlone na czerwono");
 	};
 
 	return (
@@ -121,34 +153,41 @@ const AddCalorie = () => {
 
 						<TextField
 							value={selectedProduct.name}
+							name="name"
 							style={{ marginTop: "10px" }}
 							inputProps={{ readOnly: true }}
 							id="outlined-disabled"
 							label="Nazwa produktu:"
 							variant="outlined"
 							fullWidth
+							required
+							error={validation.name}
 						/>
 
 						<TextField
 							onChange={(e) => handleChange(e)}
+							name="caloriesIn100"
 							value={selectedProduct.caloriesIn100}
 							style={{ marginTop: "10px" }}
-							name="caloriesIn100"
 							id="filled-basic"
 							label="Ilość kcl w 100g:"
 							variant="outlined"
 							fullWidth
+							required
+							error={validation.caloriesIn100}
 						/>
 
 						<TextField
 							onChange={(e) => handleChange(e)}
+							name="defaultPortion"
 							value={selectedProduct.defaultPortion}
 							style={{ marginTop: "10px" }}
-							name="defaultPortion"
 							id="filled-basic"
 							label="Waga porcji:"
 							variant="outlined"
 							fullWidth
+							required
+							error={validation.defaultPortion}
 						/>
 						<TextField
 							onChange={(e) => handleChange(e)}
@@ -167,18 +206,7 @@ const AddCalorie = () => {
 					<Button
 						onClick={(e) => {
 							if (selectedProduct.name !== "") {
-								dispatch(addCalories(selectedProduct));
-								setSerchedProductName("");
-								setselectedProduct({
-									listType: "",
-									id: "",
-									name: "",
-									defaultPortion: 0,
-									caloriesIn100: 0,
-									remarks: "",
-									date: "",
-									Favorite: "",
-								});
+								handleAddCalorie();
 								console.log(selectedProduct);
 							} else {
 								alert(
