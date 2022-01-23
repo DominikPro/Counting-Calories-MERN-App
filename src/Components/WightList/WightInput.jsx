@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 //=============================================
-import { Button, TextField, Grid, Container } from "@mui/material/";
+import { Button, TextField, Grid, Container, Divider } from "@mui/material/";
 //=============================================
 import { useDispatch } from "react-redux";
 import { addWeight } from "../../Redux/actions/weightActions";
@@ -38,7 +38,7 @@ const WightInput = () => {
 						name="ActualWight"
 						type="number"
 						inputProps={{ min: "0", step: "0.1", max: "300" }}
-						style={{ marginBottom: "10px" }}
+						style={{ marginBottom: "10px", width: 180 }}
 						id="filled-basic"
 						label="Waga w kg:"
 						variant="outlined"
@@ -47,7 +47,7 @@ const WightInput = () => {
 					/>
 				</Grid>
 
-				<Grid item>
+				<Grid item mb={1}>
 					<Button
 						onClick={() => {
 							dispatch(addWeight(weight));
@@ -63,6 +63,7 @@ const WightInput = () => {
 					</Button>
 				</Grid>
 			</Grid>
+			<Divider />
 			<WightList />
 		</Container>
 	);

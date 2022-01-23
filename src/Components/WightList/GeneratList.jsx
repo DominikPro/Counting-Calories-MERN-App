@@ -50,7 +50,7 @@ const GeneratList = ({ dataToDisplay, handleClcikRemove, handleClcikEdit }) => {
 								/>
 							</ListItemAvatar>
 							<ListItemText
-								primary={`${item.weight}kg`}
+								primary={`${item.weight} kg`}
 								secondary={item.date}
 							/>
 						</ListItem>

@@ -19,57 +19,92 @@ const CalorieCounter = ({ dataToCount }) => {
 		setSumCalorie(sumCalorie);
 	}, [dataToCount]);
 
-	return (
-		<>
-			<Grid container justifyContent="center" mt={1} mb={1} alignItems="center" item xs={12}>
-				{dataToCount.length > 0 ? (
-					<>
-						<Divider orientation="vertical" flexItem />
-						<Grid item xs={3}>
+	if (userCalorieLimit > 0) {
+		return (
+			<>
+				<Grid
+					container
+					justifyContent="center"
+					mt={1}
+					mb={1}
+					alignItems="center"
+					item
+					xs={12}
+				>
+					{dataToCount.length > 0 ? (
+						<>
+							<Divider orientation="vertical" flexItem />
+							<Grid item xs={3}>
+								<Divider
+									orientation="horizontal"
+									flexItem
+								/>
+								<Typography
+									variant="inherit"
+									color="blue"
+									align="center"
+								>{`Limit kalorii: ${userCalorieLimit} kcl`}</Typography>
+								<Divider
+									orientation="horizontal"
+									flexItem
+								/>
+							</Grid>
 							<Divider orientation="horizontal" flexItem />
-							<Typography
-								variant="inherit"
-								color="blue"
-								align="center"
-							>{`Limit kalorii: ${userCalorieLimit} kcl`}</Typography>
-							<Divider orientation="horizontal" flexItem />
-						</Grid>
-						<Divider orientation="horizontal" flexItem />
-						<Divider orientation="vertical" flexItem />
-						<Grid item xs={3}>
-							<Divider orientation="horizontal" flexItem />
-							<Typography
-								color={
-									userCalorieLimit > sumCalorie
-										? "green"
-										: "red"
-								}
-								variant="inherit"
-								align="center"
-							>{`Dostępne kalorie: ${
-								userCalorieLimit - sumCalorie
-							} kcl`}</Typography>
-							<Divider orientation="horizontal" flexItem />
-						</Grid>
-						<Divider orientation="vertical" flexItem />
-						<Grid item xs={3}>
-							<Divider orientation="horizontal" flexItem />
-							<Typography
-								variant="inherit"
-								align="center"
-							>{`Przyjęte kalorie: ${sumCalorie} kcl`}</Typography>
-							<Divider orientation="horizontal" flexItem />
-						</Grid>
-						<Divider orientation="vertical" flexItem />
-					</>
-				) : (
-					<Typography variant="h6" align="center">
-						Brak statysytk dla wybranej daty
-					</Typography>
-				)}
-			</Grid>
-		</>
-	);
+							<Divider orientation="vertical" flexItem />
+							<Grid item xs={3}>
+								<Divider
+									orientation="horizontal"
+									flexItem
+								/>
+								<Typography
+									color={
+										userCalorieLimit >
+										sumCalorie
+											? "green"
+											: "red"
+									}
+									variant="inherit"
+									align="center"
+								>{`Dostępne kalorie: ${
+									userCalorieLimit - sumCalorie
+								} kcl`}</Typography>
+								<Divider
+									orientation="horizontal"
+									flexItem
+								/>
+							</Grid>
+							<Divider orientation="vertical" flexItem />
+							<Grid item xs={3}>
+								<Divider
+									orientation="horizontal"
+									flexItem
+								/>
+								<Typography
+									variant="inherit"
+									align="center"
+								>{`Przyjęte kalorie: ${sumCalorie} kcl`}</Typography>
+								<Divider
+									orientation="horizontal"
+									flexItem
+								/>
+							</Grid>
+							<Divider orientation="vertical" flexItem />
+						</>
+					) : (
+						<Typography variant="h6" align="center">
+							Brak statysytk dla wybranej daty
+						</Typography>
+					)}
+				</Grid>
+			</>
+		);
+	} else
+		return (
+			<Typography sx={{ fontWeight: "bold" }} align="center">
+				Wprowadź dzienny limit kalorii w karcie Użykownik, by wyświetlić kalkulację
+				kalorii.
+			</Typography>
+		);
 };
 
 CalorieCounter.propTypes = {

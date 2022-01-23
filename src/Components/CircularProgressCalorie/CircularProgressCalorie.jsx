@@ -9,6 +9,7 @@ import { CircularProgress, Typography, Box } from "@mui/material/";
 //=============================================
 
 function CircularProgressCalorie({ usedCalorieInPercent }) {
+	const userCalorieLimit = useSelector((state) => state.userSettings.dailyAmountOfCalories);
 	const userName = useSelector((state) => state.userSettings.name);
 	const [color, setColor] = useState("success");
 	const [message1, setMessage1] = useState("");
@@ -17,7 +18,7 @@ function CircularProgressCalorie({ usedCalorieInPercent }) {
 	useEffect(() => {
 		console.log(typeof usedCalorieInPercent);
 		console.log(usedCalorieInPercent);
-		if (usedCalorieInPercent === 0) {
+		if (usedCalorieInPercent == 0) {
 			setMessage1("Nie dodałeś szisiaj jeszcze rzadnych produktów do listy");
 		} else if (usedCalorieInPercent > 0 && usedCalorieInPercent <= 25) {
 			setMessage1(`Hej, ${userName}! Wykorzystałeś `);
@@ -41,51 +42,55 @@ function CircularProgressCalorie({ usedCalorieInPercent }) {
 		}
 	}, [usedCalorieInPercent]);
 
-	return (
-		<Box mb={1} display="flex" justifyContent="center" alignItems="center">
-			<Box mr={1}>
-				<Typography variant="overline" component="div" color="text.secondary">
-					{message1}
-				</Typography>
-			</Box>
-			{usedCalorieInPercent ? (
-				<>
-					<Box sx={{ position: "relative", display: "inline-flex" }}>
-						<CircularProgress
-							color={color}
-							variant="determinate"
-							{...usedCalorieInPercent}
-						/>
-						<Box
-							sx={{
-								top: 0,
-								left: 0,
-								bottom: 0,
-								right: 0,
-								position: "absolute",
-								display: "flex",
-								alignItems: "center",
-								justifyContent: "center",
-							}}
-						>
-							<Typography
-								variant="overline"
-								component="div"
-								color="text.secondary"
+	if (userCalorieLimit > 0) {
+		return (
+			<Box mb={1} display="flex" justifyContent="center" alignItems="center">
+				<Box mr={1}>
+					<Typography variant="overline" component="div" color="text.secondary">
+						{message1}
+					</Typography>
+				</Box>
+				{usedCalorieInPercent ? (
+					<>
+						<Box sx={{ position: "relative", display: "inline-flex" }}>
+							<CircularProgress
+								color={color}
+								variant="determinate"
+								{...usedCalorieInPercent}
+							/>
+							<Box
+								sx={{
+									top: 0,
+									left: 0,
+									bottom: 0,
+									right: 0,
+									position: "absolute",
+									display: "flex",
+									alignItems: "center",
+									justifyContent: "center",
+								}}
 							>
-								{`${Math.round(usedCalorieInPercent)}%`}
-							</Typography>
+								<Typography
+									variant="overline"
+									component="div"
+									color="text.secondary"
+								>
+									{`${Math.round(
+										usedCalorieInPercent
+									)}%`}
+								</Typography>
+							</Box>
 						</Box>
-					</Box>
-				</>
-			) : null}
-			<Box ml={1}>
-				<Typography variant="overline" component="div" color="text.secondary">
-					{message2}
-				</Typography>
+					</>
+				) : null}
+				<Box ml={1}>
+					<Typography variant="overline" component="div" color="text.secondary">
+						{message2}
+					</Typography>
+				</Box>
 			</Box>
-		</Box>
-	);
+		);
+	} else return null;
 }
 
 CircularProgressCalorie.propTypes = {
@@ -120,7 +125,7 @@ export default function CircularStatic() {
 
 			let usedCalorieInPercent = Math.round(usedCalorie / (dailyCaloriesLimit / 100));
 			return usedCalorieInPercent;
-		} else return setProgress(0);
+		} else return 0;
 	};
 
 	return <CircularProgressCalorie value={progress} usedCalorieInPercent={progress} />;
