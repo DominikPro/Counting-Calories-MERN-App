@@ -7,6 +7,7 @@ import Table from "../Components/Table/Table";
 import SelectDate from "../Components/SelectDate/SelectDate";
 import CalorieCounter from "../Components/CalorieCounter/CalorieCounter";
 import BottomNav from "../Components/BottomNav/BottomNav";
+import SortProducts from "../Components/SortProducts/SortProducts";
 //=============================================
 
 const Statistic = () => {
@@ -14,10 +15,12 @@ const Statistic = () => {
 
 	return (
 		<>
+			{console.log(dateSelected)}
 			<Container maxWidth="lg">
 				<Header title="Statystyki" size={20} />
 				<CalorieCounter dataToCount={dateSelected} />
 				<SelectDate setDateSelected={setDateSelected} dateSelected={dateSelected} />
+				<SortProducts />
 
 				<Table
 					data={dateSelected}

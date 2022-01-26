@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 //=============================================
 import CategoryHeader from "../CategoryHeader/CategoryHeader";
-import Item from "../Item/Item";
+import Item from "./Item/Item";
 //=============================================
 import { Grid, Typography } from "@mui/material/";
 //=============================================
@@ -60,7 +60,7 @@ const Table = ({ listType, data, col1Title, col2Title, col3Title, col4Title, col
 						</Grid>
 
 						{data.map((item) => {
-							console.log(item.listType);
+							console.log(item.id);
 							return (
 								<Item
 									listType={item.listType}

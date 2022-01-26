@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 //=============================================
 import { useSelector } from "react-redux";
 //=============================================
@@ -10,9 +10,15 @@ import Container from "@mui/material/Container";
 //=============================================
 const ProductList = () => {
 	const data = useSelector((state) => state.products);
+	// const [data, setData] = useState(useSelector((state) => state.products));
+
+	// useEffect(() => {
+	// 	setData(data2);
+	// }, [data2]);
 
 	return (
 		<>
+			{console.log(data)}
 			<Container maxWidth="lg">
 				<Header title="Lista produktów" size={20} />
 				<Table

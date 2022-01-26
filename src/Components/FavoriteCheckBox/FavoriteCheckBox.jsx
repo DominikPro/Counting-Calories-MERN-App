@@ -19,15 +19,18 @@ const FavoriteCheckBox = ({ productId, listType }) => {
 	};
 
 	return (
-		<Checkbox
-			onChange={() => HandleChackBox()}
-			checked={product.favorite}
-			productId={productId}
-			size="small"
-			{...label}
-			icon={<FavoriteBorder />}
-			checkedIcon={<Favorite />}
-		/>
+		<>
+			{console.log(product.favorite)}
+			<Checkbox
+				onChange={() => HandleChackBox()}
+				checked={product.favorite}
+				productId={productId}
+				size="small"
+				{...label}
+				icon={<FavoriteBorder />}
+				checkedIcon={<Favorite />}
+			/>
+		</>
 	);
 };
 

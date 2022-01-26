@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 //=============================================
 import { useDispatch } from "react-redux";
-import { removeCaloris } from "../../Redux/actions/caloriesActions";
-import { removeProduct } from "../../Redux/actions/productActions";
+import { removeCaloris } from "../../../Redux/actions/caloriesActions";
+import { removeProduct } from "../../../Redux/actions/productActions";
 //=============================================
-import EditDialogWindow from "../EditDialogWindow/EditDialogWindow";
-import FavoriteCheckBox from "../FavoriteCheckBox/FavoriteCheckBox";
+import EditDialogWindow from "../../EditDialogWindow/EditDialogWindow";
+import FavoriteCheckBox from "../../FavoriteCheckBox/FavoriteCheckBox";
 //=============================================
 import { Typography, Button, Grid } from "@mui/material/";
 import Tooltip from "@mui/material/Tooltip";
