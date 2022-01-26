@@ -21,12 +21,12 @@ const SortProducts = () => {
 		// { name: "Kalorie", icon: <ArrowDropDownIcon />, action: "KalorieDown" },
 	];
 
-	//opcja z useEffect w którym mapuje pierwszą tablice i zwracamy do nowej tabli menu item jako wygenerowany obiekt po czym mapujem nową tablicę
+	//opcja z useEffect w którym mapuje pierwszą tablice i zwracamy do nowej tablic menu item jako wygenerowany obiekt po czym mapujem nową tablicę do select
 
 	const handleSortType = (e) => {
 		// const { name } = e.target;
 
-		console.log(typeof e.target.value.name);
+		// console.log(typeof e.target.value.name);
 		// console.log(selctedSorting.name);
 		setSelctedSorting(e.target.value);
 	};
