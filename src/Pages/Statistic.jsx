@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 //=============================================
-import { Container } from "@mui/material/";
+import { Container, Grid } from "@mui/material/";
 //=============================================
 import Header from "../Components/Header/Header";
 import Table from "../Components/Table/Table";
@@ -19,8 +19,13 @@ const Statistic = () => {
 			<Container maxWidth="lg">
 				<Header title="Statystyki" size={20} />
 				<CalorieCounter dataToCount={dateSelected} />
-				<SelectDate setDateSelected={setDateSelected} dateSelected={dateSelected} />
-				<SortProducts />
+				<Grid container xs={12} justifyContent="space-between">
+					<SelectDate
+						setDateSelected={setDateSelected}
+						dateSelected={dateSelected}
+					/>
+					<SortProducts />
+				</Grid>
 
 				<Table
 					data={dateSelected}

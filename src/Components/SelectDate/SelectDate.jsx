@@ -39,31 +39,32 @@ const SelectDate = ({ dateSelected, setDateSelected }) => {
 	}, [selectedDay, data]);
 
 	return (
-		<Grid container spacing={1} justifyContent="left" alignItems="center">
-			<Grid xs={2} item>
-				<FormControl fullWidth>
-					<InputLabel id="demo-simple-select-label">Data</InputLabel>
-					<Select
-						style={{ width: 130 }}
-						labelId="demo-simple-select-label"
-						id="demo-simple-select"
-						value={selectedDay}
-						label="Data"
-						onChange={(e) => handleChange(e)}
-					>
-						{datesAvailable ? (
-							distinctDate.reverse().map((date) => (
-								<MenuItem key={date} value={date}>
-									{date}
-								</MenuItem>
-							))
-						) : (
-							<MenuItem>Brak wpisów</MenuItem>
-						)}
-					</Select>
-				</FormControl>
-			</Grid>
+		// <Grid container spacing={1} justifyContent="left" alignItems="center">
+		<Grid xs={6} item>
+			<FormControl fullWidth>
+				<InputLabel id="demo-simple-select-label">Data</InputLabel>
+				<Select
+					size="small"
+					style={{ width: 130 }}
+					labelId="demo-simple-select-label"
+					id="demo-simple-select"
+					value={selectedDay}
+					label="Data"
+					onChange={(e) => handleChange(e)}
+				>
+					{datesAvailable ? (
+						distinctDate.reverse().map((date) => (
+							<MenuItem key={date} value={date}>
+								{date}
+							</MenuItem>
+						))
+					) : (
+						<MenuItem>Brak wpisów</MenuItem>
+					)}
+				</Select>
+			</FormControl>
 		</Grid>
+		// </Grid>
 	);
 };
 
