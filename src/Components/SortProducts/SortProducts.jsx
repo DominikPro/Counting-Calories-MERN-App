@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 //=============================================
 import { Grid, InputLabel, MenuItem, FormControl, Select } from "@mui/material";
@@ -10,16 +10,28 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 //=============================================
 
 const SortProducts = () => {
+	const [selectMenuItem, setSelectMenuItem] = useState([]);
 	const [selctedSorting, setSelctedSorting] = useState(null);
 
 	const sortOptions = [
-		{ id: 1, name: "Data", icon: <ArrowDiconropUpIcon />, action: "DataUp" },
-		// { name: "Data", icon: <ArrowDropDownIcon />, action: "DataDown" },
-		// { name: "A-->Z", icon: <ArrowDiconropUpIcon />, action: "A-->Z" },
-		// { name: "Z-->A", icon: <ArrowDiconropUpIcon />, action: "Z-->A" },
-		// { name: "Kalorie", icon: <ArrowDiconropUpIcon />, action: "KalorieUp" },
-		// { name: "Kalorie", icon: <ArrowDropDownIcon />, action: "KalorieDown" },
+		{ name: "Data", icon: <ArrowDiconropUpIcon />, action: "DataUp" },
+		{ name: "Data", icon: <ArrowDropDownIcon />, action: "DataDown" },
+		{ name: "A-->Z", icon: <ArrowDiconropUpIcon />, action: "A-->Z" },
+		{ name: "Z-->A", icon: <ArrowDiconropUpIcon />, action: "Z-->A" },
+		{ name: "Kalorie", icon: <ArrowDiconropUpIcon />, action: "KalorieUp" },
+		{ name: "Kalorie", icon: <ArrowDropDownIcon />, action: "KalorieDown" },
 	];
+	useEffect(() => {
+		sortOptions.map((item) => {
+			setSelectMenuItem((prevState) => [
+				...prevState,
+				<MenuItem key={item.action} name={item.name} value={item.action}>
+					{item.name}
+					{item.icon}
+				</MenuItem>,
+			]);
+		});
+	}, []);
 
 	//opcja z useEffect w którym mapuje pierwszą tablice i zwracamy do nowej tablic menu item jako wygenerowany obiekt po czym mapujem nową tablicę do select
 
@@ -28,6 +40,7 @@ const SortProducts = () => {
 
 		// console.log(typeof e.target.value.name);
 		// console.log(selctedSorting.name);
+		console.log(selectMenuItem);
 		setSelctedSorting(e.target.value);
 	};
 	return (
@@ -45,7 +58,8 @@ const SortProducts = () => {
 				onChange={(e) => handleSortType(e)}
 				// value={selectedDay}
 			>
-				<MenuItem></MenuItem>
+				{/* <MenuItem></MenuItem> */}
+				{selectMenuItem.map((item) => item)}
 			</Select>
 		</FormControl>
 		// 	</Grid>
