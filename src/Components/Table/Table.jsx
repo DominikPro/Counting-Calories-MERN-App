@@ -60,7 +60,6 @@ const Table = ({ listType, data, col1Title, col2Title, col3Title, col4Title, col
 						</Grid>
 
 						{data.map((item) => {
-							console.log(item.id);
 							return (
 								<Item
 									listType={item.listType}

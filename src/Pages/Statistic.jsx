@@ -24,7 +24,10 @@ const Statistic = () => {
 						setDateSelected={setDateSelected}
 						dateSelected={dateSelected}
 					/>
-					<SortProducts />
+					<SortProducts
+						setDateSelected={setDateSelected}
+						dateSelected={dateSelected}
+					/>
 				</Grid>
 
 				<Table

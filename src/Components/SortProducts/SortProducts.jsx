@@ -10,9 +10,9 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 //=============================================
 
-const SortProducts = () => {
+const SortProducts = ({ setDateSelected, dateSelected }) => {
 	const [selectMenuItem, setSelectMenuItem] = useState([]);
-	const [selctedSorting, setSelctedSorting] = useState(null);
+	const [selctedSorting, setSelctedSorting] = useState("");
 
 	//UseEffect generates the component MenuItem. Because the map of the object table directly
 	//in the select component is impossible.In the first  select render, the value of the map object is not accessed. We get an error.
@@ -95,13 +95,38 @@ const SortProducts = () => {
 					value={item.action}
 				>
 					<Grid container>
-						<Grid xs={4}>{item.icon}</Grid>
+						<Grid xs={5}>{item.icon}</Grid>
 						<Grid xs={7}>{item.name}</Grid>
 					</Grid>
 				</MenuItem>,
 			]);
 		});
 	}, []);
+
+	useEffect(() => {
+		if (selctedSorting === "") {
+			return null;
+		} else if (selctedSorting === "DataUp") {
+			return console.log("po dacie od najstarszy");
+		} else if (selctedSorting === "DataDown") {
+			return console.log("po dacie od najnowszych");
+		} else if (selctedSorting === "A-->Z") {
+			console.log("Alfabetycznie od  a do z");
+			console.log(dateSelected);
+			const compare = (a, b) => {
+				if (a.name < b.name) {
+					return -1;
+				}
+			};
+			return console.log(dateSelected.sort(compare));
+		} else if (selctedSorting === "Z-->A") {
+			return console.log("Alfabetycznie od  z do a");
+		} else if (selctedSorting === "KalorieUp") {
+			return console.log("Kalorie rosnąco");
+		} else if (selctedSorting === "KalorieDown") {
+			return console.log("Kalorie malejąco");
+		}
+	}, [selctedSorting]);
 
 	const handleSortType = (e) => {
 		console.log(selctedSorting);
@@ -132,7 +157,8 @@ const SortProducts = () => {
 };
 
 SortProducts.propTypes = {
-	productListToSort: PropTypes.array,
+	dateSelected: PropTypes.array,
+	setDateSelected: PropTypes.func,
 };
 
 export default SortProducts;
