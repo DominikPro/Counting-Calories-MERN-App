@@ -95,8 +95,8 @@ const SortProducts = ({ setDateSelected, dateSelected }) => {
 					value={item.action}
 				>
 					<Grid container>
-						<Grid xs={5}>{item.icon}</Grid>
-						<Grid xs={7}>{item.name}</Grid>
+						<Grid item xs={5}>{item.icon}</Grid>
+						<Grid item xs={7}>{item.name}</Grid>
 					</Grid>
 				</MenuItem>,
 			]);
@@ -110,17 +110,31 @@ const SortProducts = ({ setDateSelected, dateSelected }) => {
 			return console.log("po dacie od najstarszy");
 		} else if (selctedSorting === "DataDown") {
 			return console.log("po dacie od najnowszych");
-		} else if (selctedSorting === "A-->Z") {
-			console.log("Alfabetycznie od  a do z");
-			console.log(dateSelected);
+
+		} else if (selctedSorting === "Z-->A") {
 			const compare = (a, b) => {
 				if (a.name < b.name) {
 					return -1;
 				}
 			};
-			return console.log(dateSelected.sort(compare));
+			const sortedArrayAZ = dateSelected.sort(compare)
+			//The spread operator is necessary because I set the same array only in a changed order, 
+			//so react does not see the changes and does not refresh the view. 
+			//As a result, it will not display the sorted products to the user.
+			return setDateSelected([...sortedArrayAZ]);
+
 		} else if (selctedSorting === "Z-->A") {
-			return console.log("Alfabetycznie od  z do a");
+			console.log(selctedSorting)
+			const compareZA = (a, b) => {
+				return a.name > b.name
+				// if (a.name > b.name) {
+				// 	return -1;
+
+				// }
+			}
+			const sortedArrayZA = dateSelected.sort(compareZA)
+			return setDateSelected([...sortedArrayZA])
+
 		} else if (selctedSorting === "KalorieUp") {
 			return console.log("Kalorie rosnąco");
 		} else if (selctedSorting === "KalorieDown") {
