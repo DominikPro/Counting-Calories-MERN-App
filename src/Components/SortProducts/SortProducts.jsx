@@ -95,8 +95,12 @@ const SortProducts = ({ setDateSelected, dateSelected }) => {
 					value={item.action}
 				>
 					<Grid container>
-						<Grid item xs={5}>{item.icon}</Grid>
-						<Grid item xs={7}>{item.name}</Grid>
+						<Grid item xs={5}>
+							{item.icon}
+						</Grid>
+						<Grid item xs={7}>
+							{item.name}
+						</Grid>
 					</Grid>
 				</MenuItem>,
 			]);
@@ -107,38 +111,60 @@ const SortProducts = ({ setDateSelected, dateSelected }) => {
 		if (selctedSorting === "") {
 			return null;
 		} else if (selctedSorting === "DataUp") {
-			return console.log("po dacie od najstarszy");
-		} else if (selctedSorting === "DataDown") {
-			return console.log("po dacie od najnowszych");
+			const compare = (a, b) => {
+				if (a.date < b.date) {
+					return -1;
+				}
+			};
 
-		} else if (selctedSorting === "Z-->A") {
+			const sortedArray = dateSelected.sort(compare);
+
+			return setDateSelected([...sortedArray]);
+		} else if (selctedSorting === "DataDown") {
+			const compare = (a, b) => {
+				if (a.date > b.date) {
+					return -1;
+				}
+			};
+			const sortedArray = dateSelected.sort(compare);
+			return setDateSelected([...sortedArray]);
+		} else if (selctedSorting === "A-->Z") {
 			const compare = (a, b) => {
 				if (a.name < b.name) {
 					return -1;
 				}
 			};
-			const sortedArrayAZ = dateSelected.sort(compare)
-			//The spread operator is necessary because I set the same array only in a changed order, 
-			//so react does not see the changes and does not refresh the view. 
+			const sortedArray = dateSelected.sort(compare);
+			//The spread operator is necessary because I set the same array only in a changed order,
+			//so react does not see the changes and does not refresh the view.
 			//As a result, it will not display the sorted products to the user.
-			return setDateSelected([...sortedArrayAZ]);
-
+			return setDateSelected([...sortedArray]);
 		} else if (selctedSorting === "Z-->A") {
-			console.log(selctedSorting)
-			const compareZA = (a, b) => {
-				return a.name > b.name
-				// if (a.name > b.name) {
-				// 	return -1;
-
-				// }
-			}
-			const sortedArrayZA = dateSelected.sort(compareZA)
-			return setDateSelected([...sortedArrayZA])
-
+			const compare = (a, b) => {
+				if (a.name > b.name) {
+					return -1;
+				}
+			};
+			const sortedArray = dateSelected.sort(compare);
+			return setDateSelected([...sortedArray]);
 		} else if (selctedSorting === "KalorieUp") {
-			return console.log("Kalorie rosnąco");
+			const compare = (a, b) => {
+				if (a.caloriesIn100 < b.caloriesIn100) {
+					return -1;
+				}
+			};
+
+			const sortedArray = dateSelected.sort(compare);
+			return setDateSelected([...sortedArray]);
 		} else if (selctedSorting === "KalorieDown") {
-			return console.log("Kalorie malejąco");
+			const compare = (a, b) => {
+				if (a.caloriesIn100 > b.caloriesIn100) {
+					return -1;
+				}
+			};
+
+			const sortedArray = dateSelected.sort(compare);
+			return setDateSelected([...sortedArray]);
 		}
 	}, [selctedSorting]);
 
