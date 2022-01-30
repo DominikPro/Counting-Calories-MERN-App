@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link, BrowserRouter as Router, Switch } from "react-router-dom";
 //=============================================
 import { Paper, BottomNavigation } from "@mui/material/";
 //=============================================
@@ -82,19 +83,20 @@ const BottomNav = ({ pageName }) => {
 	}, [pageName]);
 
 	return (
-		<Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }} elevation={3}>
+		<Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }} elevation={2}>
 			<BottomNavigation>
 				{page.map((item) => {
 					return (
 						<GoToButton
-							key={item.id}
-							label="Add new product"
-							goToButtonName={item.goToButtonName}
 							to={item.to}
+							key={item.id}
+							goToButtonName={item.goToButtonName}
+							// label="Add new product"
 						/>
 					);
 				})}
 			</BottomNavigation>
+
 			<CircularProgressCalorie value={1} />
 		</Paper>
 	);

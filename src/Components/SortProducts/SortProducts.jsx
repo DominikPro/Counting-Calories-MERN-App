@@ -3,43 +3,39 @@ import PropTypes from "prop-types";
 //=============================================
 import { Grid, InputLabel, MenuItem, FormControl, Select } from "@mui/material";
 //=============================================
-// import SortByAlphaIcon from "@mui/icons-material/SortByAlpha";
-// import FilterListIcon from "@mui/icons-material/FilterList";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 //=============================================
 
-const SortProducts = ({ setDateSelected, dateSelected }) => {
+//The component takes two parameters (useState) from the parent component. An array of objects and a state update method that will set the sorted array.
+const SortProducts = ({ setDataSelected, dataSelected }) => {
 	const [selectMenuItem, setSelectMenuItem] = useState([]);
-	const [selctedSorting, setSelctedSorting] = useState("");
+	const [selectedSorting, setSelectedSorting] = useState("");
+	const [hidSortSelection, setHidSortSelection] = useState(false);
+	const [sortingForDate, setSortingForDate] = useState();
 
 	//UseEffect generates the component MenuItem. Because the map of the object table directly
 	//in the select component is impossible.In the first  select render, the value of the map object is not accessed. We get an error.
+
+	useEffect(() => {
+		if (
+			dataSelected.length > 0 &&
+			sortingForDate != dataSelected[0].date &&
+			dataSelected[0].listType != "Products"
+		) {
+			setHidSortSelection(false);
+			setSortingForDate(dataSelected[0].date);
+		} else if (dataSelected.length === 0) {
+			setHidSortSelection(true);
+		}
+	}, [dataSelected]);
+
+	useEffect(() => {
+		setSelectedSorting("");
+	}, [sortingForDate]);
+
 	useEffect(() => {
 		const sortOptions = [
-			{
-				name: "Data",
-				icon: (
-					<ArrowUpwardIcon
-						fontSize="small"
-						color="primary"
-						style={{ marginLeft: 5 }}
-					/>
-				),
-				action: "DataUp",
-			},
-			{
-				name: "Data",
-				icon: (
-					<ArrowDownwardIcon
-						fontSize="small"
-						color="primary"
-						style={{ marginLeft: 5 }}
-					/>
-				),
-				action: "DataDown",
-			},
 			{
 				name: "A-->Z",
 				icon: (
@@ -85,6 +81,7 @@ const SortProducts = ({ setDateSelected, dateSelected }) => {
 				action: "KalorieDown",
 			},
 		];
+
 		sortOptions.map((item) => {
 			setSelectMenuItem((prevState) => [
 				...prevState,
@@ -93,6 +90,7 @@ const SortProducts = ({ setDateSelected, dateSelected }) => {
 					key={item.action}
 					name={item.name}
 					value={item.action}
+					data-testid="select"
 				>
 					<Grid container>
 						<Grid item xs={5}>
@@ -108,69 +106,47 @@ const SortProducts = ({ setDateSelected, dateSelected }) => {
 	}, []);
 
 	useEffect(() => {
-		if (selctedSorting === "") {
-			return null;
-		} else if (selctedSorting === "DataUp") {
-			const compare = (a, b) => {
-				if (a.date < b.date) {
-					return -1;
-				}
-			};
-
-			const sortedArray = dateSelected.sort(compare);
-
-			return setDateSelected([...sortedArray]);
-		} else if (selctedSorting === "DataDown") {
-			const compare = (a, b) => {
-				if (a.date > b.date) {
-					return -1;
-				}
-			};
-			const sortedArray = dateSelected.sort(compare);
-			return setDateSelected([...sortedArray]);
-		} else if (selctedSorting === "A-->Z") {
+		if (selectedSorting === "A-->Z") {
 			const compare = (a, b) => {
 				if (a.name < b.name) {
 					return -1;
 				}
 			};
-			const sortedArray = dateSelected.sort(compare);
+			const sortedArray = dataSelected.sort(compare);
 			//The spread operator is necessary because I set the same array only in a changed order,
 			//so react does not see the changes and does not refresh the view.
 			//As a result, it will not display the sorted products to the user.
-			return setDateSelected([...sortedArray]);
-		} else if (selctedSorting === "Z-->A") {
+			return setDataSelected([...sortedArray]);
+		} else if (selectedSorting === "Z-->A") {
 			const compare = (a, b) => {
 				if (a.name > b.name) {
 					return -1;
 				}
 			};
-			const sortedArray = dateSelected.sort(compare);
-			return setDateSelected([...sortedArray]);
-		} else if (selctedSorting === "KalorieUp") {
+			const sortedArray = dataSelected.sort(compare);
+			return setDataSelected([...sortedArray]);
+		} else if (selectedSorting === "KalorieUp") {
 			const compare = (a, b) => {
 				if (a.caloriesIn100 < b.caloriesIn100) {
 					return -1;
 				}
 			};
 
-			const sortedArray = dateSelected.sort(compare);
-			return setDateSelected([...sortedArray]);
-		} else if (selctedSorting === "KalorieDown") {
+			const sortedArray = dataSelected.sort(compare);
+			return setDataSelected([...sortedArray]);
+		} else if (selectedSorting === "KalorieDown") {
 			const compare = (a, b) => {
 				if (a.caloriesIn100 > b.caloriesIn100) {
 					return -1;
 				}
 			};
-
-			const sortedArray = dateSelected.sort(compare);
-			return setDateSelected([...sortedArray]);
+			const sortedArray = dataSelected.sort(compare);
+			return setDataSelected([...sortedArray]);
 		}
-	}, [selctedSorting]);
+	}, [selectedSorting]);
 
 	const handleSortType = (e) => {
-		console.log(selctedSorting);
-		setSelctedSorting(e.target.value);
+		setSelectedSorting(e.target.value);
 	};
 
 	return (
@@ -181,11 +157,12 @@ const SortProducts = ({ setDateSelected, dateSelected }) => {
 
 					<Select
 						size="small"
+						disabled={hidSortSelection}
 						style={{ width: 130 }}
 						labelId="demo-simple-select-label"
 						id="demo-simple-select"
-						label="Data"
-						value={selctedSorting}
+						label="Drop down sort list"
+						value={selectedSorting}
 						onChange={(e) => handleSortType(e)}
 					>
 						{selectMenuItem.map((item) => item)}
@@ -197,8 +174,8 @@ const SortProducts = ({ setDateSelected, dateSelected }) => {
 };
 
 SortProducts.propTypes = {
-	dateSelected: PropTypes.array,
-	setDateSelected: PropTypes.func,
+	dataSelected: PropTypes.array,
+	setDataSelected: PropTypes.func,
 };
 
 export default SortProducts;

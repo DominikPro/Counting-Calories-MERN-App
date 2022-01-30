@@ -10,11 +10,6 @@ import Container from "@mui/material/Container";
 //=============================================
 const ProductList = () => {
 	const data = useSelector((state) => state.products);
-	// const [data, setData] = useState(useSelector((state) => state.products));
-
-	// useEffect(() => {
-	// 	setData(data2);
-	// }, [data2]);
 
 	return (
 		<>

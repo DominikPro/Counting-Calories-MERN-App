@@ -15,18 +15,17 @@ const Statistic = () => {
 
 	return (
 		<>
-			{console.log(dateSelected)}
 			<Container maxWidth="lg">
 				<Header title="Statystyki" size={20} />
 				<CalorieCounter dataToCount={dateSelected} />
-				<Grid container xs={12} justifyContent="space-between">
+				<Grid container mt={1} xs={12} justifyContent="space-between">
 					<SelectDate
 						setDateSelected={setDateSelected}
 						dateSelected={dateSelected}
 					/>
 					<SortProducts
-						setDateSelected={setDateSelected}
-						dateSelected={dateSelected}
+						setDataSelected={setDateSelected}
+						dataSelected={dateSelected}
 					/>
 				</Grid>
 
