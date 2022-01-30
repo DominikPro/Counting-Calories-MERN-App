@@ -1,4 +1,22 @@
-# Getting Started with Create React App
+## Running the application in 3 steps
+
+### 1
+
+git clone https://github.com/DominikPro/Counting-Calories-MERN-App.git
+
+### 2
+
+npm install
+
+### 3
+
+npm start
+
+###
+
+To run, the application may require a browser plug-in - React devtools
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
