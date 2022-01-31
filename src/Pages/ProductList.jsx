@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import Header from "../Components/Header/Header";
 import Table from "../Components/Table/Table";
 import BottomNav from "../Components/BottomNav/BottomNav";
+import SortProductList from "../Components/Sort/SortProductList/SortProductList";
 //=============================================
 import Container from "@mui/material/Container";
 //=============================================
@@ -16,6 +17,7 @@ const ProductList = () => {
 			{console.log(data)}
 			<Container maxWidth="lg">
 				<Header title="Lista produktów" size={20} />
+				<SortProductList />
 				<Table
 					data={data}
 					listType="Products"

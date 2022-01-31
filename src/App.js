@@ -16,8 +16,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 const App = () => {
 	return (
 		<>
+			<CssBaseline />
 			<Router>
-				<CssBaseline />
 				<Navigation />
 				<Switch>
 					<Route path="/" exact component={Home} />

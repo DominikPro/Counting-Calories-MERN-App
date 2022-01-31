@@ -5,10 +5,11 @@ import { Grid, InputLabel, MenuItem, FormControl, Select } from "@mui/material";
 //=============================================
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import sortConditions from "../shared/sortConditions";
 //=============================================
 
 //The component takes two parameters (useState) from the parent component. An array of objects and a state update method that will set the sorted array.
-const SortProducts = ({ setDataSelected, dataSelected }) => {
+const SortStatistic = ({ setDataSelected, dataSelected }) => {
 	const [selectMenuItem, setSelectMenuItem] = useState([]);
 	const [selectedSorting, setSelectedSorting] = useState("");
 	const [hidSortSelection, setHidSortSelection] = useState(false);
@@ -20,8 +21,8 @@ const SortProducts = ({ setDataSelected, dataSelected }) => {
 	useEffect(() => {
 		if (
 			dataSelected.length > 0 &&
-			sortingForDate != dataSelected[0].date &&
-			dataSelected[0].listType != "Products"
+			sortingForDate !== dataSelected[0].date &&
+			dataSelected[0].listType !== "Products"
 		) {
 			setHidSortSelection(false);
 			setSortingForDate(dataSelected[0].date);
@@ -106,43 +107,7 @@ const SortProducts = ({ setDataSelected, dataSelected }) => {
 	}, []);
 
 	useEffect(() => {
-		if (selectedSorting === "A-->Z") {
-			const compare = (a, b) => {
-				if (a.name < b.name) {
-					return -1;
-				}
-			};
-			const sortedArray = dataSelected.sort(compare);
-			//The spread operator is necessary because I set the same array only in a changed order,
-			//so react does not see the changes and does not refresh the view.
-			//As a result, it will not display the sorted products to the user.
-			return setDataSelected([...sortedArray]);
-		} else if (selectedSorting === "Z-->A") {
-			const compare = (a, b) => {
-				if (a.name > b.name) {
-					return -1;
-				}
-			};
-			const sortedArray = dataSelected.sort(compare);
-			return setDataSelected([...sortedArray]);
-		} else if (selectedSorting === "KalorieUp") {
-			const compare = (a, b) => {
-				if (a.caloriesIn100 < b.caloriesIn100) {
-					return -1;
-				}
-			};
-
-			const sortedArray = dataSelected.sort(compare);
-			return setDataSelected([...sortedArray]);
-		} else if (selectedSorting === "KalorieDown") {
-			const compare = (a, b) => {
-				if (a.caloriesIn100 > b.caloriesIn100) {
-					return -1;
-				}
-			};
-			const sortedArray = dataSelected.sort(compare);
-			return setDataSelected([...sortedArray]);
-		}
+		sortConditions(selectedSorting, dataSelected, setDataSelected);
 	}, [selectedSorting]);
 
 	const handleSortType = (e) => {
@@ -153,13 +118,13 @@ const SortProducts = ({ setDataSelected, dataSelected }) => {
 		<Grid container justifyContent="flex-end" xs={6} item>
 			<Grid item>
 				<FormControl fullWidth>
-					<InputLabel id="demo-simple-select-label">Sortuj</InputLabel>
+					<InputLabel id="Sort-Statistic">Sortuj</InputLabel>
 
 					<Select
 						size="small"
 						disabled={hidSortSelection}
 						style={{ width: 130 }}
-						labelId="demo-simple-select-label"
+						labelId="Sort-Statistic"
 						id="demo-simple-select"
 						label="Drop down sort list"
 						value={selectedSorting}
@@ -173,9 +138,9 @@ const SortProducts = ({ setDataSelected, dataSelected }) => {
 	);
 };
 
-SortProducts.propTypes = {
+SortStatistic.propTypes = {
 	dataSelected: PropTypes.array,
 	setDataSelected: PropTypes.func,
 };
 
-export default SortProducts;
+export default SortStatistic;

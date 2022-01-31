@@ -8,8 +8,7 @@ import { removeProduct } from "../../../Redux/actions/productActions";
 import EditDialogWindow from "../../EditDialogWindow/EditDialogWindow";
 import FavoriteCheckBox from "../../FavoriteCheckBox/FavoriteCheckBox";
 //=============================================
-import { Typography, Button, Grid } from "@mui/material/";
-import Tooltip from "@mui/material/Tooltip";
+import { Typography, Button, Grid, Tooltip } from "@mui/material/";
 //=============================================
 
 const Item = ({ listType, productId, name, portion, amountOfKclIn100g, remarks, date }) => {

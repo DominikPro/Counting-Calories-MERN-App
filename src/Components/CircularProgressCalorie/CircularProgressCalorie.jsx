@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 //=============================================
 import dayjs from "dayjs";
 //=============================================
-import { CircularProgress, Typography, Box } from "@mui/material/";
+import { CircularProgress, Typography, Box, Tooltip } from "@mui/material/";
 //=============================================
 
 function CircularProgressCalorie({ valueProgress, usedCalorieInPercent }) {
@@ -43,14 +43,26 @@ function CircularProgressCalorie({ valueProgress, usedCalorieInPercent }) {
 	if (userCalorieLimit > 0) {
 		return (
 			<Box mb={1} display="flex" justifyContent="center" alignItems="center">
-				<Box mr={1}>
-					<Typography variant="overline" component="div" color="text.secondary">
-						{message1}
-					</Typography>
-				</Box>
+				<Tooltip title={"Ustawienia zmienisz w zakładce Użytkownik"} placement="left">
+					<Box mr={1}>
+						<Typography
+							variant="overline"
+							component="div"
+							color="text.secondary"
+						>
+							{message1}
+						</Typography>
+					</Box>
+				</Tooltip>
+
 				{usedCalorieInPercent ? (
 					<>
-						<Box sx={{ position: "relative", display: "inline-flex" }}>
+						<Box
+							sx={{
+								position: "relative",
+								display: "inline-flex",
+							}}
+						>
 							<CircularProgress
 								value={valueProgress}
 								color={color}

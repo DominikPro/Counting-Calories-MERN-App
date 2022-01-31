@@ -7,7 +7,7 @@ import Table from "../Components/Table/Table";
 import SelectDate from "../Components/SelectDate/SelectDate";
 import CalorieCounter from "../Components/CalorieCounter/CalorieCounter";
 import BottomNav from "../Components/BottomNav/BottomNav";
-import SortProducts from "../Components/SortProducts/SortProducts";
+import SortStatistic from "../Components/Sort/SortStatistic/SortStatistic";
 //=============================================
 
 const Statistic = () => {
@@ -23,7 +23,7 @@ const Statistic = () => {
 						setDateSelected={setDateSelected}
 						dateSelected={dateSelected}
 					/>
-					<SortProducts
+					<SortStatistic
 						setDataSelected={setDateSelected}
 						dataSelected={dateSelected}
 					/>
