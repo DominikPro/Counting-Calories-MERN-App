@@ -1,13 +1,120 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //=============================================
-import { FormControl, Grid, Select, InputLabel } from "@mui/material";
+import sortConditions from "../shared/sortConditions";
+//=============================================
+import { FormControl, Grid, Select, InputLabel, MenuItem } from "@mui/material";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+
 //=============================================
 
-const SortProductList = () => {
+const SortProductList = ({ productList, setProductList }) => {
+	const [selectMenuItem, setSelectMenuItem] = useState([]);
 	const [hidSortSelection, setHidSortSelection] = useState(false);
 	const [selectedSorting, setSelectedSorting] = useState("");
 
-	const handleSortType = () => {};
+	useEffect(() => {
+		const sortOptions = [
+			{
+				name: "A-->Z",
+				icon: (
+					<ArrowUpwardIcon
+						fontSize="small"
+						color="primary"
+						style={{ marginLeft: 5 }}
+					/>
+				),
+				action: "A-->Z",
+			},
+			{
+				name: "Z-->A",
+				icon: (
+					<ArrowDownwardIcon
+						fontSize="small"
+						color="primary"
+						style={{ marginLeft: 5 }}
+					/>
+				),
+				action: "Z-->A",
+			},
+			{
+				name: "Kalorie",
+				icon: (
+					<ArrowUpwardIcon
+						fontSize="small"
+						color="primary"
+						style={{ marginLeft: 5 }}
+					/>
+				),
+				action: "CalorieUp",
+			},
+			{
+				name: "Kalorie",
+				icon: (
+					<ArrowDownwardIcon
+						fontSize="small"
+						color="primary"
+						style={{ marginLeft: 5 }}
+					/>
+				),
+				action: "CalorieDown",
+			},
+			{
+				name: "Ulubione",
+				icon: (
+					<ArrowUpwardIcon
+						fontSize="small"
+						color="primary"
+						style={{ marginLeft: 5 }}
+					/>
+				),
+				action: "LikedUp",
+			},
+			{
+				name: "Ulubione",
+				icon: (
+					<ArrowDownwardIcon
+						fontSize="small"
+						color="primary"
+						style={{ marginLeft: 5 }}
+					/>
+				),
+				action: "LikedDown",
+			},
+		];
+
+		//UseEffect generates the component MenuItem. Because the map of the object table directly
+		//in the select component is impossible.In the first  select render, the value of the map object is not accessed. We get an error.
+		sortOptions.map((item) => {
+			setSelectMenuItem((prevState) => [
+				...prevState,
+				<MenuItem
+					style={{ justifyContent: "center" }}
+					key={item.action}
+					name={item.name}
+					value={item.action}
+					data-testid="select"
+				>
+					<Grid container>
+						<Grid item xs={5}>
+							{item.icon}
+						</Grid>
+						<Grid item xs={7}>
+							{item.name}
+						</Grid>
+					</Grid>
+				</MenuItem>,
+			]);
+		});
+	}, []);
+
+	useEffect(() => {
+		sortConditions(selectedSorting, productList, setProductList);
+	}, [selectedSorting]);
+
+	const handleSortType = (e) => {
+		setSelectedSorting(e.target.value);
+	};
 	return (
 		<Grid container justifyContent="flex-end">
 			<Grid item>
@@ -21,7 +128,9 @@ const SortProductList = () => {
 						label="Sort-Product-List"
 						value={selectedSorting}
 						onChange={(e) => handleSortType(e)}
-					></Select>
+					>
+						{selectMenuItem.map((item) => item)}
+					</Select>
 				</FormControl>
 			</Grid>
 		</Grid>

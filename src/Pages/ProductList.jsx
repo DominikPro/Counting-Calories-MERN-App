@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 //=============================================
 import { useSelector } from "react-redux";
 //=============================================
@@ -10,14 +10,18 @@ import SortProductList from "../Components/Sort/SortProductList/SortProductList"
 import Container from "@mui/material/Container";
 //=============================================
 const ProductList = () => {
-	const data = useSelector((state) => state.products);
+	let data = useSelector((state) => state.products);
+	const [productList, setProductList] = useState(useSelector((state) => state.products));
+
+	useMemo(() => {
+		data = productList;
+	}, [productList]);
 
 	return (
 		<>
-			{console.log(data)}
 			<Container maxWidth="lg">
 				<Header title="Lista produktów" size={20} />
-				<SortProductList />
+				<SortProductList productList={productList} setProductList={setProductList} />
 				<Table
 					data={data}
 					listType="Products"

@@ -68,7 +68,7 @@ const SortStatistic = ({ setDataSelected, dataSelected }) => {
 						style={{ marginLeft: 5 }}
 					/>
 				),
-				action: "KalorieUp",
+				action: "CalorieUp",
 			},
 			{
 				name: "Kalorie",
@@ -79,7 +79,7 @@ const SortStatistic = ({ setDataSelected, dataSelected }) => {
 						style={{ marginLeft: 5 }}
 					/>
 				),
-				action: "KalorieDown",
+				action: "CalorieDown",
 			},
 		];
 
