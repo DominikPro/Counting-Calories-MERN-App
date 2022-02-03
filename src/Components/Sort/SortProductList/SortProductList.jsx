@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 //=============================================
 import sortConditions from "../shared/sortConditions";
 //=============================================
@@ -107,6 +107,15 @@ const SortProductList = ({ productList, setProductList }) => {
 			]);
 		});
 	}, []);
+
+	useMemo(() => {
+		console.log(productList.length);
+		if (productList.length < 2) {
+			setHidSortSelection(true);
+		} else if (productList.length > 1) {
+			setHidSortSelection(false);
+		}
+	}, [productList]);
 
 	useEffect(() => {
 		sortConditions(selectedSorting, productList, setProductList);
