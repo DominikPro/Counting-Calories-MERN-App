@@ -10,15 +10,7 @@ import Box from "@mui/material/Box";
 const GoToButton = ({ goToButtonName, to }) => {
 	return (
 		<Box m={1} display="flex" justifyContent="center" alignItems="center">
-			<Button
-				to={to}
-				component={Link}
-				size="small"
-				variant="outlined"
-				onClick={(e) => {
-					console.log("Przejdź");
-				}}
-			>
+			<Button to={to} component={Link} size="small" variant="outlined">
 				{goToButtonName}
 			</Button>
 		</Box>

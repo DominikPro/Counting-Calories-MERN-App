@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 //=============================================
-import Box from "@mui/material/Box";
+import { Typography } from "@mui/material/";
 //=============================================
 
-const Header = ({ title, size }) => {
+const Header = ({ title, size, variant }) => {
 	return (
-		<Box
+		<Typography
+			variant={variant}
 			sx={{
 				m: 2,
 				fontFamily: "Monospace",
@@ -16,7 +17,7 @@ const Header = ({ title, size }) => {
 			}}
 		>
 			{title}
-		</Box>
+		</Typography>
 	);
 };
 

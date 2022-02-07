@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useMemo } from "react";
 //=============================================
 import dayjs from "dayjs";
 import { v4 as uuidv4 } from "uuid";
@@ -19,11 +19,7 @@ import { useEffect } from "react";
 const AddCalorie = () => {
 	const serchedProductRef = useRef();
 	const dispatch = useDispatch();
-
-	const [validation, setValidation] = useState({
-		defaultPortion: "",
-		caloriesIn100: "",
-	});
+	//=============================================
 	const [selectedProduct, setselectedProduct] = useState({
 		listType: "",
 		id: "",
@@ -34,6 +30,35 @@ const AddCalorie = () => {
 		date: "",
 		Favorite: "",
 	});
+	//=============================================
+	const [validation, setValidation] = useState({
+		caloriesIn100: false,
+		defaultPortion: false,
+	});
+	const validatedCaloriesIn100 = () => {
+		if (selectedProduct.caloriesIn100 < 0 || selectedProduct.caloriesIn100 === "") {
+			console.log("1");
+			return setValidation((prevState) => ({ ...prevState, caloriesIn100: true }));
+		} else if (selectedProduct.caloriesIn100 > 0) {
+			console.log("2");
+			return setValidation((prevState) => ({ ...prevState, caloriesIn100: false }));
+		}
+	};
+	const validatedDefaultPortion = () => {
+		if (selectedProduct.defaultPortion < 0 || selectedProduct.defaultPortion === "") {
+			console.log("3");
+			return setValidation((prevState) => ({ ...prevState, defaultPortion: true }));
+		} else if (selectedProduct.defaultPortion > 0) {
+			console.log("4");
+			return setValidation((prevState) => ({ ...prevState, defaultPortion: false }));
+		}
+	};
+	useMemo(() => {
+		validatedCaloriesIn100();
+		validatedDefaultPortion();
+	}, [selectedProduct]);
+	//=============================================
+
 	const [serchedProductName, setSerchedProductName] = useState("");
 	const products = useSelector((state) => state.products);
 
@@ -46,6 +71,8 @@ const AddCalorie = () => {
 			listType: "Statistic",
 			id: uuidv4(),
 		}));
+		validatedCaloriesIn100();
+		validatedDefaultPortion();
 	};
 
 	const handleChange = (e) => {
@@ -55,14 +82,6 @@ const AddCalorie = () => {
 			[name]: value,
 		}));
 	};
-
-	useEffect(() => {
-		if (selectedProduct.defaultPortion.length < 2) {
-			return setValidation((prevState) => ({ ...prevState, defaultPortion: true }));
-		} else if (selectedProduct.caloriesIn100.length < 2) {
-			return setValidation((prevState) => ({ ...prevState, caloriesIn100: true }));
-		} else setValidation({ defaultPortion: false, caloriesIn100: false });
-	}, [selectedProduct]);
 
 	const handleAddCalorie = () => {
 		const { defaultPortion, caloriesIn100 } = validation;
@@ -86,11 +105,13 @@ const AddCalorie = () => {
 		<>
 			<Container maxWidth="sm">
 				<Stack justifyContent="flex-start" alignItems="center" spacing={2}>
-					<Header title="Dodaj produkt do dzisiejszej listy" size={20} />
+					<Header
+						title="Dodaj produkt do dzisiejszej listy"
+						size={20}
+						variant="h2"
+					/>
 					<FavoriteList addtoform={addtoform} />
-					{/* <FavoriteList2 addtoform={addtoform} /> */}
-
-					<form noValidate autoComplete="off">
+					<form autoComplete="off">
 						<TextField
 							onChange={(e) => {
 								setSerchedProductName(e.target.value);
@@ -123,7 +144,6 @@ const AddCalorie = () => {
 								}
 							})
 							.map((product) => {
-								console.log();
 								return (
 									<SerchedItem
 										key={product.id}
@@ -161,9 +181,8 @@ const AddCalorie = () => {
 							variant="outlined"
 							fullWidth
 							required
-							error={validation.name}
 						/>
-
+						{console.log(validation.caloriesIn100)}
 						<TextField
 							onChange={(e) => handleChange(e)}
 							name="caloriesIn100"
@@ -207,7 +226,6 @@ const AddCalorie = () => {
 						onClick={(e) => {
 							if (selectedProduct.name !== "") {
 								handleAddCalorie();
-								console.log(selectedProduct);
 							} else {
 								alert(
 									"Sprawdź czy poprawnie wprowadziłeś informacje o produkcie"

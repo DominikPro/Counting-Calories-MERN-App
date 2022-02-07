@@ -105,7 +105,7 @@ const Home = () => {
 	return (
 		<>
 			<Container maxWidth="lg">
-				<Header title="Inspirację dnia codziennego" size={30} />
+				<Header title="Inspirację dnia codziennego" size={30} variant="h1" />
 				<Box sx={{ height: "80vh", overflowY: "scroll" }}>
 					<ImageList variant="masonry" cols={3} gap={12}>
 						{itemData.map((item) => (
@@ -124,7 +124,7 @@ const Home = () => {
 						))}
 					</ImageList>
 				</Box>
-				<Header title="Trochę więcej tego co zdrowe" size={30} />
+				<Header title="Trochę więcej tego co zdrowe" size={30} variant="h3" />
 				<Box sx={{ height: "80vh", overflowY: "scroll" }}>
 					<ImageList variant="masonry" cols={3} gap={12}>
 						{itemData2.map((item) => (

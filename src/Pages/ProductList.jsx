@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 //=============================================
 import { useSelector } from "react-redux";
 //=============================================
@@ -25,7 +25,7 @@ const ProductList = () => {
 	return (
 		<>
 			<Container maxWidth="lg">
-				<Header title="Lista produktów" size={20} />
+				<Header title="Lista produktów" size={20} variant="h2" />
 				<SortProductList productList={productList} setProductList={setProductList} />
 				<Table
 					data={data}

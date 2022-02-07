@@ -15,24 +15,42 @@ import { useEffect } from "react";
 const Settings = () => {
 	const dispatch = useDispatch();
 	const userData = useSelector((state) => state.userSettings);
-	const [validationError, setValidationError] = useState();
+
+	const [validation, setValidation] = useState({
+		name: false,
+		dailyAmountOfCalories: true,
+		weight: false,
+		finalWeight: false,
+	});
+	const validatInputsOnblure = (e) => {
+		const { name, value } = e.target;
+		if (name === "name") {
+			console.log(1);
+			if (value === "") {
+				return setValidation((prevState) => ({ ...prevState, [name]: true }));
+			} else setValidation((prevState) => ({ ...prevState, [name]: false }));
+		}
+		// else if () {
+		//dokończyć walidacje formularza
+		// }
+	};
 
 	const handleChange = (e) => {
 		dispatch(updateData(e.target));
 	};
 
-	useEffect(() => {
-		if (userData.dailyAmountOfCalories === 0 || userData.dailyAmountOfCalories === "") {
-			setValidationError(true);
-		} else if (userData.dailyAmountOfCalories > 0) {
-			setValidationError(false);
-		}
-	}, [userData]);
+	// useEffect(() => {
+	// 	if (userData.dailyAmountOfCalories === 0 || userData.dailyAmountOfCalories === "") {
+	// 		setValidation(true);
+	// 	} else if (userData.dailyAmountOfCalories > 0) {
+	// 		setValidation(false);
+	// 	}
+	// }, [userData]);
 
 	return (
 		<>
 			<Container maxWidth="lg">
-				<Header title="O Tobie" size={25} />
+				<Header title="O Tobie" size={20} variant="h2" />
 			</Container>
 
 			<Grid xs={12} mt={1} justifyContent="center" container spacing={1}>
@@ -58,7 +76,7 @@ const Settings = () => {
 
 			<Grid item xs={12} mb={2} alignItems="center" justifyContent="center">
 				<Container maxWidth="xs">
-					<Header title="Dane użytkownika" size={18} />
+					<Header title="Dane użytkownika" size={18} variant="h3" />
 
 					<Stack
 						direction="column"
@@ -69,10 +87,7 @@ const Settings = () => {
 						<form noValidate autoComplete="off">
 							<TextField
 								value={userData.name}
-								onChange={(e) =>
-									// dispatch(updateData(e.target))
-									handleChange(e)
-								}
+								onChange={(e) => handleChange(e)}
 								style={{
 									marginBottom: "10px",
 								}}
@@ -82,13 +97,12 @@ const Settings = () => {
 								variant="outlined"
 								fullWidth
 								required
+								error={validation.name}
+								onBlur={(e) => validatInputsOnblure(e)}
 							/>
 							<TextField
 								value={userData.dailyAmountOfCalories}
-								onChange={(e) =>
-									// dispatch(updateData(e.target))
-									handleChange(e)
-								}
+								onChange={(e) => handleChange(e)}
 								style={{
 									marginBottom: "10px",
 								}}
@@ -99,14 +113,12 @@ const Settings = () => {
 								variant="outlined"
 								fullWidth
 								required
-								error={validationError}
+								error={validation.dailyAmountOfCalories}
+								onBlur={(e) => validatInputsOnblure(e)}
 							/>
 							<TextField
 								value={userData.weight}
-								onChange={(e) =>
-									// dispatch(updateData(e.target))
-									handleChange(e)
-								}
+								onChange={(e) => handleChange(e)}
 								style={{
 									marginBottom: "10px",
 								}}
@@ -116,23 +128,24 @@ const Settings = () => {
 								variant="outlined"
 								fullWidth
 								required
+								error={validation.weight}
+								onBlur={(e) => validatInputsOnblure(e)}
 							/>
 							<TextField
 								value={userData.finalWeight}
-								onChange={(e) =>
-									// dispatch(updateData(e.target))
-									handleChange(e)
-								}
+								onChange={(e) => handleChange(e)}
 								name="finalWeight"
 								id="filled-basic"
 								label="Waga docelowa:"
 								variant="outlined"
 								fullWidth
-								required
+								error={validation.finalWeight}
+								onBlur={(e) => validatInputsOnblure(e)}
 							/>
 							<Header
-								title="Zmianyzapisywane są automatycznie"
+								title="Zmiany zapisywane są automatycznie"
 								size={14}
+								variant="h3"
 							/>
 						</form>
 						<Button

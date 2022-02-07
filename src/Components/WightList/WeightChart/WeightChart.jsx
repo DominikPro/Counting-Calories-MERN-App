@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
-//=============================================
-import { Typography, Grid } from "@mui/material";
+import React from "react";
 //=============================================
 import { useSelector } from "react-redux";
 //=============================================
 import Header from "../../Header/Header";
 //=============================================
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
-import { width } from "@mui/system";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 //=============================================
 
 const WeightChart = () => {
@@ -16,7 +13,7 @@ const WeightChart = () => {
 	return (
 		<div>
 			{/* <ResponsiveContainer width={300} height={350}> */}
-			<Header title={"Wykres zmiany wagi"} size={20} />
+			<Header title={"Wykres zmiany wagi"} size={20} variant="h4" />
 			<BarChart
 				width={400}
 				height={500}

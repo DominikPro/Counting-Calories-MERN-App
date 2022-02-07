@@ -1,10 +1,9 @@
 import React from "react";
 //=============================================
-import { List, ListItem, ListItemAvatar, ListItemText, IconButton } from "@mui/material/";
+import { ListItem, ListItemAvatar, ListItemText, IconButton } from "@mui/material/";
 //=============================================
 import MonitorWeightIcon from "@mui/icons-material/MonitorWeight";
 import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
 import EditDialogWindowWeight from "./EditDialogWindowWeight";
 //=============================================
 

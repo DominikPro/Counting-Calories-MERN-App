@@ -16,9 +16,9 @@ const Statistic = () => {
 	return (
 		<>
 			<Container maxWidth="lg">
-				<Header title="Statystyki" size={20} />
+				<Header title="Statystyki" size={20} variant="h2" />
 				<CalorieCounter dataToCount={dateSelected} />
-				<Grid container mt={1} xs={12} justifyContent="space-between">
+				<Grid container mt={1} justifyContent="space-between">
 					<SelectDate
 						setDateSelected={setDateSelected}
 						dateSelected={dateSelected}

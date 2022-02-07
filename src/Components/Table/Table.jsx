@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 //=============================================
 import CategoryHeader from "../CategoryHeader/CategoryHeader";
 import Item from "./Item/Item";
+import Header from "../Header/Header";
 //=============================================
 import { Grid, Typography } from "@mui/material/";
 //=============================================
@@ -15,9 +16,7 @@ const Table = ({ listType, data, col1Title, col2Title, col3Title, col4Title, col
 	useEffect(() => {
 		if (data.length === 0) {
 			return setNoDataToDisplay(
-				<Typography mt={5} variant="h4">
-					Wybierz datę
-				</Typography>
+				<Header title="Wybierz datę" variant="h4" size={20} align="center" />
 			);
 		} else if (data.length === 0 && listType === "Products") {
 			return setNoDataToDisplay(

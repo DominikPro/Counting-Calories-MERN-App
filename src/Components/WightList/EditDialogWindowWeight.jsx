@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 //=============================================
 import { useSelector, useDispatch } from "react-redux";
@@ -85,8 +85,6 @@ export default function EditDialogWindowWeight({ editedWeightId }) {
 	const editedWeight = useSelector((state) => state.weightReducer.find((item) => item.id === editedWeightId));
 
 	const handleClickOpen = () => {
-		console.log(editedWeight);
-
 		setOpen(true);
 	};
 

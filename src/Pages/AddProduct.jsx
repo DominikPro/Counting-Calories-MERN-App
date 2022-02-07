@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 //=============================================
 import { v4 as uuidv4 } from "uuid";
 //=============================================
@@ -13,11 +13,32 @@ import BottomNav from "../Components/BottomNav/BottomNav";
 
 const AddProduct = () => {
 	const [validation, setValidation] = useState({
-		name: true,
-		caloriesIn100: true,
-		defaultPortion: true,
+		name: "",
+		caloriesIn100: "",
+		defaultPortion: "",
 	});
+	const handleAddProduct = () => {
+		const { name, caloriesIn100, defaultPortion } = validation;
+		if (name === false && caloriesIn100 === false && defaultPortion === false) {
+			dispatch(addProduct(product));
+			clearLocalProductState();
+		} else {
+			setValidation({ name: true, caloriesIn100: true, defaultPortion: true });
+			alert("Uzupęłnij pola podświetlone na czerwono");
+		}
+	};
 
+	const checkForm = (e) => {
+		const { name } = e.target;
+		if (product.name.length < 2) {
+			setValidation((prevState) => ({ ...prevState, [name]: true }));
+		} else
+			setValidation((prevState) => ({
+				...prevState,
+				[name]: false,
+			}));
+	};
+	//=============================================
 	const [product, setProduct] = useState({
 		listType: "Products",
 		id: uuidv4(),
@@ -29,31 +50,13 @@ const AddProduct = () => {
 	});
 	const dispatch = useDispatch();
 	//=============================================
-	const checkForm = (name) => {
-		if (product.name.length < 2) {
-			setValidation((prevState) => ({ ...prevState, [name]: true }));
-		} else
-			setValidation((prevState) => ({
-				...prevState,
-				[name]: false,
-			}));
-	};
-	//=============================================
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setProduct((prevState) => ({
 			...prevState,
 			[name]: value,
 		}));
-		checkForm(name);
-	};
-	//=============================================
-	const handleAddProduct = () => {
-		const { name, caloriesIn100, defaultPortion } = validation;
-		if (name === false && caloriesIn100 === false && defaultPortion === false) {
-			dispatch(addProduct(product));
-			clearLocalProductState();
-		} else alert("Uzupęłnij pola podświetlone na czerwono");
+		// checkForm(name);
 	};
 	//=============================================
 	const clearLocalProductState = () => {
@@ -70,7 +73,11 @@ const AddProduct = () => {
 					alignItems="center"
 					spacing={2}
 				>
-					<Header title="Dodaj nowy produkt do katalogu" size={20} />
+					<Header
+						title="Dodaj nowy produkt do katalogu"
+						size={20}
+						variant="h2"
+					/>
 					<form noValidate autoComplete="off">
 						<TextField
 							onChange={(e) => handleChange(e)}
@@ -83,6 +90,7 @@ const AddProduct = () => {
 							fullWidth
 							required
 							error={validation.name}
+							onBlur={(e) => checkForm(e)}
 						/>
 
 						<TextField
@@ -96,6 +104,7 @@ const AddProduct = () => {
 							fullWidth
 							required
 							error={validation.caloriesIn100}
+							onBlur={(e) => checkForm(e)}
 						/>
 
 						<TextField
@@ -109,6 +118,7 @@ const AddProduct = () => {
 							fullWidth
 							required
 							error={validation.defaultPortion}
+							onBlur={(e) => checkForm(e)}
 						/>
 						<TextField
 							onChange={(e) => handleChange(e)}

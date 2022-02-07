@@ -24,7 +24,7 @@ const caloriesReducer = (calories = [
             return [...calories, action.payload]
 
         case 'REMOVE_CALORIES':
-            console.log(action.payload)
+
             return calories.filter(item => item.id !== action.payload)
 
         case "MODIFY_CALORIES":

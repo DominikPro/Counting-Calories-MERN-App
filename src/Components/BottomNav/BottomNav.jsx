@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, BrowserRouter as Router, Switch } from "react-router-dom";
+
 //=============================================
 import { Paper, BottomNavigation } from "@mui/material/";
 //=============================================
@@ -91,7 +91,6 @@ const BottomNav = ({ pageName }) => {
 							to={item.to}
 							key={item.id}
 							goToButtonName={item.goToButtonName}
-							// label="Add new product"
 						/>
 					);
 				})}

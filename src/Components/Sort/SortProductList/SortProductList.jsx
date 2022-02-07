@@ -109,7 +109,6 @@ const SortProductList = ({ productList, setProductList }) => {
 	}, []);
 
 	useMemo(() => {
-		console.log(productList.length);
 		if (productList.length < 2) {
 			setHidSortSelection(true);
 		} else if (productList.length > 1) {

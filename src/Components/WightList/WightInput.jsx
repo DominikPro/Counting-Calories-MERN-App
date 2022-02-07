@@ -14,16 +14,34 @@ import Header from "../Header/Header";
 
 const WightInput = () => {
 	const dispatch = useDispatch();
-
+	const [validation, setValidation] = useState();
 	const [weight, setWeight] = useState({ id: "", weight: "", date: "" });
+
+	const validationInput = () => {
+		if (weight.weight === "" || weight.weight < 0 || weight.weight > 300) {
+			setValidation(true);
+		} else setValidation(false);
+	};
 
 	const handleChange = (e) => {
 		setWeight({ id: uuidv4(), weight: e.target.value, date: dayjs().format("DD.MM.YYYY") });
 	};
 
+	const handleAddWeightToList = () => {
+		if (validation === false) {
+			dispatch(addWeight(weight));
+			validationInput();
+			setWeight({
+				id: "",
+				weight: "",
+				date: "",
+			});
+		} else alert("Uzupełnij poprawnie pole wagi.");
+	};
+
 	return (
 		<Container maxWidth="xs">
-			<Header title="Pomiar wagi" size={18} />
+			<Header title="Pomiar wagi" size={18} variant="h3" />
 			<Grid
 				alignItems={"center"}
 				justifyContent={"center"}
@@ -44,18 +62,15 @@ const WightInput = () => {
 						variant="outlined"
 						fullWidth
 						required
+						onBlur={() => validationInput()}
+						error={validation}
 					/>
 				</Grid>
 
 				<Grid item mb={1}>
 					<Button
 						onClick={() => {
-							dispatch(addWeight(weight));
-							setWeight({
-								id: "",
-								weight: "",
-								date: "",
-							});
+							handleAddWeightToList();
 						}}
 						variant="outlined"
 					>

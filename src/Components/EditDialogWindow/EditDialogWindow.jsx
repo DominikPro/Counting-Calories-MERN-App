@@ -119,7 +119,6 @@ function SimpleDialog({ onClose, selectedValue, open, listType, editedProduct })
 						size="small"
 						variant="contained"
 						onClick={() => {
-							console.log(editedProduct);
 							if (changedProduct.listType === "Statistic") {
 								dispatch(
 									modifyCalories(changedProduct)
@@ -155,8 +154,6 @@ export default function EditDialogWindow({ listType, productId }) {
 
 	const productCalories = useSelector((state) => state.calories);
 	const productList = useSelector((state) => state.products);
-	// console.log(productCalories);
-	// console.log(productList);
 
 	const findEditedProduct = () => {
 		if (listType === "Statistic") {

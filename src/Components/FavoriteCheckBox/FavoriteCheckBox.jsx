@@ -9,8 +9,6 @@ import { FavoriteBorder, Favorite } from "@mui/icons-material/";
 //=============================================
 
 const FavoriteCheckBox = ({ productId, listType }) => {
-	const label = { inputProps: { "aria-label": "Checkbox demo" } };
-
 	const product = useSelector((state) => state.products.find((item) => item.id === productId));
 
 	const dispatch = useDispatch();

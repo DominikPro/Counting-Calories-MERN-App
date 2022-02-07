@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 //==========================================
 import { useSelector } from "react-redux";
 //==========================================
+import Header from "../Header/Header";
+//==========================================
 import { Grid, Typography, Divider } from "@mui/material/";
 //==========================================
 
@@ -91,9 +93,12 @@ const CalorieCounter = ({ dataToCount }) => {
 							<Divider orientation="vertical" flexItem />
 						</>
 					) : (
-						<Typography variant="h6" align="center">
-							Brak statysytk dla wybranej daty
-						</Typography>
+						<Header
+							title="Brak statysytk dla wybranej daty"
+							variant="h4"
+							size={20}
+							align="center"
+						/>
 					)}
 				</Grid>
 			</>

@@ -6,7 +6,7 @@ import { editWeight, removeWeight } from "../../Redux/actions/weightActions";
 import Header from "../Header/Header";
 import GeneratList from "./GeneratList";
 //=============================================
-import { List, Typography } from "@mui/material/";
+import { List } from "@mui/material/";
 //=============================================
 
 export default function InteractiveList() {
@@ -15,17 +15,15 @@ export default function InteractiveList() {
 
 	const handleClcikRemove = (item) => {
 		dispatch(removeWeight(item));
-		console.log(item);
 	};
 
 	const handleClcikEdit = (item) => {
 		dispatch(editWeight(item));
-		console.log(item);
 	};
 
 	return (
 		<>
-			<Header title={"Lista pomiarów:"} size={18} />
+			<Header title={"Lista pomiarów:"} size={18} variant="h3" />
 			<List
 				sx={{
 					width: "100%",
@@ -45,7 +43,7 @@ export default function InteractiveList() {
 						handleClcikEdit={handleClcikEdit}
 					/>
 				) : (
-					<Header title={"Brak pomiarów"} size={14} />
+					<Header title={"Brak pomiarów"} size={14} variant="h4" />
 				)}
 			</List>
 		</>
