@@ -17,28 +17,7 @@ const AddProduct = () => {
 		caloriesIn100: "",
 		defaultPortion: "",
 	});
-	const handleAddProduct = () => {
-		const { name, caloriesIn100, defaultPortion } = validation;
-		if (name === false && caloriesIn100 === false && defaultPortion === false) {
-			dispatch(addProduct(product));
-			clearLocalProductState();
-		} else {
-			setValidation({ name: true, caloriesIn100: true, defaultPortion: true });
-			alert("Uzupęłnij pola podświetlone na czerwono");
-		}
-	};
-
-	const checkForm = (e) => {
-		const { name } = e.target;
-		if (product.name.length < 2) {
-			setValidation((prevState) => ({ ...prevState, [name]: true }));
-		} else
-			setValidation((prevState) => ({
-				...prevState,
-				[name]: false,
-			}));
-	};
-	//=============================================
+	//=========================================================================================
 	const [product, setProduct] = useState({
 		listType: "Products",
 		id: uuidv4(),
@@ -49,20 +28,41 @@ const AddProduct = () => {
 		favorite: "",
 	});
 	const dispatch = useDispatch();
-	//=============================================
+	//=========================================================================================
+	const handleAddProduct = () => {
+		const { name, caloriesIn100, defaultPortion } = validation;
+		if (name === false && caloriesIn100 === false && defaultPortion === false) {
+			dispatch(addProduct(product));
+			clearLocalProductState();
+		} else {
+			setValidation({ name: true, caloriesIn100: true, defaultPortion: true });
+			alert("Uzupęłnij pola podświetlone na czerwono");
+		}
+	};
+	//=========================================================================================
+	const checkForm = (e) => {
+		const { name } = e.target;
+		if (product.name.length < 2) {
+			setValidation((prevState) => ({ ...prevState, [name]: true }));
+		} else
+			setValidation((prevState) => ({
+				...prevState,
+				[name]: false,
+			}));
+	};
+	//=========================================================================================
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setProduct((prevState) => ({
 			...prevState,
 			[name]: value,
 		}));
-		// checkForm(name);
 	};
-	//=============================================
+	//=========================================================================================
 	const clearLocalProductState = () => {
 		setProduct({ name: "", defaultPortion: "", caloriesIn100: "", remarks: "", favorite: "" });
 	};
-	//=============================================
+	//=========================================================================================
 
 	return (
 		<>

@@ -9,7 +9,6 @@ import Container from "@mui/material/Container";
 import Header from "../Components/Header/Header";
 import WightInput from "../Components/WightList/WightInput";
 import WeightChart from "../Components/WightList/WeightChart/WeightChart";
-import { useEffect } from "react";
 //=============================================
 
 const Settings = () => {
@@ -18,34 +17,26 @@ const Settings = () => {
 
 	const [validation, setValidation] = useState({
 		name: false,
-		dailyAmountOfCalories: true,
+		dailyAmountOfCalories: false,
 		weight: false,
 		finalWeight: false,
 	});
 	const validatInputsOnblure = (e) => {
 		const { name, value } = e.target;
 		if (name === "name") {
-			console.log(1);
 			if (value === "") {
 				return setValidation((prevState) => ({ ...prevState, [name]: true }));
 			} else setValidation((prevState) => ({ ...prevState, [name]: false }));
+		} else if (name === "dailyAmountOfCalories" || name === "weight" || name === "finalWeight") {
+			if (value === "" || value < 0) {
+				return setValidation((prevState) => ({ ...prevState, [name]: true }));
+			} else return setValidation((prevState) => ({ ...prevState, [name]: false }));
 		}
-		// else if () {
-		//dokończyć walidacje formularza
-		// }
 	};
 
 	const handleChange = (e) => {
 		dispatch(updateData(e.target));
 	};
-
-	// useEffect(() => {
-	// 	if (userData.dailyAmountOfCalories === 0 || userData.dailyAmountOfCalories === "") {
-	// 		setValidation(true);
-	// 	} else if (userData.dailyAmountOfCalories > 0) {
-	// 		setValidation(false);
-	// 	}
-	// }, [userData]);
 
 	return (
 		<>
