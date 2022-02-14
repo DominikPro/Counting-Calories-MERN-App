@@ -17,25 +17,25 @@ function CircularProgressCalorie({ valueProgress, usedCalorieInPercent }) {
 
 	useEffect(() => {
 		if (usedCalorieInPercent === 0) {
-			setMessage1("Nie dodałeś dziś jeszcze rzadnych produktów do listy");
+			setMessage1("Nie dodałeś rzadnych produktów do listy");
 		} else if (usedCalorieInPercent > 0 && usedCalorieInPercent <= 25) {
 			setMessage1(`Hej ${userName}! Wykorzystałeś `);
 			setMessage2("kalorii");
 		} else if (usedCalorieInPercent > 25 && usedCalorieInPercent <= 75) {
-			setMessage1("Wykorzystałeś");
-			setMessage2("dostepnych kalori na dziś");
+			setMessage1("Wykorzystałeś:");
+			setMessage2("kalori na dziś");
 			setColor("info");
 		} else if (usedCalorieInPercent > 75 && usedCalorieInPercent < 90) {
-			setMessage1("Wykorzystałeś");
+			setMessage1("Wykorzystałeś:");
 			setMessage2("niewiele juz zostało");
 			setColor("secondary");
 		} else if (usedCalorieInPercent > 90 && usedCalorieInPercent <= 100) {
-			setMessage1("Wykorzystałeś już");
+			setMessage1("Wykorzystałeś już:");
 			setMessage2(" kalorii zwolnij!");
 			setColor("warning");
 		} else if (usedCalorieInPercent > 100) {
-			setMessage1(`${userName} przekroczyłeś limit kalori`);
-			setMessage2("O jedno Ciasteczko za dużo?");
+			setMessage1(`${userName} przekroczyłeś limit kalori:`);
+			setMessage2(null);
 			setColor("error");
 		}
 	}, [usedCalorieInPercent]);

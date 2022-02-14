@@ -5,7 +5,11 @@ import { useSelector } from "react-redux";
 //==========================================
 import Header from "../Header/Header";
 //==========================================
-import { Grid, Typography, Divider } from "@mui/material/";
+import { Grid, Typography, Divider, Chip } from "@mui/material/";
+import MenuIcon from "@mui/icons-material/Menu";
+import NetworkLockedIcon from "@mui/icons-material/NetworkLocked";
+import KitchenIcon from "@mui/icons-material/Kitchen";
+import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
 //==========================================
 
 const CalorieCounter = ({ dataToCount }) => {
@@ -35,62 +39,90 @@ const CalorieCounter = ({ dataToCount }) => {
 				>
 					{dataToCount.length > 0 ? (
 						<>
-							<Divider orientation="vertical" flexItem />
-							<Grid item xs={3}>
-								<Divider
-									orientation="horizontal"
-									flexItem
-								/>
-								<Typography
-									variant="inherit"
-									color="blue"
-									align="center"
-								>{`Limit kalorii: ${userCalorieLimit} kcl`}</Typography>
-								<Divider
-									orientation="horizontal"
-									flexItem
-								/>
+							<Grid
+								xs={12}
+								container
+								justifyContent="space-evenly"
+								spacing={1}
+							>
+								<Grid
+									container
+									justifyContent="center"
+									item
+									xs={12}
+									md={1}
+								>
+									<Chip
+										sx={{
+											boxShadow: 1,
+											":hover": {
+												boxShadow: 3,
+											},
+											fontSize: 14,
+											minWidth: 230,
+										}}
+										label={`Limit kalorii: ${userCalorieLimit} kcl`}
+										variant="outlined"
+										color="primary"
+										icon={
+											<NetworkLockedIcon />
+										}
+									/>
+								</Grid>
+
+								<Grid
+									container
+									justifyContent="center"
+									item
+									xs={12}
+									md={1}
+								>
+									<Chip
+										sx={{
+											boxShadow: 1,
+											":hover": {
+												boxShadow: 3,
+											},
+											fontSize: 14,
+											minWidth: 230,
+										}}
+										label={`Dostępne kalorie: ${
+											userCalorieLimit -
+											sumCalorie
+										} kcl`}
+										variant="outlined"
+										color="success"
+										icon={
+											<KitchenIcon />
+										}
+									/>
+								</Grid>
+
+								<Grid
+									container
+									justifyContent="center"
+									item
+									xs={12}
+									md={1}
+								>
+									<Chip
+										sx={{
+											boxShadow: 1,
+											":hover": {
+												boxShadow: 3,
+											},
+											fontSize: 14,
+											minWidth: 230,
+										}}
+										label={`Przyjęte kalorie: ${sumCalorie} kcl`}
+										variant="outlined"
+										color="warning"
+										icon={
+											<HourglassBottomIcon />
+										}
+									/>
+								</Grid>
 							</Grid>
-							<Divider orientation="horizontal" flexItem />
-							<Divider orientation="vertical" flexItem />
-							<Grid item xs={3}>
-								<Divider
-									orientation="horizontal"
-									flexItem
-								/>
-								<Typography
-									color={
-										userCalorieLimit >
-										sumCalorie
-											? "green"
-											: "red"
-									}
-									variant="inherit"
-									align="center"
-								>{`Dostępne kalorie: ${
-									userCalorieLimit - sumCalorie
-								} kcl`}</Typography>
-								<Divider
-									orientation="horizontal"
-									flexItem
-								/>
-							</Grid>
-							<Divider orientation="vertical" flexItem />
-							<Grid item xs={3}>
-								<Divider
-									orientation="horizontal"
-									flexItem
-								/>
-								<Typography
-									variant="inherit"
-									align="center"
-								>{`Przyjęte kalorie: ${sumCalorie} kcl`}</Typography>
-								<Divider
-									orientation="horizontal"
-									flexItem
-								/>
-							</Grid>
-							<Divider orientation="vertical" flexItem />
 						</>
 					) : (
 						<Header

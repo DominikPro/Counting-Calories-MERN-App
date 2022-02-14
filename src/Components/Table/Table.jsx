@@ -7,7 +7,7 @@ import CategoryHeader from "../CategoryHeader/CategoryHeader";
 import Item from "./Item/Item";
 import Header from "../Header/Header";
 //=============================================
-import { Grid, Typography } from "@mui/material/";
+import { Grid, Typography, Container } from "@mui/material/";
 //=============================================
 
 const Table = ({ listType, data, col1Title, col2Title, col3Title, col4Title, col5Title, col6Title, col7Title }) => {
@@ -35,43 +35,60 @@ const Table = ({ listType, data, col1Title, col2Title, col3Title, col4Title, col
 		} else {
 			return (
 				<>
-					<Grid container spacing={1}>
-						<Grid item xs={3}>
-							<CategoryHeader title={col1Title} />
+					<Container maxWidth="lg">
+						<Grid container spacing={1}>
+							<Grid item xs={3}>
+								<CategoryHeader title={col1Title} />
+							</Grid>
+							<Grid item xs={1}>
+								<CategoryHeader title={col2Title} />
+							</Grid>
+							<Grid item xs={2}>
+								<CategoryHeader title={col3Title} />
+							</Grid>
+							<Grid item xs={1}>
+								<CategoryHeader title={col4Title} />
+							</Grid>
+							<Grid item xs={1}>
+								<CategoryHeader title={col5Title} />
+							</Grid>
+							<Grid item xs={1}>
+								<CategoryHeader title={col6Title} />
+							</Grid>
+							<Grid item xs={3}>
+								<CategoryHeader title={col7Title} />
+							</Grid>
 						</Grid>
-						<Grid item xs={1}>
-							<CategoryHeader title={col2Title} />
-						</Grid>
-						<Grid item xs={2}>
-							<CategoryHeader title={col3Title} />
-						</Grid>
-						<Grid item xs={1}>
-							<CategoryHeader title={col4Title} />
-						</Grid>
-						<Grid item xs={1}>
-							<CategoryHeader title={col5Title} />
-						</Grid>
-						<Grid item xs={1}>
-							<CategoryHeader title={col6Title} />
-						</Grid>
-						<Grid item xs={2}>
-							<CategoryHeader title={col7Title} />
-						</Grid>
-
 						{data.map((item) => {
 							return (
-								<Item
-									listType={item.listType}
-									date={item.date}
-									key={uuidv4()}
-									productId={item.id}
-									name={item.name}
-									portion={item.defaultPortion}
-									amountOfKclIn100g={
-										item.caloriesIn100
-									}
-									remarks={item.remarks}
-								/>
+								<Grid
+									direction="row"
+									container
+									spacing={1}
+									alignItems="center"
+									sx={{
+										marginTop: 1,
+									}}
+								>
+									<Item
+										listType={
+											item.listType
+										}
+										date={item.date}
+										key={uuidv4()}
+										productId={item.id}
+										name={item.name}
+										portion={
+											item.defaultPortion
+										}
+										amountOfKclIn100g={
+											item.caloriesIn100
+										}
+										remarks={
+											item.remarks
+										}
+									/>
+								</Grid>
 							);
 						})}
 						<Grid
@@ -84,7 +101,7 @@ const Table = ({ listType, data, col1Title, col2Title, col3Title, col4Title, col
 						>
 							{noDataToDisplay}
 						</Grid>
-					</Grid>
+					</Container>
 				</>
 			);
 		}

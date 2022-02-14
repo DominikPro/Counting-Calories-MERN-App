@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 //====================================================
 import { Box, ImageList, ImageListItem, ImageListItemBar, Container } from "@mui/material/";
 //====================================================
@@ -61,11 +61,6 @@ const itemData = [
 		title: "Coffee",
 		author: "Christian Mackie",
 	},
-	{
-		img: food14,
-		title: "Beer",
-		author: "Christian Mackie",
-	},
 ];
 
 const itemData2 = [
@@ -106,8 +101,8 @@ const Home = () => {
 		<>
 			<Container maxWidth="lg">
 				<Header title="Inspirację dnia codziennego" size={30} variant="h1" />
-				<Box sx={{ height: "80vh", overflowY: "scroll" }}>
-					<ImageList variant="masonry" cols={3} gap={12}>
+				<Box>
+					<ImageList variant="masonry" cols={2} gap={12}>
 						{itemData.map((item) => (
 							<ImageListItem key={item.img}>
 								<img
@@ -116,6 +111,7 @@ const Home = () => {
 									alt={item.title}
 									loading="lazy"
 								/>
+
 								<ImageListItemBar
 									position="below"
 									title={item.author}
@@ -125,8 +121,8 @@ const Home = () => {
 					</ImageList>
 				</Box>
 				<Header title="Trochę więcej tego co zdrowe" size={30} variant="h3" />
-				<Box sx={{ height: "80vh", overflowY: "scroll" }}>
-					<ImageList variant="masonry" cols={3} gap={12}>
+				<Box>
+					<ImageList variant="masonry" cols={2} gap={12}>
 						{itemData2.map((item) => (
 							<ImageListItem key={item.img}>
 								<img

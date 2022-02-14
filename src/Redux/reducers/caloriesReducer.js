@@ -1,8 +1,8 @@
 const caloriesReducer = (calories = [
 
-    { listType: "Statistic", id: 11, name: "Jabłko", defaultPortion: 179, caloriesIn100: 38, remarks: "Gala", date: "04.12.2021" },
+    { listType: "Statistic", id: 11, name: "Jabłko", defaultPortion: 179, caloriesIn100: 38, remarks: "Lorem Ipsum is simply dummy t", date: "04.12.2021" },
     { listType: "Statistic", id: 22, name: "Gruszka", defaultPortion: 140, caloriesIn100: 42, remarks: "", date: "04.12.2021" },
-    { listType: "Statistic", id: 33, name: "Banan", defaultPortion: 135, caloriesIn100: 53, remarks: "", date: "04.12.2021" },
+    { listType: "Statistic", id: 33, name: "Banan", defaultPortion: 135, caloriesIn100: 53, remarks: "Lorem Ipsum is simply dummy text of the", date: "04.12.2021" },
     { listType: "Statistic", id: 44, name: "Jabłko", defaultPortion: 178, caloriesIn100: 38, remarks: "Gala", date: "03.12.2021" },
     { listType: "Statistic", id: 55, name: "Jabłko", defaultPortion: 177, caloriesIn100: 38, remarks: "Gala", date: "03.12.2021" },
     { listType: "Statistic", id: 66, name: "Gruszka", defaultPortion: 140, caloriesIn100: 42, remarks: "", date: "03.12.2021" },

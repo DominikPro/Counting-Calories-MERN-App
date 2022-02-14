@@ -129,7 +129,7 @@ const AddProduct = () => {
 							fullWidth
 							label="Uwagi:"
 							multiline
-							minRows={4}
+							minRows={2}
 						/>
 					</form>
 					<Button

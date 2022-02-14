@@ -23,15 +23,31 @@ const Navigation = () => {
 					<Toolbar>
 						<Avatar
 							alt="Logo"
-							sx={{ width: 66, height: 66 }}
+							sx={{
+								width: {
+									md: 58,
+									xs: 50,
+								},
+								height: {
+									md: 58,
+									xs: 50,
+								},
+							}}
 							src={logo}
 							component={Link}
 							to="/"
 						/>
 						<Typography
 							variant="h6"
-							component="div"
-							sx={{ flexGrow: 1 }}
+							sx={{
+								flexGrow: 1,
+								fontSize: {
+									lg: 30,
+									md: 27,
+									sm: 24,
+									xs: 19,
+								},
+							}}
 						>
 							Callorie Counters
 						</Typography>
