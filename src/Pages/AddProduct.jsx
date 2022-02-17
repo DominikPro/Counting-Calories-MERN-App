@@ -66,7 +66,7 @@ const AddProduct = () => {
 
 	return (
 		<>
-			<Container maxWidth="sm">
+			<Container maxWidth="sm" sx={{ paddingBottom: "70px" }}>
 				<Stack
 					direction="column"
 					justifyContent="flex-start"

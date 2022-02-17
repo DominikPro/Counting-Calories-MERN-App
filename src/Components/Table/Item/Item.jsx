@@ -41,7 +41,10 @@ const Item = ({ listType, productId, name, portion, amountOfKclIn100g, remarks, 
 
 	return (
 		<>
-			<Container maxWidth="xl">
+			<Container
+				sx={{ maxWidth: { xs: "360px", sm: "xl", md: "lg" }, padding: { xs: 0 } }}
+				// sx={{ display: { xs: "none", sm: "block" } }}
+			>
 				<Accordion
 					expanded={expanded === "panel1"}
 					onChange={handleChange("panel1")}
@@ -49,6 +52,7 @@ const Item = ({ listType, productId, name, portion, amountOfKclIn100g, remarks, 
 						":hover": {
 							boxShadow: 4,
 						},
+						boxShadow: 2,
 					}}
 				>
 					<AccordionSummary
@@ -79,7 +83,6 @@ const Item = ({ listType, productId, name, portion, amountOfKclIn100g, remarks, 
 							<Grid item xs={6}>
 								<Typography
 									sx={{
-										// width: "40%",
 										flexShrink: 0,
 									}}
 								>
@@ -87,12 +90,16 @@ const Item = ({ listType, productId, name, portion, amountOfKclIn100g, remarks, 
 								</Typography>
 							</Grid>
 							<Grid item xs={4}>
+								<Typography display="inline">
+									W porcji:
+								</Typography>
 								<Typography
+									display="inline"
 									sx={{
 										color: "text.secondary",
 									}}
 								>
-									{`${Math.round(
+									{` ${Math.round(
 										(portion / 100) *
 											amountOfKclIn100g
 									)} kcl`}

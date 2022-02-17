@@ -103,7 +103,7 @@ const AddCalorie = () => {
 
 	return (
 		<>
-			<Container maxWidth="sm">
+			<Container maxWidth="sm" sx={{ paddingBottom: "70px" }}>
 				<Stack justifyContent="flex-start" alignItems="center" spacing={2}>
 					<Header
 						title="Dodaj produkt do dzisiejszej listy"

@@ -15,7 +15,14 @@ const Statistic = () => {
 
 	return (
 		<>
-			<Container maxWidth="lg">
+			<Container
+				maxWidth="lg"
+				sx={{
+					paddingBottom: "70px",
+					paddingLeft: { xs: "5px", sm: "16px" },
+					paddingRight: { xs: "5px", sm: "16px" },
+				}}
+			>
 				<Header title="Statystyki" size={20} variant="h2" />
 				<CalorieCounter dataToCount={dateSelected} />
 				<Grid container mt={1} justifyContent="space-between">
@@ -29,17 +36,7 @@ const Statistic = () => {
 					/>
 				</Grid>
 
-				<Table
-					data={dateSelected}
-					listType="Statistic"
-					col1Title="Nazwa"
-					col2Title="Porcja"
-					col3Title="Kcl w 110 g/ml"
-					col4Title="Ilość kalorii"
-					col5Title="Uwagi"
-					col6Title="Data"
-					col7Title="Edytcja"
-				/>
+				<Table data={dateSelected} />
 
 				<BottomNav pageName="statistic" />
 			</Container>

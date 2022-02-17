@@ -49,6 +49,34 @@ function SimpleDialog({ onClose, selectedValue, open, listType, editedProduct })
 		}));
 	};
 
+	const [validat, setValidate] = useState({
+		name: false,
+		caloriesIn100: false,
+		defaultPortion: false,
+	});
+
+	const validatInput = (e) => {
+		console.log("name wywołuje");
+		const { name } = e.target;
+		if (name === "caloriesIn100") {
+			console.log("jest");
+			if (changedProduct.caloriesIn100 === "") {
+				setValidate((prevState) => ({ ...prevState, [name]: true }));
+			} else setValidate((prevState) => ({ ...prevState, [name]: false }));
+		} else if (name === "defaultPortion") {
+			if (changedProduct.defaultPortion === "") {
+				console.log("jest2");
+				setValidate((prevState) => ({ ...prevState, [name]: true }));
+			} else setValidate((prevState) => ({ ...prevState, [name]: false }));
+		} else if (name === "name") {
+			console.log("jest3");
+			if (changedProduct.name === "") {
+				console.log("jest3-1");
+				setValidate((prevState) => ({ ...prevState, [name]: true }));
+			} else setValidate((prevState) => ({ ...prevState, [name]: false }));
+		}
+	};
+
 	return (
 		<Dialog onClose={handleClose} open={open}>
 			<TitleEditWindow listType={listType} />
@@ -73,6 +101,8 @@ function SimpleDialog({ onClose, selectedValue, open, listType, editedProduct })
 								variant="outlined"
 								fullWidth
 								required
+								onBlur={(e) => validatInput(e)}
+								error={validat.name}
 							/>
 						) : (
 							<DialogTitle>{`Edytowany produkt: ${changedProduct.name}`}</DialogTitle>
@@ -89,6 +119,8 @@ function SimpleDialog({ onClose, selectedValue, open, listType, editedProduct })
 							variant="outlined"
 							fullWidth
 							required
+							onBlur={(e) => validatInput(e)}
+							error={validat.caloriesIn100}
 						/>
 
 						<TextField
@@ -101,6 +133,8 @@ function SimpleDialog({ onClose, selectedValue, open, listType, editedProduct })
 							label="Domyślna waga porcji:"
 							variant="outlined"
 							fullWidth
+							onBlur={(e) => validatInput(e)}
+							error={validat.defaultPortion}
 						/>
 						<TextField
 							onChange={(e) => handleChange(e)}
@@ -119,17 +153,36 @@ function SimpleDialog({ onClose, selectedValue, open, listType, editedProduct })
 						size="small"
 						variant="contained"
 						onClick={() => {
-							if (changedProduct.listType === "Statistic") {
-								dispatch(
-									modifyCalories(changedProduct)
-								);
-								handleListItemClick();
-							} else if (
-								changedProduct.listType === "Products"
+							if (
+								validat.name === false &&
+								validat.caloriesIn100 === false &&
+								validat.defaultPortion === false
 							) {
-								dispatch(modifyProduct(changedProduct));
-								handleListItemClick();
-							}
+								if (
+									changedProduct.listType ===
+									"Statistic"
+								) {
+									dispatch(
+										modifyCalories(
+											changedProduct
+										)
+									);
+									handleListItemClick();
+								} else if (
+									changedProduct.listType ===
+									"Products"
+								) {
+									dispatch(
+										modifyProduct(
+											changedProduct
+										)
+									);
+									handleListItemClick();
+								}
+							} else
+								alert(
+									"Sprawdź czy poprawnie wprowadziłeś informacje o produkcie"
+								);
 						}}
 					>
 						Zapisz

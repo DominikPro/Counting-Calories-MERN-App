@@ -24,7 +24,14 @@ const ProductList = () => {
 
 	return (
 		<>
-			<Container maxWidth="lg">
+			<Container
+				maxWidth="lg"
+				sx={{
+					paddingBottom: "70px",
+					paddingLeft: { xs: "5px", sm: "16px" },
+					paddingRight: { xs: "5px", sm: "16px" },
+				}}
+			>
 				<Header title="Lista produktów" size={20} variant="h2" />
 				<SortProductList productList={productList} setProductList={setProductList} />
 				<Table

@@ -7,7 +7,7 @@ import CategoryHeader from "../CategoryHeader/CategoryHeader";
 import Item from "./Item/Item";
 import Header from "../Header/Header";
 //=============================================
-import { Grid, Typography, Container } from "@mui/material/";
+import { Grid, Typography, Container, Divider, Box } from "@mui/material/";
 //=============================================
 
 const Table = ({ listType, data, col1Title, col2Title, col3Title, col4Title, col5Title, col6Title, col7Title }) => {
@@ -35,29 +35,9 @@ const Table = ({ listType, data, col1Title, col2Title, col3Title, col4Title, col
 		} else {
 			return (
 				<>
-					<Container maxWidth="lg">
+					<Container maxWidth="lg" sx={{ mt: 2 }}>
 						<Grid container spacing={1}>
-							<Grid item xs={3}>
-								<CategoryHeader title={col1Title} />
-							</Grid>
-							<Grid item xs={1}>
-								<CategoryHeader title={col2Title} />
-							</Grid>
-							<Grid item xs={2}>
-								<CategoryHeader title={col3Title} />
-							</Grid>
-							<Grid item xs={1}>
-								<CategoryHeader title={col4Title} />
-							</Grid>
-							<Grid item xs={1}>
-								<CategoryHeader title={col5Title} />
-							</Grid>
-							<Grid item xs={1}>
-								<CategoryHeader title={col6Title} />
-							</Grid>
-							<Grid item xs={3}>
-								<CategoryHeader title={col7Title} />
-							</Grid>
+							<Divider />
 						</Grid>
 						{data.map((item) => {
 							return (
@@ -110,14 +90,6 @@ const Table = ({ listType, data, col1Title, col2Title, col3Title, col4Title, col
 
 Table.propTypes = {
 	data: PropTypes.array,
-	listType: PropTypes.string,
-	col1Title: PropTypes.string,
-	col2Title: PropTypes.string,
-	col3Title: PropTypes.string,
-	col4Title: PropTypes.string,
-	col5Title: PropTypes.string,
-	col6Title: PropTypes.string,
-	col7Title: PropTypes.string,
 };
 
 export default Table;

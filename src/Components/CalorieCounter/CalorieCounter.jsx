@@ -31,11 +31,11 @@ const CalorieCounter = ({ dataToCount }) => {
 				<Grid
 					container
 					justifyContent="center"
-					mt={1}
-					mb={1}
+					xs={12}
+					mt={2}
+					mb={3}
 					alignItems="center"
 					item
-					xs={12}
 				>
 					{dataToCount.length > 0 ? (
 						<>

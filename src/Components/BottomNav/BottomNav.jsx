@@ -105,7 +105,7 @@ const BottomNav = ({ pageName }) => {
 	};
 
 	return (
-		<AppBar position="fixed" style={{ top: "auto", bottom: 0 }} color="transparent">
+		<AppBar position="fixed" style={{ top: "auto", bottom: 0 }} color="inherit">
 			<Container>
 				<Toolbar>
 					<Box
