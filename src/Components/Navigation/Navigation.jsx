@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 //==========================================
 import logo from "../../Images/logo.png";
@@ -7,7 +7,7 @@ import { Button, Menu, MenuItem, Avatar, AppBar, Box, Toolbar, Typography, Stack
 //==========================================
 
 const Navigation = () => {
-	const [anchorEl, setAnchorEl] = React.useState(null);
+	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -15,6 +15,15 @@ const Navigation = () => {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
+	const ListOfMenuItems = [
+		{ name: "Strona główna", url: "/" },
+		{ name: "Statystyki", url: "/statistic" },
+		{ name: "Dodaj Kalorie", url: "/addCalorie" },
+		{ name: "Dodaj Produkt", url: "/addProduct" },
+		{ name: "Lista Produktów", url: "/productList" },
+		{ name: "Knifguracja dań", url: "/dishConfiguration" },
+		{ name: "Użytkownik", url: "/user" },
+	];
 
 	return (
 		<>
@@ -60,48 +69,15 @@ const Navigation = () => {
 								"aria-labelledby": "basic-button",
 							}}
 						>
-							<MenuItem
-								onClick={handleClose}
-								component={Link}
-								to="/"
-							>
-								Strona główna
-							</MenuItem>
-							<MenuItem
-								onClick={handleClose}
-								component={Link}
-								to="/statistic"
-							>
-								Statystyki
-							</MenuItem>
-							<MenuItem
-								onClick={handleClose}
-								component={Link}
-								to="/addCalorie"
-							>
-								Dodaj Kalorie
-							</MenuItem>
-							<MenuItem
-								onClick={handleClose}
-								component={Link}
-								to="/addProduct"
-							>
-								Dodaj Produkt
-							</MenuItem>
-							<MenuItem
-								onClick={handleClose}
-								component={Link}
-								to="/productList"
-							>
-								Lista Produktów
-							</MenuItem>
-							<MenuItem
-								onClick={handleClose}
-								component={Link}
-								to="/user"
-							>
-								Użytkownik
-							</MenuItem>
+							{ListOfMenuItems.map((menuOption) => (
+								<MenuItem
+									onClick={handleClose}
+									component={Link}
+									to={menuOption.url}
+								>
+									{menuOption.name}
+								</MenuItem>
+							))}
 						</Menu>
 						<Button
 							variant="contained"

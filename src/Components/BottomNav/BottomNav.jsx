@@ -90,6 +90,26 @@ const BottomNav = ({ pageName }) => {
 				goToButtonName: "Dodaj produkt",
 				to: "/addProduct",
 			},
+			//=============================================
+
+			{
+				id: "dishConfiguration1",
+				name: "dishConfiguration",
+				goToButtonName: "Statystyki",
+				to: "/statistic",
+			},
+			{
+				id: "dishConfiguration2",
+				name: "dishConfiguration",
+				goToButtonName: "Dodaj Kalorie",
+				to: "/addCalorie",
+			},
+			{
+				id: "dishConfiguration3",
+				name: "dishConfiguration",
+				goToButtonName: "Dodaj produkt",
+				to: "/addProduct",
+			},
 		];
 		setPage(navVariants.filter((item) => item.name === pageName));
 	}, [pageName]);

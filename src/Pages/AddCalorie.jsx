@@ -13,7 +13,6 @@ import SerchedItem from "../Components/SerchedItem/SerchedItem";
 import GoToButton from "../Components/GoToButton/GoToButton";
 import BottomNav from "../Components/BottomNav/BottomNav";
 import FavoriteList from "../Components/FavoriteList/FavoriteList";
-import { useEffect } from "react";
 //=============================================
 
 const AddCalorie = () => {
@@ -105,11 +104,7 @@ const AddCalorie = () => {
 		<>
 			<Container maxWidth="sm" sx={{ paddingBottom: "70px" }}>
 				<Stack justifyContent="flex-start" alignItems="center" spacing={2}>
-					<Header
-						title="Dodaj produkt do dzisiejszej listy"
-						size={20}
-						variant="h2"
-					/>
+					<Header title="Dodaj produkt do dzisiejszej listy" size={20} variant="h2" />
 					<FavoriteList addtoform={addtoform} />
 					<form autoComplete="off">
 						<TextField
@@ -128,46 +123,18 @@ const AddCalorie = () => {
 						/>
 						{products
 							.filter((product) => {
-								if (
-									serchedProductName === "" ||
-									serchedProductName.length <= 1
-								) {
+								if (serchedProductName === "" || serchedProductName.length <= 1) {
 									return "";
-								} else if (
-									product.name
-										.toLowerCase()
-										.includes(
-											serchedProductName.toLowerCase()
-										)
-								) {
+								} else if (product.name.toLowerCase().includes(serchedProductName.toLowerCase())) {
 									return product;
 								}
 							})
 							.map((product) => {
-								return (
-									<SerchedItem
-										key={product.id}
-										product={product}
-										addtoform={
-											addtoform
-										}
-										setSerchedProductName={
-											setSerchedProductName
-										}
-									/>
-								);
+								return <SerchedItem key={product.id} product={product} addtoform={addtoform} setSerchedProductName={setSerchedProductName} />;
 							})}
 						{serchedProductName.length > 1 && (
-							<Box
-								m={2}
-								display="flex"
-								justifyContent="center"
-								alignItems="center"
-							>
-								<GoToButton
-									goToButtonName="Stwórz nowy produtk"
-									to="/addProduct"
-								/>
+							<Box m={2} display="flex" justifyContent="center" alignItems="center">
+								<GoToButton goToButtonName="Stwórz nowy produtk" to="/addProduct" />
 							</Box>
 						)}
 
@@ -227,13 +194,10 @@ const AddCalorie = () => {
 							if (selectedProduct.name !== "") {
 								handleAddCalorie();
 							} else {
-								alert(
-									"Sprawdź czy poprawnie wprowadziłeś informacje o produkcie"
-								);
+								alert("Sprawdź czy poprawnie wprowadziłeś informacje o produkcie");
 							}
 						}}
-						variant="contained"
-					>
+						variant="contained">
 						Dodaj
 					</Button>
 					<BottomNav pageName="addCalorie" />

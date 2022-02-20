@@ -49,6 +49,18 @@ function SimpleDialog({ onClose, selectedValue, open, listType, editedProduct })
 		}));
 	};
 
+	const handleDispatchChange = () => {
+		if (validat.name === false && validat.caloriesIn100 === false && validat.defaultPortion === false) {
+			if (changedProduct.listType === "Statistic") {
+				dispatch(modifyCalories(changedProduct));
+				handleListItemClick();
+			} else if (changedProduct.listType === "Products") {
+				dispatch(modifyProduct(changedProduct));
+				handleListItemClick();
+			}
+		} else alert("Sprawdź czy poprawnie wprowadziłeś informacje o produkcie");
+	};
+
 	const [validat, setValidate] = useState({
 		name: false,
 		caloriesIn100: false,
@@ -56,20 +68,16 @@ function SimpleDialog({ onClose, selectedValue, open, listType, editedProduct })
 	});
 
 	const validatInput = (e) => {
-		console.log("name wywołuje");
 		const { name } = e.target;
 		if (name === "caloriesIn100") {
-			console.log("jest");
 			if (changedProduct.caloriesIn100 === "") {
 				setValidate((prevState) => ({ ...prevState, [name]: true }));
 			} else setValidate((prevState) => ({ ...prevState, [name]: false }));
 		} else if (name === "defaultPortion") {
 			if (changedProduct.defaultPortion === "") {
-				console.log("jest2");
 				setValidate((prevState) => ({ ...prevState, [name]: true }));
 			} else setValidate((prevState) => ({ ...prevState, [name]: false }));
 		} else if (name === "name") {
-			console.log("jest3");
 			if (changedProduct.name === "") {
 				console.log("jest3-1");
 				setValidate((prevState) => ({ ...prevState, [name]: true }));
@@ -81,12 +89,7 @@ function SimpleDialog({ onClose, selectedValue, open, listType, editedProduct })
 		<Dialog onClose={handleClose} open={open}>
 			<TitleEditWindow listType={listType} />
 			<List sx={{ ml: 1, mr: 2, mt: 0, mb: 2 }}>
-				<Stack
-					direction="column"
-					justifyContent="flex-start"
-					alignItems="center"
-					spacing={2}
-				>
+				<Stack direction="column" justifyContent="flex-start" alignItems="center" spacing={2}>
 					<form noValidate autoComplete="off">
 						{changedProduct.listType === "Products" ? (
 							<TextField
@@ -149,42 +152,7 @@ function SimpleDialog({ onClose, selectedValue, open, listType, editedProduct })
 						/>
 					</form>
 
-					<Button
-						size="small"
-						variant="contained"
-						onClick={() => {
-							if (
-								validat.name === false &&
-								validat.caloriesIn100 === false &&
-								validat.defaultPortion === false
-							) {
-								if (
-									changedProduct.listType ===
-									"Statistic"
-								) {
-									dispatch(
-										modifyCalories(
-											changedProduct
-										)
-									);
-									handleListItemClick();
-								} else if (
-									changedProduct.listType ===
-									"Products"
-								) {
-									dispatch(
-										modifyProduct(
-											changedProduct
-										)
-									);
-									handleListItemClick();
-								}
-							} else
-								alert(
-									"Sprawdź czy poprawnie wprowadziłeś informacje o produkcie"
-								);
-						}}
-					>
+					<Button size="small" variant="contained" onClick={() => handleDispatchChange()}>
 						Zapisz
 					</Button>
 				</Stack>
@@ -233,8 +201,7 @@ export default function EditDialogWindow({ listType, productId }) {
 					findEditedProduct();
 					handleClickOpen();
 				}}
-				variant="contained"
-			>
+				variant="contained">
 				Edytuj
 			</Button>
 

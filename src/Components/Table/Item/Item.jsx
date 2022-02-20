@@ -8,17 +8,7 @@ import { removeProduct } from "../../../Redux/actions/productActions";
 import EditDialogWindow from "../../EditDialogWindow/EditDialogWindow";
 import FavoriteCheckBox from "../../FavoriteCheckBox/FavoriteCheckBox";
 //=============================================
-import {
-	Typography,
-	Button,
-	Grid,
-	Tooltip,
-	Container,
-	Box,
-	Accordion,
-	AccordionDetails,
-	AccordionSummary,
-} from "@mui/material/";
+import { Typography, Button, Grid, Tooltip, Container, Box, Accordion, AccordionDetails, AccordionSummary } from "@mui/material/";
 //=============================================
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -53,29 +43,14 @@ const Item = ({ listType, productId, name, portion, amountOfKclIn100g, remarks, 
 							boxShadow: 4,
 						},
 						boxShadow: 2,
-					}}
-				>
-					<AccordionSummary
-						expandIcon={<ExpandMoreIcon />}
-						aria-controls="panel1bh-content"
-						id="panel1bh-header"
-					>
+					}}>
+					<AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1bh-content" id="panel1bh-header">
 						<Grid container alignItems={"center"}>
 							<Grid align="left" item xs={2}>
 								{listType === "Products" ? (
-									<Tooltip
-										title="Dodaj do listy ulubionych"
-										placement="left"
-									>
+									<Tooltip title="Dodaj do listy ulubionych" placement="left">
 										<div>
-											<FavoriteCheckBox
-												productId={
-													productId
-												}
-												listType={
-													listType
-												}
-											/>
+											<FavoriteCheckBox productId={productId} listType={listType} />
 										</div>
 									</Tooltip>
 								) : null}
@@ -84,25 +59,18 @@ const Item = ({ listType, productId, name, portion, amountOfKclIn100g, remarks, 
 								<Typography
 									sx={{
 										flexShrink: 0,
-									}}
-								>
+									}}>
 									{name}
 								</Typography>
 							</Grid>
 							<Grid item xs={4}>
-								<Typography display="inline">
-									W porcji:
-								</Typography>
+								<Typography display="inline">W porcji:</Typography>
 								<Typography
 									display="inline"
 									sx={{
 										color: "text.secondary",
-									}}
-								>
-									{` ${Math.round(
-										(portion / 100) *
-											amountOfKclIn100g
-									)} kcl`}
+									}}>
+									{` ${Math.round((portion / 100) * amountOfKclIn100g)} kcl`}
 								</Typography>
 							</Grid>
 						</Grid>
@@ -111,65 +79,46 @@ const Item = ({ listType, productId, name, portion, amountOfKclIn100g, remarks, 
 					<AccordionDetails
 						sx={{
 							backgroundColor: "#f2f4f7",
-						}}
-					>
-						<Grid
-							container
-							justifyContent="center"
-							alignItems="center"
-							xs={12}
-							spacing={2}
-						>
+						}}>
+						<Grid container justifyContent="center" alignItems="center" xs={12} spacing={2}>
 							<Grid item xs={12} sm={6}>
-								<Typography align="Center">
-									Porcja:
-								</Typography>
+								<Typography align="Center">Porcja:</Typography>
 								<Typography
 									align="Center"
 									sx={{
 										color: "text.secondary",
-									}}
-								>
+									}}>
 									{`${portion} g`}
 								</Typography>
 							</Grid>
 							<Grid item xs={12} sm={6}>
-								<Typography align="Center">
-									Kalorii w 100 gramach:
-								</Typography>
+								<Typography align="Center">Kalorii w 100 gramach:</Typography>
 
 								<Typography
 									align="Center"
 									sx={{
 										color: "text.secondary",
-									}}
-								>
+									}}>
 									{`${amountOfKclIn100g} kcl`}
 								</Typography>
 							</Grid>
 							<Grid item xs={12} sm={6}>
-								<Typography align="Center">
-									Uwagi:
-								</Typography>
+								<Typography align="Center">Uwagi:</Typography>
 								<Typography
 									align="Center"
 									sx={{
 										color: "text.secondary",
-									}}
-								>
+									}}>
 									{remarks}
 								</Typography>
 							</Grid>
 							<Grid item xs={12} sm={6}>
-								<Typography align="Center">
-									Data dodania:
-								</Typography>
+								<Typography align="Center">Data dodania:</Typography>
 								<Typography
 									align="Center"
 									sx={{
 										color: "text.secondary",
-									}}
-								>
+									}}>
 									{date}
 								</Typography>
 							</Grid>
@@ -177,28 +126,20 @@ const Item = ({ listType, productId, name, portion, amountOfKclIn100g, remarks, 
 							<Grid item alignItems="center">
 								<Button
 									item
-									onClick={() =>
-										checkListTypeAndDisptach()
-									}
+									onClick={() => checkListTypeAndDisptach()}
 									variant="outlined"
 									sx={{
 										":hover": {
 											color: "red",
 											borderColor: "red",
 										},
-									}}
-								>
+									}}>
 									Usyń
 								</Button>
 							</Grid>
 
 							<Grid item>
-								<EditDialogWindow
-									item
-									listType={listType}
-									productId={productId}
-									productName={name}
-								/>
+								<EditDialogWindow item listType={listType} productId={productId} productName={name} />
 							</Grid>
 						</Grid>
 					</AccordionDetails>

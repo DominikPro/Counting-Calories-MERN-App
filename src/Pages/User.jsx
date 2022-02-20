@@ -47,14 +47,7 @@ const Settings = () => {
 				</Container>
 
 				<Grid xs={12} mt={1} justifyContent="center" container spacing={1}>
-					<Grid
-						item
-						maxWidth="xs"
-						xs={12}
-						md={6}
-						alignItems="center"
-						justifyContent="center"
-					>
+					<Grid item maxWidth="xs" xs={12} md={6} alignItems="center" justifyContent="center">
 						<WightInput />
 					</Grid>
 
@@ -73,18 +66,11 @@ const Settings = () => {
 					<Container maxWidth="xs">
 						<Header title="Dane użytkownika" size={18} variant="h3" />
 
-						<Stack
-							direction="column"
-							justifyContent="flex-start"
-							alignItems="center"
-							spacing={2}
-						>
+						<Stack direction="column" justifyContent="flex-start" alignItems="center" spacing={2}>
 							<form noValidate autoComplete="off">
 								<TextField
 									value={userData.name}
-									onChange={(e) =>
-										handleChange(e)
-									}
+									onChange={(e) => handleChange(e)}
 									style={{
 										marginBottom: "10px",
 									}}
@@ -95,19 +81,11 @@ const Settings = () => {
 									fullWidth
 									required
 									error={validation.name}
-									onBlur={(e) =>
-										validatInputsOnblure(
-											e
-										)
-									}
+									onBlur={(e) => validatInputsOnblure(e)}
 								/>
 								<TextField
-									value={
-										userData.dailyAmountOfCalories
-									}
-									onChange={(e) =>
-										handleChange(e)
-									}
+									value={userData.dailyAmountOfCalories}
+									onChange={(e) => handleChange(e)}
 									style={{
 										marginBottom: "10px",
 									}}
@@ -118,20 +96,12 @@ const Settings = () => {
 									variant="outlined"
 									fullWidth
 									required
-									error={
-										validation.dailyAmountOfCalories
-									}
-									onBlur={(e) =>
-										validatInputsOnblure(
-											e
-										)
-									}
+									error={validation.dailyAmountOfCalories}
+									onBlur={(e) => validatInputsOnblure(e)}
 								/>
 								<TextField
 									value={userData.weight}
-									onChange={(e) =>
-										handleChange(e)
-									}
+									onChange={(e) => handleChange(e)}
 									style={{
 										marginBottom: "10px",
 									}}
@@ -142,40 +112,22 @@ const Settings = () => {
 									fullWidth
 									required
 									error={validation.weight}
-									onBlur={(e) =>
-										validatInputsOnblure(
-											e
-										)
-									}
+									onBlur={(e) => validatInputsOnblure(e)}
 								/>
 								<TextField
 									value={userData.finalWeight}
-									onChange={(e) =>
-										handleChange(e)
-									}
+									onChange={(e) => handleChange(e)}
 									name="finalWeight"
 									id="filled-basic"
 									label="Waga docelowa:"
 									variant="outlined"
 									fullWidth
 									error={validation.finalWeight}
-									onBlur={(e) =>
-										validatInputsOnblure(
-											e
-										)
-									}
+									onBlur={(e) => validatInputsOnblure(e)}
 								/>
-								<Header
-									title="Zmiany zapisywane są automatycznie"
-									size={14}
-									variant="h3"
-								/>
+								<Header title="Zmiany zapisywane są automatycznie" size={14} variant="h3" />
 							</form>
-							<Button
-								onClick={() => dispatch(removeData())}
-								variant="contained"
-								color="error"
-							>
+							<Button onClick={() => dispatch(removeData())} variant="contained" color="error">
 								Wyczyść dane o użytkowniku
 							</Button>
 						</Stack>
