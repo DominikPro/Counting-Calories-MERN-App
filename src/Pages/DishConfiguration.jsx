@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 //=============================================
 import { Container, Grid } from "@mui/material/";
 //=============================================
+import { useDispatch, useSelector } from "react-redux";
+//=============================================
 import AddDish from "../Components/DischConfigComponents/AddDish";
 import Header from "../Components/Header/Header";
-import ProductsList from "../Components/DischConfigComponents/ProductsList";
+import ProductsListToSelct from "../Components/DischConfigComponents/ProductsListToSelct";
 import BottomNav from "../Components/BottomNav/BottomNav";
 import DishNameInput from "../Components/DischConfigComponents/DishNameInput";
 import SelectedProducts from "../Components/DischConfigComponents/SelectedProducts";
@@ -12,6 +14,7 @@ import SelectedProducts from "../Components/DischConfigComponents/SelectedProduc
 
 const DishConfiguration = () => {
 	const [startOfTheDishConfiguration, setStartOfTheDishConfiguration] = useState();
+	const allProductsFromStore = useSelector((state) => state.products);
 	const [configuredDish, setConfiguredDish] = useState({ dishName: "", dishId: "" });
 
 	useEffect(() => {
@@ -42,9 +45,14 @@ const DishConfiguration = () => {
 									<SelectedProducts />
 								</Grid>
 							</Grid>
+							<Grid xs={12} container direction="row" justifyContent="center" alignItems="center">
+								<Grid item>Wyszukaj produkt</Grid>
+							</Grid>
 							<Grid xs={12} container direction="column " justifyContent="center" alignItems="center" xs={12}>
 								<Grid item>
-									<ProductsList />
+									{allProductsFromStore.map((product) => {
+										return <ProductsListToSelct product={product} />;
+									})}
 								</Grid>
 							</Grid>
 						</Grid>

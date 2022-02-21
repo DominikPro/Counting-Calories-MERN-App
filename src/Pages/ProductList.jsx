@@ -30,21 +30,10 @@ const ProductList = () => {
 					paddingBottom: "70px",
 					paddingLeft: { xs: "5px", sm: "16px" },
 					paddingRight: { xs: "5px", sm: "16px" },
-				}}
-			>
+				}}>
 				<Header title="Lista produktów" size={20} variant="h2" />
 				<SortProductList productList={productList} setProductList={setProductList} />
-				<Table
-					data={data}
-					listType="Products"
-					col1Title="Nazwa produtku"
-					col2Title="Porcja - opak"
-					col3Title="Kcl w 110 g/ml"
-					col4Title="Ilość kalorii"
-					col5Title="Uwagi"
-					col6Title="Data"
-					col7Title="Edytcja"
-				/>
+				<Table data={data} />
 				<BottomNav pageName={"productList"} />
 			</Container>
 		</>

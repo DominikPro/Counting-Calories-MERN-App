@@ -146,66 +146,6 @@ const Item = ({ listType, productId, name, portion, amountOfKclIn100g, remarks, 
 				</Accordion>
 			</Container>
 			{/* COL-1-========================================================================== */}
-
-			{/* <Grid item xs={2}>
-				<Typography align="left">{name}</Typography>
-			</Grid>
-			<Grid align="center" item xs={1}>
-				{listType === "Products" ? (
-					<Tooltip title="Dodaj do listy ulubionych" placement="left">
-						<div>
-							<FavoriteCheckBox
-								productId={productId}
-								listType={listType}
-							/>
-						</div>
-					</Tooltip>
-				) : null}
-			</Grid> */}
-			{/* COL-2-========================================================================== */}
-			{/* <Grid item xs={1}>
-				<Typography align="left">{portion}</Typography>
-			</Grid> */}
-			{/* COL-3-========================================================================== */}
-
-			{/* <Grid item xs={2}>
-				<Typography align="center">{amountOfKclIn100g}</Typography>
-			</Grid> */}
-			{/* COL-4-========================================================================== */}
-
-			{/* <Grid item xs={1}>
-				<Typography align="center">
-					{Math.round((portion / 100) * amountOfKclIn100g)}
-				</Typography>
-			</Grid> */}
-			{/* COL-5-========================================================================== */}
-
-			{/* <Grid item xs={1}>
-				<Typography align="center">{remarks}</Typography>
-			</Grid> */}
-			{/* COL-6-========================================================================== */}
-
-			{/* <Grid item xs={1}>
-				<Typography align="center">{date}</Typography>
-			</Grid> */}
-			{/* COL-7-========================================================================== */}
-
-			{/* <Grid container spacing={1} justifyContent="center" xs={3}>
-				<Grid item>
-					<Button onClick={() => checkListTypeAndDisptach()} variant="outlined">
-						Usyń
-					</Button>
-				</Grid>
-				<Grid item>
-					<EditDialogWindow
-						listType={listType}
-						productId={productId}
-						productName={name}
-					/>
-				</Grid>
-			</Grid> */}
-
-			{/* ========================================================================== */}
 		</>
 	);
 };

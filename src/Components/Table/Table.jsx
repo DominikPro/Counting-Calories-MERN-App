@@ -15,9 +15,7 @@ const Table = ({ listType, data, col1Title, col2Title, col3Title, col4Title, col
 
 	useEffect(() => {
 		if (data.length === 0) {
-			return setNoDataToDisplay(
-				<Header title="Wybierz datę" variant="h4" size={20} align="center" />
-			);
+			return setNoDataToDisplay(<Header title="Wybierz datę" variant="h4" size={20} align="center" />);
 		} else if (data.length === 0 && listType === "Products") {
 			return setNoDataToDisplay(
 				<Typography mt={5} variant="h4">
@@ -48,37 +46,21 @@ const Table = ({ listType, data, col1Title, col2Title, col3Title, col4Title, col
 									alignItems="center"
 									sx={{
 										marginTop: 1,
-									}}
-								>
+									}}>
 									<Item
-										listType={
-											item.listType
-										}
+										listType={item.listType}
 										date={item.date}
 										key={uuidv4()}
 										productId={item.id}
 										name={item.name}
-										portion={
-											item.defaultPortion
-										}
-										amountOfKclIn100g={
-											item.caloriesIn100
-										}
-										remarks={
-											item.remarks
-										}
+										portion={item.defaultPortion}
+										amountOfKclIn100g={item.caloriesIn100}
+										remarks={item.remarks}
 									/>
 								</Grid>
 							);
 						})}
-						<Grid
-							container
-							xs={12}
-							alignItems="center"
-							justify="center"
-							direction="column"
-							item
-						>
+						<Grid container xs={12} alignItems="center" justify="center" direction="column" item>
 							{noDataToDisplay}
 						</Grid>
 					</Container>
