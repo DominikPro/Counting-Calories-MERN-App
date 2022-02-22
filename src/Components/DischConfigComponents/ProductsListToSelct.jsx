@@ -2,16 +2,21 @@ import React, { useState } from "react";
 //=============================================
 import { useDispatch, useSelector } from "react-redux";
 //=============================================
-import { Typography, Button, Grid, Tooltip, Container, Box, Accordion, AccordionDetails, AccordionSummary } from "@mui/material/";
+import { Typography, Button, Grid, Tooltip, Container, IconButton, Accordion, AccordionDetails, AccordionSummary } from "@mui/material/";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-//=============================================
+import AddIcon from "@mui/icons-material/Add"; //=============================================
 
 //=============================================
-const ProductsListToSelct = ({ product }) => {
+const ProductsListToSelct = ({ product, setConfiguredDish }) => {
 	const [expanded, setExpanded] = useState(false);
+	console.log(product);
 
 	const handleChange = (panel) => (event, isExpanded) => {
 		setExpanded(isExpanded ? panel : false);
+	};
+
+	const handleAddProductToSelectedLists = () => {
+		setConfiguredDish((prevState) => ({ ...prevState, products: [...prevState.products, product] }));
 	};
 	return (
 		<>
@@ -64,6 +69,11 @@ const ProductsListToSelct = ({ product }) => {
 										}}>
 										{` ${Math.round((product.defaultPortion / 100) * product.caloriesIn100)} kcl`}
 									</Typography>
+								</Grid>
+								<Grid item xs={1}>
+									<IconButton onClick={() => handleAddProductToSelectedLists()} sx={{ marginRight: "5px", ":hover": { color: "red" } }}>
+										<AddIcon color="success" />
+									</IconButton>
 								</Grid>
 							</Grid>
 						</AccordionSummary>

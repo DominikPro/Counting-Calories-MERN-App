@@ -15,7 +15,11 @@ import SelectedProducts from "../Components/DischConfigComponents/SelectedProduc
 const DishConfiguration = () => {
 	const [startOfTheDishConfiguration, setStartOfTheDishConfiguration] = useState();
 	const allProductsFromStore = useSelector((state) => state.products);
-	const [configuredDish, setConfiguredDish] = useState({ dishName: "", dishId: "" });
+	const [configuredDish, setConfiguredDish] = useState({
+		dishName: "",
+		dishId: "",
+		products: [{ listType: "Products", id: 1, name: "Jabłko", defaultPortion: 170, caloriesIn100: 38, remarks: "", favorite: false }],
+	});
 
 	useEffect(() => {
 		console.log(configuredDish);
@@ -42,16 +46,16 @@ const DishConfiguration = () => {
 							</Grid>
 							<Grid xs={12} container direction="row" justifyContent="center" alignItems="center">
 								<Grid item>
-									<SelectedProducts />
+									<SelectedProducts configuredDish={configuredDish} />
 								</Grid>
 							</Grid>
 							<Grid xs={12} container direction="row" justifyContent="center" alignItems="center">
 								<Grid item>Wyszukaj produkt</Grid>
 							</Grid>
-							<Grid xs={12} container direction="column " justifyContent="center" alignItems="center" xs={12}>
+							<Grid xs={12} container direction="column " justifyContent="center" alignItems="center">
 								<Grid item>
 									{allProductsFromStore.map((product) => {
-										return <ProductsListToSelct product={product} />;
+										return <ProductsListToSelct product={product} setConfiguredDish={setConfiguredDish} />;
 									})}
 								</Grid>
 							</Grid>

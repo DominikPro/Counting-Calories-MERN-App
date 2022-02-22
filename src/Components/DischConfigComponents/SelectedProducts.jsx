@@ -5,20 +5,21 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 //=============================================
 
-const SelectedProducts = () => {
-	const selectedProducts = [
-		{ name: "Jogurt", weight: "150" },
-		{ name: "Musli", weight: "150" },
-		{ name: "Banan", weight: "150" },
-		{ name: "ogórek", weight: "15" },
-		{ name: "Miód", weight: "15" },
-		{ name: "Miód", weight: "15" },
-		{ name: "Miód", weight: "15" },
-		{ name: "Miód", weight: "15" },
-		{ name: "Miód", weight: "15" },
-		{ name: "Miód", weight: "15" },
-		{ name: "Miód", weight: "15" },
-	];
+const SelectedProducts = ({ configuredDish }) => {
+	console.log(configuredDish.products);
+	// const selectedProducts = [
+	// 	{ name: "Jogurt", weight: "150" },
+	// 	{ name: "Musli", weight: "150" },
+	// 	{ name: "Banan", weight: "150" },
+	// 	{ name: "ogórek", weight: "15" },
+	// 	{ name: "Miód", weight: "15" },
+	// 	{ name: "Miód", weight: "15" },
+	// 	{ name: "Miód", weight: "15" },
+	// 	{ name: "Miód", weight: "15" },
+	// 	{ name: "Miód", weight: "15" },
+	// 	{ name: "Miód", weight: "15" },
+	// 	{ name: "Miód", weight: "15" },
+	// ];
 
 	return (
 		<Paper elevation={5} rounded={8}>
@@ -49,7 +50,7 @@ const SelectedProducts = () => {
 				</Grid>
 
 				<Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2 }} columns={{ xs: 2, sm: 6, md: 12 }}>
-					{selectedProducts.map((product) => (
+					{configuredDish.products.map((product) => (
 						<Grid xs={2} sm={2} md={3} container justifyContent="center" alignItems="center">
 							<Box
 								sx={{
@@ -73,7 +74,7 @@ const SelectedProducts = () => {
 											sx={{
 												color: "text.secondary",
 											}}>
-											{`${product.weight} gram`}
+											{`${product.defaultPortion} gram`}
 										</Typography>
 									</Grid>
 									<Grid item>
