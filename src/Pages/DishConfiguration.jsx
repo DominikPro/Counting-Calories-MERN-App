@@ -46,7 +46,7 @@ const DishConfiguration = () => {
 							</Grid>
 							<Grid xs={12} container direction="row" justifyContent="center" alignItems="center">
 								<Grid item>
-									<SelectedProducts configuredDish={configuredDish} />
+									<SelectedProducts configuredDish={configuredDish} setConfiguredDish={setConfiguredDish} />
 								</Grid>
 							</Grid>
 							<Grid xs={12} container direction="row" justifyContent="center" alignItems="center">
