@@ -10,6 +10,7 @@ import ProductsListToSelct from "../Components/DischConfigComponents/ProductsLis
 import BottomNav from "../Components/BottomNav/BottomNav";
 import DishNameInput from "../Components/DischConfigComponents/DishNameInput";
 import SelectedProducts from "../Components/DischConfigComponents/SelectedProducts";
+import DishCalorieCounter from "../Components/DischConfigComponents/DishCalorieCounter"
 //=============================================
 
 const DishConfiguration = () => {
@@ -40,15 +41,18 @@ const DishConfiguration = () => {
 
 						<Grid xs={12} container>
 							<Grid xs={12} container direction="row" justifyContent="center" alignItems="center" item>
+
 								<Grid item>
 									<DishNameInput setConfiguredDish={setConfiguredDish} />
 								</Grid>
 							</Grid>
 							<Grid xs={12} container direction="row" justifyContent="center" alignItems="center">
 								<Grid item>
+
 									<SelectedProducts configuredDish={configuredDish} setConfiguredDish={setConfiguredDish} />
 								</Grid>
 							</Grid>
+
 							<Grid xs={12} container direction="row" justifyContent="center" alignItems="center">
 								<Grid item>Wyszukaj produkt</Grid>
 							</Grid>

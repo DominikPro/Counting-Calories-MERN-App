@@ -3,6 +3,7 @@ import React from "react";
 import { Typography, Grid, Paper, Box, IconButton } from "@mui/material/";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditDialogWindowSelectProduct from "./EditDialogWindowSelectProduct";
+import DishCalorieCounter from "./DishCalorieCounter";
 //=============================================
 
 const SelectedProducts = ({ configuredDish, setConfiguredDish }) => {
@@ -13,7 +14,7 @@ const SelectedProducts = ({ configuredDish, setConfiguredDish }) => {
 		setConfiguredDish((prevState) => ({ ...prevState, products: prevState.products.filter((productFromDish) => productFromDish.id !== product.id) }));
 	};
 	return (
-		<Paper elevation={5} rounded={8} sx={{ padding: "15px", minWidth: { xs: "95vw", sm: "540px" } }}>
+		<Paper elevation={5} rounded={8} sx={{ padding: "5px", minWidth: { xs: "95vw", sm: "540px", md: "680px" }, alignItems: "center" }}>
 			<Grid container xs={12} pb="10px" direction="column" justifyContent="center" alignItems="center">
 				<Grid item>
 					<Typography
@@ -38,11 +39,12 @@ const SelectedProducts = ({ configuredDish, setConfiguredDish }) => {
 						}}>
 						Skład dania:
 					</Typography>
+
 				</Grid>
 
 				<Grid container rowSpacing={1} columnSpacing={1} columns={{ xs: 2, sm: 12, md: 12 }}>
 					{configuredDish.products.map((product) => (
-						<Grid xs={2} sm={6} md={4} container justifyContent="center" alignItems="center">
+						<Grid xs={2} sm={6} md container justifyContent="center" alignItems="center">
 							<Box
 								sx={{
 									displa: "flex",
@@ -79,6 +81,9 @@ const SelectedProducts = ({ configuredDish, setConfiguredDish }) => {
 							</Box>
 						</Grid>
 					))}
+				</Grid>
+				<Grid xs={12} container direction="row" justifyContent="center" alignItems="center">
+					<DishCalorieCounter />
 				</Grid>
 			</Grid>
 		</Paper>
