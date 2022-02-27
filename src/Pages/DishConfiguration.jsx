@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 //=============================================
-import { Container, Grid } from "@mui/material/";
+import { Container, Grid, Button } from "@mui/material/";
 //=============================================
 import { useDispatch, useSelector } from "react-redux";
 //=============================================
@@ -10,7 +10,8 @@ import ProductsListToSelct from "../Components/DischConfigComponents/ProductsLis
 import BottomNav from "../Components/BottomNav/BottomNav";
 import DishNameInput from "../Components/DischConfigComponents/DishNameInput";
 import SelectedProducts from "../Components/DischConfigComponents/SelectedProducts";
-import DishCalorieCounter from "../Components/DischConfigComponents/DishCalorieCounter"
+import DishCalorieCounter from "../Components/DischConfigComponents/DishCalorieCounter";
+import ButtonSaveDish from "../Components/DischConfigComponents/ButtonSaveDish";
 //=============================================
 
 const DishConfiguration = () => {
@@ -19,7 +20,8 @@ const DishConfiguration = () => {
 	const [configuredDish, setConfiguredDish] = useState({
 		dishName: "",
 		dishId: "",
-		products: [{ listType: "Products", id: 1, name: "Jabłko", defaultPortion: 170, caloriesIn100: 38, remarks: "", favorite: false }],
+		dishCalorieIn100g: "",
+		products: [],
 	});
 
 	useEffect(() => {
@@ -41,16 +43,19 @@ const DishConfiguration = () => {
 
 						<Grid xs={12} container>
 							<Grid xs={12} container direction="row" justifyContent="center" alignItems="center" item>
-
 								<Grid item>
-									<DishNameInput setConfiguredDish={setConfiguredDish} />
+									<DishNameInput configuredDish={configuredDish} setConfiguredDish={setConfiguredDish} />
 								</Grid>
 							</Grid>
 							<Grid xs={12} container direction="row" justifyContent="center" alignItems="center">
 								<Grid item>
-
 									<SelectedProducts configuredDish={configuredDish} setConfiguredDish={setConfiguredDish} />
 								</Grid>
+							</Grid>
+							<Grid item xs={12} my="15px" container direction="row" justifyContent="center" alignItems="center">
+								<ButtonSaveDish variant="contained" size="small" configuredDish={configuredDish} setConfiguredDish={setConfiguredDish}>
+									Zapisz
+								</ButtonSaveDish>
 							</Grid>
 
 							<Grid xs={12} container direction="row" justifyContent="center" alignItems="center">

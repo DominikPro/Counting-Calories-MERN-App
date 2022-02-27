@@ -6,11 +6,9 @@ import { v4 as uuidv4 } from "uuid";
 import { Typography, Button, Grid, Tooltip, Container, IconButton, Accordion, AccordionDetails, AccordionSummary } from "@mui/material/";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AddIcon from "@mui/icons-material/Add";
-
 //=============================================
 const ProductsListToSelct = ({ product, setConfiguredDish }) => {
 	const [expanded, setExpanded] = useState(false);
-	// console.log(product);
 
 	const handleChange = (panel) => (event, isExpanded) => {
 		setExpanded(isExpanded ? panel : false);

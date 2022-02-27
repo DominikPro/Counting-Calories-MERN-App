@@ -1,33 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 //=============================================
 import { Grid, TextField } from "@mui/material/";
 //=============================================
+import { useDispatch, useSelector } from "react-redux";
+//=============================================
 
-const DishNameInput = ({ setConfiguredDish }) => {
-	const [dishName, setDishName] = useState("");
+const DishNameInput = ({ setConfiguredDish, configuredDish }) => {
+	const allDishes = useSelector((state) => state.dishes);
 	const [helperTextInfo, setHelperTextInfo] = useState("");
 	const [validate, setValidate] = useState();
 
+	const checkIfTheNameOfTheDishIsUnique = () => {
+		console.log(allDishes);
+		console.log(configuredDish.dishName);
+
+		const testArray = ["aaaaa", "bbbbb", "ccccc"];
+		if (configuredDish.dishName.length > 2) {
+			let nameWasUsed = allDishes.includes(configuredDish.dishName);
+			console.log("test");
+			console.log(nameWasUsed);
+		}
+	};
+
 	const validateInputAndSetNameInConfiguredDish = () => {
-		if (dishName === "") {
-			console.log("działa");
+		if (configuredDish.dishName === "") {
 			setValidate(true);
 			setHelperTextInfo("Pole nazwy nie może być puste");
-		} else if (dishName.length < 3) {
-			console.log("działa");
+		} else if (configuredDish.dishName.length < 3) {
 			setValidate(true);
 			setHelperTextInfo("Nazwa jest zbyt krótka");
-		} else {
+		}
+		// else if () {
+
+		// }
+		else {
 			setValidate(false);
 			setHelperTextInfo("Ok");
-			setConfiguredDish((prevState) => ({ ...prevState, dishName: dishName }));
 		}
 	};
 
 	return (
 		<TextField
 			onChange={(e) => {
-				setDishName(e.target.value);
+				setConfiguredDish((prevState) => ({ ...prevState, dishName: e.target.value }));
+				validateInputAndSetNameInConfiguredDish();
 			}}
 			sx={{
 				marginBottom: "20px",
@@ -36,13 +52,16 @@ const DishNameInput = ({ setConfiguredDish }) => {
 				borderWidth: 2,
 			}}
 			size="small"
-			value={dishName}
+			value={configuredDish.dishName}
 			id="outlined-multiline-flexible"
 			label="Wpisz nazwę dania"
 			helperText={helperTextInfo}
 			variant="outlined"
 			error={validate}
-			onBlur={() => validateInputAndSetNameInConfiguredDish()}
+			onBlur={() => {
+				validateInputAndSetNameInConfiguredDish();
+				checkIfTheNameOfTheDishIsUnique();
+			}}
 		/>
 	);
 };

@@ -18,12 +18,12 @@ function SimpleDialog({ onClose, selectedValue, open, editedProduct, setConfigur
 	const [changedProductWeight, setChangedProductWeight] = useState({ listType: "Products", id: 1, name: "Jabłko", defaultPortion: 170, caloriesIn100: 38, remarks: "", favorite: false });
 
 	useEffect(() => {
-		setChangedProductWeight(editedProduct);
-	}, [editedProduct]);
-
-	useEffect(() => {
 		console.log(changedProductWeight);
 	}, [changedProductWeight]);
+
+	useEffect(() => {
+		setChangedProductWeight(editedProduct);
+	}, [editedProduct]);
 
 	const handleClose = () => {
 		onClose(selectedValue);
@@ -39,7 +39,6 @@ function SimpleDialog({ onClose, selectedValue, open, editedProduct, setConfigur
 
 	const handleSetChangInDishConfiguration = () => {
 		setConfiguredDish((prevState) => {
-			// let indexOfChagedProduct = prevState.products.findIndex((product) => product.id === changedProductWeight.id);
 			const prevStateWithOutRemovedChangedProduct = prevState.products.filter((product) => product.id !== changedProductWeight.id);
 			return { ...prevState, products: [...prevStateWithOutRemovedChangedProduct, changedProductWeight] };
 		});
@@ -113,7 +112,7 @@ export default function EditDialogWindowSelectProduct({ product, setConfiguredDi
 					handleClickOpen();
 				}}
 				variant="text">
-				{product.defaultPortion}
+				{`${product.defaultPortion} g`}
 			</Button>
 
 			<SimpleDialog
