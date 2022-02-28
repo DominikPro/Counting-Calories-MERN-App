@@ -9,7 +9,7 @@ import Home from "./Pages/Home";
 import Statistic from "./Pages/Statistic";
 import AddProduct from "./Pages/AddProduct";
 import AddCalorie from "./Pages/AddCalorie";
-import ProductList from "./Pages/ProductList";
+import ProductDishList from "./Pages/ProductDishList";
 import User from "./Pages/User";
 import DishConfiguration from "./Pages/DishConfiguration";
 import ProgresBar from "./Components/ProgresBar/ProgresBar.jsx"
@@ -19,7 +19,7 @@ import ProgresBar from "./Components/ProgresBar/ProgresBar.jsx"
 // const Statistic = lazy(() => import("./Pages/Statistic"));
 // const AddProduct = lazy(() => import("./Pages/AddProduct"));
 // const AddCalorie = lazy(() => import("./Pages/AddCalorie"));
-// const ProductList = lazy(() => import("./Pages/ProductList"));
+// const ProductDishList = lazy(() => import("./Pages/ProductDishList"));
 // const DishConfiguration = lazy(() => import("./Pages/DishConfiguration"));
 // const User = lazy(() => import("./Pages/User"));
 
@@ -40,7 +40,7 @@ const App = () => {
 					<Route path="/" exact component={Home} />
 					<Route path="/addProduct" component={AddProduct} />
 					<Route path="/addCalorie" component={AddCalorie} />
-					<Route path="/productList" component={ProductList} />
+					<Route path="/ProductDishList" component={ProductDishList} />
 					<Route path="/statistic" component={Statistic} />
 					<Route path="/dishConfiguration" component={DishConfiguration} />
 					<Route path="/user" component={User} />

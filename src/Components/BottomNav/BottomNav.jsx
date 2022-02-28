@@ -1,19 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 //=============================================
-import {
-	AppBar,
-	Box,
-	Toolbar,
-	IconButton,
-	Typography,
-	Menu,
-	Button,
-	Container,
-	Avatar,
-	Tooltip,
-	MenuItem,
-} from "@mui/material/";
+import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Button, Container, Avatar, Tooltip, MenuItem } from "@mui/material/";
 import MenuIcon from "@mui/icons-material/Menu";
 //=============================================
 import CircularProgressCalorie from "../CircularProgressCalorie/CircularProgressCalorie";
@@ -40,7 +28,7 @@ const BottomNav = ({ pageName }) => {
 				id: "statistic3",
 				name: "statistic",
 				goToButtonName: "Lista produktów",
-				to: "/productList",
+				to: "/ProductDishList",
 			},
 			//=============================================
 
@@ -55,7 +43,7 @@ const BottomNav = ({ pageName }) => {
 				id: "addCalorie3",
 				name: "addCalorie",
 				goToButtonName: "Lista produktów",
-				to: "/productList",
+				to: "/ProductDishList",
 			},
 			//=============================================
 			{ id: "addProduct1", name: "addProduct", goToButtonName: "Statystyki", to: "/statistic" },
@@ -69,7 +57,7 @@ const BottomNav = ({ pageName }) => {
 				id: "addProduct3",
 				name: "addProduct",
 				goToButtonName: "Lista produktów",
-				to: "/productList",
+				to: "/ProductDishList",
 			},
 			//=============================================
 			{
@@ -134,8 +122,7 @@ const BottomNav = ({ pageName }) => {
 							justifyContent: "center",
 							flexGrow: 10,
 							display: { xs: "none", sm: "flex" },
-						}}
-					>
+						}}>
 						<CircularProgressCalorie value={1} />
 					</Box>
 					<Box
@@ -143,24 +130,15 @@ const BottomNav = ({ pageName }) => {
 						sx={{
 							flexGrow: 2,
 							display: { xs: "none", md: "flex" },
-						}}
-					></Box>
+						}}></Box>
 
 					<Box
 						sx={{
 							justifyContent: "flex-end",
 							flexGrow: 1,
 							display: { xs: "flex", md: "none" },
-						}}
-					>
-						<IconButton
-							size="large"
-							aria-label="account of current user"
-							aria-controls="menu-appbar"
-							aria-haspopup="true"
-							onClick={handleOpenNavMenu}
-							color="success"
-						>
+						}}>
+						<IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="success">
 							<MenuIcon />
 						</IconButton>
 						<Menu
@@ -182,20 +160,10 @@ const BottomNav = ({ pageName }) => {
 									xs: "block",
 									md: "none",
 								},
-							}}
-						>
+							}}>
 							{page.map((item) => (
-								<MenuItem
-									to={item.to}
-									component={Link}
-									key={item.id}
-									onClick={handleCloseNavMenu}
-								>
-									<Typography textAlign="center">
-										{
-											item.goToButtonName
-										}
-									</Typography>
+								<MenuItem to={item.to} component={Link} key={item.id} onClick={handleCloseNavMenu}>
+									<Typography textAlign="center">{item.goToButtonName}</Typography>
 								</MenuItem>
 							))}
 						</Menu>
@@ -206,8 +174,7 @@ const BottomNav = ({ pageName }) => {
 						sx={{
 							flexGrow: 1,
 							display: { xs: "none", md: "flex" },
-						}}
-					>
+						}}>
 						{page.map((item) => (
 							<Button
 								variant="contained"
@@ -219,8 +186,7 @@ const BottomNav = ({ pageName }) => {
 								sx={{
 									m: 1,
 									display: "block",
-								}}
-							>
+								}}>
 								{item.goToButtonName}
 							</Button>
 						))}

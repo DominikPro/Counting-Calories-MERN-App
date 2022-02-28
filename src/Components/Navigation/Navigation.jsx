@@ -20,7 +20,7 @@ const Navigation = () => {
 		{ name: "Statystyki", url: "/statistic" },
 		{ name: "Dodaj Kalorie", url: "/addCalorie" },
 		{ name: "Dodaj Produkt", url: "/addProduct" },
-		{ name: "Lista Produktów", url: "/productList" },
+		{ name: "Produkty i Dania", url: "/ProductDishList" },
 		{ name: "Knifguracja dań", url: "/dishConfiguration" },
 		{ name: "Użytkownik", url: "/user" },
 	];
@@ -56,8 +56,7 @@ const Navigation = () => {
 									sm: 24,
 									xs: 19,
 								},
-							}}
-						>
+							}}>
 							Callorie Counters
 						</Typography>
 						<Menu
@@ -67,14 +66,9 @@ const Navigation = () => {
 							onClose={handleClose}
 							MenuListProps={{
 								"aria-labelledby": "basic-button",
-							}}
-						>
+							}}>
 							{ListOfMenuItems.map((menuOption) => (
-								<MenuItem
-									onClick={handleClose}
-									component={Link}
-									to={menuOption.url}
-								>
+								<MenuItem onClick={handleClose} component={Link} to={menuOption.url}>
 									{menuOption.name}
 								</MenuItem>
 							))}
@@ -86,8 +80,7 @@ const Navigation = () => {
 							aria-controls="basic-menu"
 							aria-haspopup="true"
 							aria-expanded={open ? "true" : undefined}
-							onClick={handleClick}
-						>
+							onClick={handleClick}>
 							Menu
 						</Button>
 						<Stack direction="row" spacing={2}></Stack>
