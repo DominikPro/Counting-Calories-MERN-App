@@ -1,5 +1,5 @@
 const dishReducer = (dishes = [{
-    dishName: 'Sałatka owocowa', dishId: 'b84eb046-87e8-4b2f-a067-87bf89497e8d', dishCalorieIn100g: '', products: [
+    listType: "Dish", dishName: 'Sałatka owocowa', dishId: 'b84eb046-87e8-4b2f-a067-87bf89497e8d', dishCalorieIn100g: '', products: [
         {
             caloriesIn100: 38,
             defaultPortion: 170,
@@ -18,7 +18,7 @@ const dishReducer = (dishes = [{
             remarks: "",
         }]
 }, {
-    dishName: 'Sałatka', dishId: 'b84eb046-87e8-4b2f-a067-87bf89497e8d', dishCalorieIn100g: '', products: [
+    listType: "Dish", dishName: 'Sałatka', dishId: 'b84eb046-87e8-4b2f-a067-87bf89497e8d', dishCalorieIn100g: '', products: [
         {
             caloriesIn100: 38,
             defaultPortion: 170,

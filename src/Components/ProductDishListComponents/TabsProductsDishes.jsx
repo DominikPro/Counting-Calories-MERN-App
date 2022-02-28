@@ -1,30 +1,64 @@
-// import React, { useState } from "react";
-// //=============================================
-// import Box from "@mui/material/Box";
-// import Tab from "@mui/material/Tab";
-// import TabContext from "@mui/lab/TabContext";
-// import TabList from "@mui/lab/TabList";
-// import TabPanel from "@mui/lab/TabPanel";
+import React, { useState, useMemo } from "react";
+//=============================================
+import { useSelector } from "react-redux";
+//=============================================
+import Table from "../Table/Table";
+import SortProductList from "../Sort/SortProductList/SortProductList";
+//=============================================
+import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import TabContext from "@material-ui/lab/TabContext";
+import TabList from "@material-ui/lab/TabList";
+import TabPanel from "@material-ui/lab/TabPanel";
 
-// const TabsProductsDishes = () => {
-// 	const [value, setValue] = useState("1");
+const TabsProductsDishes = () => {
+	const [value, setValue] = useState("1");
+	//============================================================================================
 
-// 	const handleChange = (event, newValue) => {
-// 		setValue(newValue);
-// 	};
-// 	return (
-// 		<TabContext value={value}>
-// 			<Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-// 				<TabList onChange={handleChange} aria-label="lab API tabs example">
-// 					<Tab label="Item One" value="1" />
-// 					<Tab label="Item Two" value="2" />
-// 					<Tab label="Item Three" value="3" />
-// 				</TabList>
-// 			</Box>
-// 			<TabPanel value="1">Item One</TabPanel>
-// 			<TabPanel value="2">Item Two</TabPanel>
-// 			<TabPanel value="3">Item Three</TabPanel>
-// 		</TabContext>
-// 	);
-// };
-// export default TabsProductsDishes;
+	let products = useSelector((state) => state.products);
+	const [productList, setProductList] = useState(useSelector((state) => state.products));
+
+	useMemo(() => {
+		setProductList(products);
+	}, [products]);
+
+	useMemo(() => {
+		products = productList;
+	}, [productList]);
+
+	//============================================================================================
+
+	let dishes = useSelector((state) => state.dishes);
+	const [dsishesList, setDishesList] = useState(useSelector((state) => state.products));
+
+	useMemo(() => {
+		setDishesList(dishes);
+	}, [dishes]);
+
+	useMemo(() => {
+		dishes = dsishesList;
+	}, [dsishesList]);
+
+	//============================================================================================
+	const handleChange = (event, newValue) => {
+		setValue(newValue);
+	};
+	return (
+		<TabContext value={value}>
+			<Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+				<TabList onChange={handleChange} aria-label="lab API tabs example">
+					<Tab label="Produkty" value="1" />
+					<Tab label="Dania" value="2" />
+				</TabList>
+			</Box>
+			<TabPanel value="1">
+				<SortProductList productList={productList} setProductList={setProductList} />
+				<Table data={products} />
+			</TabPanel>
+			<TabPanel value="2">
+				<Table data={dishes} listType="dish" />
+			</TabPanel>
+		</TabContext>
+	);
+};
+export default TabsProductsDishes;

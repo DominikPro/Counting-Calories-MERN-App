@@ -18,6 +18,7 @@ const DishConfiguration = () => {
 	const [startOfTheDishConfiguration, setStartOfTheDishConfiguration] = useState();
 	const allProductsFromStore = useSelector((state) => state.products);
 	const [configuredDish, setConfiguredDish] = useState({
+		listType: "Dish",
 		dishName: "",
 		dishId: "",
 		dishCalorieIn100g: "",

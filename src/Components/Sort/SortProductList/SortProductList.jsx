@@ -17,68 +17,32 @@ const SortProductList = ({ productList, setProductList }) => {
 		const sortOptions = [
 			{
 				name: "A-->Z",
-				icon: (
-					<ArrowUpwardIcon
-						fontSize="small"
-						color="primary"
-						style={{ marginLeft: 5 }}
-					/>
-				),
+				icon: <ArrowUpwardIcon fontSize="small" color="primary" style={{ marginLeft: 5 }} />,
 				action: "A-->Z",
 			},
 			{
 				name: "Z-->A",
-				icon: (
-					<ArrowDownwardIcon
-						fontSize="small"
-						color="primary"
-						style={{ marginLeft: 5 }}
-					/>
-				),
+				icon: <ArrowDownwardIcon fontSize="small" color="primary" style={{ marginLeft: 5 }} />,
 				action: "Z-->A",
 			},
 			{
 				name: "Kalorie",
-				icon: (
-					<ArrowUpwardIcon
-						fontSize="small"
-						color="primary"
-						style={{ marginLeft: 5 }}
-					/>
-				),
+				icon: <ArrowUpwardIcon fontSize="small" color="primary" style={{ marginLeft: 5 }} />,
 				action: "CalorieUp",
 			},
 			{
 				name: "Kalorie",
-				icon: (
-					<ArrowDownwardIcon
-						fontSize="small"
-						color="primary"
-						style={{ marginLeft: 5 }}
-					/>
-				),
+				icon: <ArrowDownwardIcon fontSize="small" color="primary" style={{ marginLeft: 5 }} />,
 				action: "CalorieDown",
 			},
 			{
 				name: "Ulubione",
-				icon: (
-					<ArrowUpwardIcon
-						fontSize="small"
-						color="primary"
-						style={{ marginLeft: 5 }}
-					/>
-				),
+				icon: <ArrowUpwardIcon fontSize="small" color="primary" style={{ marginLeft: 5 }} />,
 				action: "LikedUp",
 			},
 			{
 				name: "Ulubione",
-				icon: (
-					<ArrowDownwardIcon
-						fontSize="small"
-						color="primary"
-						style={{ marginLeft: 5 }}
-					/>
-				),
+				icon: <ArrowDownwardIcon fontSize="small" color="primary" style={{ marginLeft: 5 }} />,
 				action: "LikedDown",
 			},
 		];
@@ -88,13 +52,7 @@ const SortProductList = ({ productList, setProductList }) => {
 		sortOptions.map((item) => {
 			setSelectMenuItem((prevState) => [
 				...prevState,
-				<MenuItem
-					style={{ justifyContent: "center" }}
-					key={item.action}
-					name={item.name}
-					value={item.action}
-					data-testid="select"
-				>
+				<MenuItem style={{ justifyContent: "center" }} key={item.action} name={item.name} value={item.action} data-testid="select">
 					<Grid container>
 						<Grid item xs={5}>
 							{item.icon}
@@ -135,8 +93,7 @@ const SortProductList = ({ productList, setProductList }) => {
 						labelId="Sort-Products"
 						label="Sort-Product-List"
 						value={selectedSorting}
-						onChange={(e) => handleSortType(e)}
-					>
+						onChange={(e) => handleSortType(e)}>
 						{selectMenuItem.map((item) => item)}
 					</Select>
 				</FormControl>

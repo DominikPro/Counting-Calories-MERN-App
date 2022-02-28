@@ -10,7 +10,10 @@ import Header from "../Header/Header";
 import { Grid, Typography, Container, Divider, Box } from "@mui/material/";
 //=============================================
 
-const Table = ({ listType, data, col1Title, col2Title, col3Title, col4Title, col5Title, col6Title, col7Title }) => {
+//==================================================
+//Componet is used in ProductDishList and Statistic
+//==================================================
+const Table = ({ listType, data }) => {
 	const [noDataToDisplay, setNoDataToDisplay] = useState();
 
 	useEffect(() => {
@@ -30,6 +33,42 @@ const Table = ({ listType, data, col1Title, col2Title, col3Title, col4Title, col
 	{
 		if (data.length === "") {
 			return <h3>Brak danych</h3>;
+		} else if (listType === "Dish") {
+			return (
+				<>
+					<Container maxWidth="lg" sx={{ mt: 2 }}>
+						<Grid container spacing={1}>
+							<Divider />
+						</Grid>
+						{data.map((item) => {
+							return (
+								<Grid
+									direction="row"
+									container
+									spacing={1}
+									alignItems="center"
+									sx={{
+										marginTop: 1,
+									}}>
+									<Item
+										listType={item.listType}
+										date={item.date}
+										key={uuidv4()}
+										productId={item.id}
+										name={item.name}
+										portion={item.defaultPortion}
+										amountOfKclIn100g={item.caloriesIn100}
+										remarks={item.remarks}
+									/>
+								</Grid>
+							);
+						})}
+						<Grid container xs={12} alignItems="center" justify="center" direction="column" item>
+							{noDataToDisplay}
+						</Grid>
+					</Container>
+				</>
+			);
 		} else {
 			return (
 				<>

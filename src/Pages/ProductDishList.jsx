@@ -32,10 +32,8 @@ const ProductDishList = () => {
 					paddingLeft: { xs: "5px", sm: "16px" },
 					paddingRight: { xs: "5px", sm: "16px" },
 				}}>
-				<Header title="Lista produktów" size={20} variant="h2" />
-				{/* <TabsProductsDishes /> */}
-				<SortProductList productList={productList} setProductList={setProductList} />
-				<Table data={data} />
+				<Header title="Lista produktów - dań" size={20} variant="h2" />
+				<TabsProductsDishes />
 				<BottomNav pageName={"productList"} />
 			</Container>
 		</>
