@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 //=============================================
 import sortConditions from "../shared/sortConditions";
+import Searching from "../../ProductDishListComponents/Searching/Searching";
 //=============================================
 import { FormControl, Grid, Select, InputLabel, MenuItem } from "@mui/material";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
@@ -82,21 +83,19 @@ const SortProductList = ({ productList, setProductList }) => {
 		setSelectedSorting(e.target.value);
 	};
 	return (
-		<Grid container justifyContent="flex-end">
-			<Grid item>
-				<InputLabel id="Sort-Products">Soruj</InputLabel>
-				<FormControl fullWidth>
-					<Select
-						size="small"
-						disabled={hidSortSelection}
-						style={{ width: 130 }}
-						labelId="Sort-Products"
-						label="Sort-Product-List"
-						value={selectedSorting}
-						onChange={(e) => handleSortType(e)}>
-						{selectMenuItem.map((item) => item)}
-					</Select>
-				</FormControl>
+		<Grid container direction="row" justifyContent="space-around" alignItems="flex-end">
+			<Grid container justifyContent={{ xs: "center", sm: "space-around" }} xs={12} sm={6} md={5}>
+				<Searching />
+			</Grid>
+			<Grid item container justifyContent={{ xs: "center", sm: "space-around" }} xs={12}>
+				<Grid container justifyContent={{ xs: "center", sm: "space-around" }} xs={12} sm={6} md={2}>
+					<InputLabel id="Sort-Products">Soruj</InputLabel>
+					<FormControl fullWidth>
+						<Select size="small" disabled={hidSortSelection} labelId="Sort-Products" label="Sort-Product-List" value={selectedSorting} onChange={(e) => handleSortType(e)}>
+							{selectMenuItem.map((item) => item)}
+						</Select>
+					</FormControl>
+				</Grid>
 			</Grid>
 		</Grid>
 	);

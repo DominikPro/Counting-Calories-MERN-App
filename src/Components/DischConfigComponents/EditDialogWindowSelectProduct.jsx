@@ -15,14 +15,12 @@ import TextField from "@mui/material/TextField";
 //=============================================
 
 function SimpleDialog({ onClose, selectedValue, open, editedProduct, setConfiguredDish }) {
-	const [changedProductWeight, setChangedProductWeight] = useState({ listType: "Products", id: 1, name: "Jabłko", defaultPortion: 170, caloriesIn100: 38, remarks: "", favorite: false });
+	const [changedProductWeight, setChangedProductWeight] = useState({ listType: "", id: "", name: "", defaultPortion: "", caloriesIn100: "", remarks: "", favorite: false });
 
-	useEffect(() => {
-		console.log(changedProductWeight);
-	}, [changedProductWeight]);
-
+	//updates the modified product in state
 	useEffect(() => {
 		setChangedProductWeight(editedProduct);
+		console.log(editedProduct);
 	}, [editedProduct]);
 
 	const handleClose = () => {

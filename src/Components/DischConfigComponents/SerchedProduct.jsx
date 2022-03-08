@@ -5,7 +5,9 @@ import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
 import Button from "@mui/material/Button";
 
-const SerchedItem = ({ product, addtoform, setSerchedProductName }) => {
+const SerchedItem = ({ product, addtoDish, setSerchedProductName }) => {
+	console.log(product);
+
 	return (
 		<>
 			<Grid container alignItems="center" justifyContent="center" key={product.name}>
@@ -15,7 +17,7 @@ const SerchedItem = ({ product, addtoform, setSerchedProductName }) => {
 				<Grid item xs={2}>
 					<Button
 						onClick={() => {
-							addtoform(product);
+							addtoDish(product);
 							setSerchedProductName("");
 						}}
 						variant="outlined">
@@ -23,7 +25,6 @@ const SerchedItem = ({ product, addtoform, setSerchedProductName }) => {
 					</Button>
 				</Grid>
 			</Grid>
-
 			<Divider />
 		</>
 	);

@@ -12,21 +12,21 @@ const DishNameInput = ({ setConfiguredDish, configuredDish }) => {
 
 	const checkIfTheNameOfTheDishIsUnique = () => {
 		console.log(allDishes);
-		console.log(configuredDish.dishName);
+		console.log(configuredDish.name);
 
 		const testArray = ["aaaaa", "bbbbb", "ccccc"];
-		if (configuredDish.dishName.length > 2) {
-			let nameWasUsed = allDishes.includes(configuredDish.dishName);
+		if (configuredDish.name.length > 2) {
+			let nameWasUsed = allDishes.includes(configuredDish.name);
 			console.log("test");
 			console.log(nameWasUsed);
 		}
 	};
 
 	const validateInputAndSetNameInConfiguredDish = () => {
-		if (configuredDish.dishName === "") {
+		if (configuredDish.name === "") {
 			setValidate(true);
 			setHelperTextInfo("Pole nazwy nie może być puste");
-		} else if (configuredDish.dishName.length < 3) {
+		} else if (configuredDish.name.length < 3) {
 			setValidate(true);
 			setHelperTextInfo("Nazwa jest zbyt krótka");
 		}
@@ -42,7 +42,7 @@ const DishNameInput = ({ setConfiguredDish, configuredDish }) => {
 	return (
 		<TextField
 			onChange={(e) => {
-				setConfiguredDish((prevState) => ({ ...prevState, dishName: e.target.value }));
+				setConfiguredDish((prevState) => ({ ...prevState, name: e.target.value }));
 				validateInputAndSetNameInConfiguredDish();
 			}}
 			sx={{
@@ -52,7 +52,7 @@ const DishNameInput = ({ setConfiguredDish, configuredDish }) => {
 				borderWidth: 2,
 			}}
 			size="small"
-			value={configuredDish.dishName}
+			value={configuredDish.name}
 			id="outlined-multiline-flexible"
 			label="Wpisz nazwę dania"
 			helperText={helperTextInfo}

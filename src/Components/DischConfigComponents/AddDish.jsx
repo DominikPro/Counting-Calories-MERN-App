@@ -9,7 +9,7 @@ import NewsArticul from "../NewsArticul/NewsArticul";
 const AddDish = ({ setConfiguredDish, setStartOfTheDishConfiguration }) => {
 	const handleStartDishConfiguration = () => {
 		setStartOfTheDishConfiguration(true);
-		setConfiguredDish((prevState) => ({ ...prevState, dishId: uuidv4() }));
+		setConfiguredDish((prevState) => ({ ...prevState, id: uuidv4() }));
 	};
 	return (
 		<Grid xs={12} mt={"35px"} container direction="column" justifyContent="center" alignItems="center">

@@ -13,9 +13,9 @@ const ButtonSaveDish = ({ configuredDish, setConfiguredDish }) => {
 	const setEmptyStateInDishConfiguration = () => {
 		setConfiguredDish({
 			listType: "Dish",
-			dishName: "",
-			dishId: "",
-			dishCalorieIn100g: "",
+			name: "",
+			id: "",
+			caloriesIn100: "",
 			products: [],
 		});
 	};

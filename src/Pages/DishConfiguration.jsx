@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 //=============================================
 import { Container, Grid, Button } from "@mui/material/";
 //=============================================
@@ -12,6 +12,7 @@ import DishNameInput from "../Components/DischConfigComponents/DishNameInput";
 import SelectedProducts from "../Components/DischConfigComponents/SelectedProducts";
 import DishCalorieCounter from "../Components/DischConfigComponents/DishCalorieCounter";
 import ButtonSaveDish from "../Components/DischConfigComponents/ButtonSaveDish";
+import Searching from "../Components/DischConfigComponents/Searching";
 //=============================================
 
 const DishConfiguration = () => {
@@ -19,15 +20,27 @@ const DishConfiguration = () => {
 	const allProductsFromStore = useSelector((state) => state.products);
 	const [configuredDish, setConfiguredDish] = useState({
 		listType: "Dish",
-		dishName: "",
-		dishId: "",
-		dishCalorieIn100g: "",
+		name: "",
+		id: "",
+		caloriesIn100: "",
+		defaultPortion: "",
 		products: [],
 	});
 
 	useEffect(() => {
-		console.log(configuredDish);
+		console.log(configuredDish.products);
 	}, [configuredDish]);
+
+	useMemo(() => {
+		let sumOfCalorie;
+		let sumOfPortion;
+		if (configuredDish.products.length > 0) {
+			sumOfCalorie = configuredDish.products.reduce((sum, product) => sum + parseInt(product.caloriesIn100), 0);
+			sumOfPortion = configuredDish.products.reduce((sum, product) => sum + parseInt(product.defaultPortion), 0);
+		}
+
+		setConfiguredDish((prevState) => ({ ...prevState, caloriesIn100: sumOfCalorie, defaultPortion: sumOfPortion }));
+	}, [configuredDish.products]);
 
 	return (
 		<>
@@ -60,8 +73,11 @@ const DishConfiguration = () => {
 							</Grid>
 
 							<Grid xs={12} container direction="row" justifyContent="center" alignItems="center">
-								<Grid item>Wyszukaj produkt</Grid>
+								<Grid item>
+									<Searching setConfiguredDish={setConfiguredDish} />
+								</Grid>
 							</Grid>
+
 							<Grid xs={12} container direction="column " justifyContent="center" alignItems="center">
 								<Grid item>
 									{allProductsFromStore.map((product) => {

@@ -14,50 +14,16 @@ import { Typography, Button, Grid, Tooltip, Container, Box, Accordion, Accordion
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 //=============================================
 
-const Item = ({ listType, productId, name, portion, amountOfKclIn100g, remarks, date, dishProducts }) => {
+const ItemDish = ({ listType, productId, name, defaultPortion, caloriesIn100, products }) => {
 	const dispatch = useDispatch();
 	const [expanded, setExpanded] = useState(false);
+
 	const handleChange = (panel) => (event, isExpanded) => {
 		setExpanded(isExpanded ? panel : false);
 	};
-	const checkListTypeAndDisptach = () => {
-		if (listType === "Statistic") {
-			return dispatch(removeCaloris(productId));
-		} else if (listType === "Products") {
-			return dispatch(removeProduct(productId));
-		}
-	};
 
-	const displayIngredients = () => {
-		if (dishProducts === undefined) {
-			return null;
-		} else {
-			return (
-				<>
-					<Grid item xs={12}>
-						<Typography align="Center">Skład dania:</Typography>
-					</Grid>
-					<Grid container item xs={12} justifyContent="center" alignItems="center">
-						{dishProducts.map((product) => {
-							return (
-								<Grid item xs={6} sm={2} md={1}>
-									<Typography align="Center">{product.name}</Typography>
-
-									<Typography
-										align="Center"
-										sx={{
-											color: "text.secondary",
-										}}>
-										{`${product.defaultPortion} g`}
-									</Typography>
-								</Grid>
-							);
-						})}
-					</Grid>
-				</>
-			);
-		}
-	};
+	console.log(productId);
+	console.log(listType);
 
 	return (
 		<>
@@ -73,26 +39,29 @@ const Item = ({ listType, productId, name, portion, amountOfKclIn100g, remarks, 
 					}}>
 					<AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1bh-content" id="panel1bh-header">
 						<Grid container alignItems={"center"}>
-							<Grid align="left" item xs={2}>
-								{/* {listType === "Products" ? ( */}
+							<Grid>
 								<Tooltip title="Dodaj do listy ulubionych" placement="left">
 									<div>
 										<FavoriteCheckBox productId={productId} listType={listType} />
 									</div>
 								</Tooltip>
-								{/* ) : null} */}
 							</Grid>
-							<Grid item xs={6}>
-								<Typography sx={{ flexShrink: 0 }}>{name}</Typography>
+							<Grid item xs={12} sm={6}>
+								<Typography
+									sx={{
+										flexShrink: 0,
+									}}>
+									{name}
+								</Typography>
 							</Grid>
-							<Grid item xs={4}>
+							<Grid item xs={12} sm={4}>
 								<Typography display="inline">W porcji:</Typography>
 								<Typography
 									display="inline"
 									sx={{
 										color: "text.secondary",
 									}}>
-									{` ${Math.round((portion / 100) * amountOfKclIn100g)} kcl`}
+									{` ${Math.round((defaultPortion / 100) * caloriesIn100)} kcl`}
 								</Typography>
 							</Grid>
 						</Grid>
@@ -104,13 +73,13 @@ const Item = ({ listType, productId, name, portion, amountOfKclIn100g, remarks, 
 						}}>
 						<Grid container justifyContent="center" alignItems="center" xs={12} spacing={2}>
 							<Grid item xs={12} sm={6}>
-								<Typography align="Center">Porcja:</Typography>
+								<Typography align="Center">Waga dania:</Typography>
 								<Typography
 									align="Center"
 									sx={{
 										color: "text.secondary",
 									}}>
-									{`${portion} g`}
+									{`${defaultPortion} g`}
 								</Typography>
 							</Grid>
 							<Grid item xs={12} sm={6}>
@@ -121,35 +90,34 @@ const Item = ({ listType, productId, name, portion, amountOfKclIn100g, remarks, 
 									sx={{
 										color: "text.secondary",
 									}}>
-									{`${amountOfKclIn100g} kcl`}
+									{`${caloriesIn100} kcl`}
 								</Typography>
 							</Grid>
-							<Grid item xs={12} sm={6}>
-								<Typography align="Center">Uwagi:</Typography>
-								<Typography
-									align="Center"
-									sx={{
-										color: "text.secondary",
-									}}>
-									{remarks}
-								</Typography>
+							<Grid item xs={12}>
+								<Typography align="Center">Składniki:</Typography>
 							</Grid>
-							<Grid item xs={12} sm={6}>
-								<Typography align="Center">Data dodania:</Typography>
-								<Typography
-									align="Center"
-									sx={{
-										color: "text.secondary",
-									}}>
-									{date}
-								</Typography>
+							<Grid container item xs={12} justifyContent="center" alignItems="center">
+								{products.map((product) => {
+									return (
+										<Grid item xs={6} sm={3} md={2}>
+											<Typography align="Center">{product.name}</Typography>
+
+											<Typography
+												align="Center"
+												sx={{
+													color: "text.secondary",
+												}}>
+												{`${product.defaultPortion} g`}
+											</Typography>
+										</Grid>
+									);
+								})}
 							</Grid>
-							{displayIngredients()}
 
 							<Grid item alignItems="center">
 								<Button
 									item
-									onClick={() => checkListTypeAndDisptach()}
+									// onClick={() => checkListTypeAndDisptach()}
 									variant="outlined"
 									sx={{
 										":hover": {
@@ -160,10 +128,6 @@ const Item = ({ listType, productId, name, portion, amountOfKclIn100g, remarks, 
 									Usyń
 								</Button>
 							</Grid>
-
-							<Grid item>
-								<EditDialogWindow item listType={listType} productId={productId} productName={name} />
-							</Grid>
 						</Grid>
 					</AccordionDetails>
 				</Accordion>
@@ -173,13 +137,13 @@ const Item = ({ listType, productId, name, portion, amountOfKclIn100g, remarks, 
 	);
 };
 
-Item.propTypes = {
-	listType: PropTypes.string,
-	productId: PropTypes.number,
-	name: PropTypes.string,
-	portion: PropTypes.number,
-	amountOfKclIn100g: PropTypes.number,
-	remarks: PropTypes.string,
-	date: PropTypes.string,
+ItemDish.propTypes = {
+	// listType: PropTypes.string,
+	// productId: PropTypes.number,
+	// name: PropTypes.string,
+	// defaultPortion: PropTypes.number,
+	// caloriesIn100: PropTypes.number,
+	// remarks: PropTypes.string,
+	// date: PropTypes.string,
 };
-export default Item;
+export default ItemDish;

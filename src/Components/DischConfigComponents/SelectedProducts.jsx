@@ -51,8 +51,6 @@ const SelectedProducts = ({ configuredDish, setConfiguredDish }) => {
 									paddingLeft: "10px",
 									minWidth: { xs: "90vw", sm: "260px", md: "260px", xl: "365px" },
 									paddingTop: "5px",
-
-									// maxWidth: "330px",
 								}}>
 								<Grid container direction="row" justifyContent="space-between" alignItems="center">
 									<Grid item>

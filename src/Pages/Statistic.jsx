@@ -21,22 +21,15 @@ const Statistic = () => {
 					paddingBottom: "70px",
 					paddingLeft: { xs: "5px", sm: "16px" },
 					paddingRight: { xs: "5px", sm: "16px" },
-				}}
-			>
+				}}>
 				<Header title="Statystyki" size={20} variant="h2" />
 				<CalorieCounter dataToCount={dateSelected} />
 				<Grid container mt={1} justifyContent="space-between">
-					<SelectDate
-						setDateSelected={setDateSelected}
-						dateSelected={dateSelected}
-					/>
-					<SortStatistic
-						setDataSelected={setDateSelected}
-						dataSelected={dateSelected}
-					/>
+					<SelectDate setDateSelected={setDateSelected} dateSelected={dateSelected} />
+					<SortStatistic setDataSelected={setDateSelected} dataSelected={dateSelected} />
 				</Grid>
 
-				<Table data={dateSelected} />
+				<Table data={dateSelected} listType="statistic" />
 
 				<BottomNav pageName="statistic" />
 			</Container>

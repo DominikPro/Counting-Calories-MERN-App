@@ -60,8 +60,10 @@ const AddCalorie = () => {
 
 	const [serchedProductName, setSerchedProductName] = useState("");
 	const products = useSelector((state) => state.products);
+	const dishes = useSelector((state) => state.dishes);
 
 	const addtoform = (product) => {
+		console.log(product.listType);
 		setselectedProduct(product);
 		const actDate = dayjs().format("DD.MM.YYYY");
 		setselectedProduct((prevState) => ({
@@ -131,6 +133,17 @@ const AddCalorie = () => {
 							})
 							.map((product) => {
 								return <SerchedItem key={product.id} product={product} addtoform={addtoform} setSerchedProductName={setSerchedProductName} />;
+							})}
+						{dishes
+							.filter((dishes) => {
+								if (serchedProductName === "" || serchedProductName.length <= 1) {
+									return "";
+								} else if (dishes.name.toLowerCase().includes(serchedProductName.toLowerCase())) {
+									return dishes;
+								}
+							})
+							.map((dishes) => {
+								return <SerchedItem key={dishes.id} product={dishes} addtoform={addtoform} setSerchedProductName={setSerchedProductName} />;
 							})}
 						{serchedProductName.length > 1 && (
 							<Box m={2} display="flex" justifyContent="center" alignItems="center">

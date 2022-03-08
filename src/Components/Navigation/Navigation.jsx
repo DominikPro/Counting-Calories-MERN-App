@@ -19,8 +19,8 @@ const Navigation = () => {
 		{ name: "Strona główna", url: "/" },
 		{ name: "Statystyki", url: "/statistic" },
 		{ name: "Dodaj Kalorie", url: "/addCalorie" },
-		{ name: "Dodaj Produkt", url: "/addProduct" },
 		{ name: "Produkty i Dania", url: "/ProductDishList" },
+		{ name: "Dodaj Produkt", url: "/addProduct" },
 		{ name: "Knifguracja dań", url: "/dishConfiguration" },
 		{ name: "Użytkownik", url: "/user" },
 	];

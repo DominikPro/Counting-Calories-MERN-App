@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 //=============================================
 import Table from "../Table/Table";
 import SortProductList from "../Sort/SortProductList/SortProductList";
+import Searching from "../ProductDishListComponents/Searching/Searching";
 //=============================================
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
@@ -29,8 +30,9 @@ const TabsProductsDishes = () => {
 	//============================================================================================
 
 	let dishes = useSelector((state) => state.dishes);
-	const [dsishesList, setDishesList] = useState(useSelector((state) => state.products));
+	const [dsishesList, setDishesList] = useState(useSelector((state) => state.dishes));
 
+	console.log(dishes);
 	useMemo(() => {
 		setDishesList(dishes);
 	}, [dishes]);
@@ -52,10 +54,13 @@ const TabsProductsDishes = () => {
 				</TabList>
 			</Box>
 			<TabPanel value="1">
+				{/* <Searching /> */}
 				<SortProductList productList={productList} setProductList={setProductList} />
-				<Table data={products} />
+				<Table data={products} listType="products" />
 			</TabPanel>
 			<TabPanel value="2">
+				{/* <Searching /> */}
+				<SortProductList productList={dsishesList} setProductList={setProductList} />
 				<Table data={dishes} listType="dish" />
 			</TabPanel>
 		</TabContext>

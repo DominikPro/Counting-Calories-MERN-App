@@ -5,13 +5,14 @@ import { v4 as uuidv4 } from "uuid";
 //=============================================
 import { Typography, Button, Grid, Tooltip, Container, IconButton, Accordion, AccordionDetails, AccordionSummary } from "@mui/material/";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
 import AddIcon from "@mui/icons-material/Add";
 //=============================================
 const ProductsListToSelct = ({ product, setConfiguredDish }) => {
-	const [expanded, setExpanded] = useState(false);
-
-	const handleChange = (panel) => (event, isExpanded) => {
-		setExpanded(isExpanded ? panel : false);
+	const [expand, setExpand] = useState(false);
+	const toggleAcordion = () => {
+		console.log("działa");
+		setExpand((prev) => !prev);
 	};
 
 	const handleAddProductToSelectedLists = () => {
@@ -32,15 +33,23 @@ const ProductsListToSelct = ({ product, setConfiguredDish }) => {
 					// sx={{ display: { xs: "none", sm: "block" } }}
 				>
 					<Accordion
-						expanded={expanded === "panel1"}
-						onChange={handleChange("panel1")}
+						// expanded={expanded === "panel1"}
+						// onChange={handleChange("panel1")}
+						expanded={expand}
 						sx={{
 							":hover": {
 								boxShadow: 4,
 							},
 							boxShadow: 2,
 						}}>
-						<AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1bh-content" id={"panel1bh-header"}>
+						<AccordionSummary
+							expandIcon={
+								<IconButton onClick={() => toggleAcordion()}>
+									<ExpandMoreIcon />
+								</IconButton>
+							}
+							aria-controls="panel1bh-content"
+							id={"panel1bh-header"}>
 							<Grid container alignItems={"center"}>
 								{/* <Grid align="left" item xs={2}>
                         {listType === "Products" ? (
@@ -59,7 +68,7 @@ const ProductsListToSelct = ({ product, setConfiguredDish }) => {
 										{product.name}
 									</Typography>
 								</Grid>
-								<Grid item xs={4}>
+								<Grid item xs={5}>
 									<Typography display="inline">W porcji:</Typography>
 									<Typography
 										display="inline"
@@ -70,7 +79,7 @@ const ProductsListToSelct = ({ product, setConfiguredDish }) => {
 									</Typography>
 								</Grid>
 								<Grid item xs={1}>
-									<IconButton onClick={() => handleAddProductToSelectedLists()} sx={{ marginRight: "5px", ":hover": { color: "red" } }}>
+									<IconButton onClick={() => handleAddProductToSelectedLists()}>
 										<AddIcon color="success" />
 									</IconButton>
 								</Grid>
