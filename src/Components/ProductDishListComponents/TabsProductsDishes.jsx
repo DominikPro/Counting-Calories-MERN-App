@@ -32,7 +32,6 @@ const TabsProductsDishes = () => {
 	let dishes = useSelector((state) => state.dishes);
 	const [dsishesList, setDishesList] = useState(useSelector((state) => state.dishes));
 
-	console.log(dishes);
 	useMemo(() => {
 		setDishesList(dishes);
 	}, [dishes]);
@@ -42,28 +41,32 @@ const TabsProductsDishes = () => {
 	}, [dsishesList]);
 
 	//============================================================================================
+	const filterProdctsOrdishes = () => {};
+
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
 	};
 	return (
-		<TabContext value={value}>
-			<Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-				<TabList onChange={handleChange} aria-label="lab API tabs example">
-					<Tab label="Produkty" value="1" />
-					<Tab label="Dania" value="2" />
-				</TabList>
-			</Box>
-			<TabPanel value="1">
-				{/* <Searching /> */}
-				<SortProductList productList={productList} setProductList={setProductList} />
-				<Table data={products} listType="products" />
-			</TabPanel>
-			<TabPanel value="2">
-				{/* <Searching /> */}
-				<SortProductList productList={dsishesList} setProductList={setProductList} />
-				<Table data={dishes} listType="dish" />
-			</TabPanel>
-		</TabContext>
+		<>
+			<TabContext value={value}>
+				<Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+					<TabList onChange={handleChange} aria-label="lab API tabs example">
+						<Tab label="Produkty" value="1" />
+						<Tab label="Dania" value="2" />
+					</TabList>
+				</Box>
+				<TabPanel value="1">
+					<Searching items={productList} />
+					<SortProductList productList={productList} setProductList={setProductList} />
+					<Table data={products} listType="products" />
+				</TabPanel>
+				<TabPanel value="2">
+					<Searching items={dsishesList} />
+					<SortProductList productList={dsishesList} setProductList={setProductList} />
+					<Table data={dishes} listType="dish" />
+				</TabPanel>
+			</TabContext>
+		</>
 	);
 };
 export default TabsProductsDishes;

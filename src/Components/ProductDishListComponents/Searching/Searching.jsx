@@ -1,46 +1,61 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 //=============================================
-import { useDispatch, useSelector } from "react-redux";
-//=============================================
-import SerchedItems from "./SerchedItems";
+import Table from "../../Table/Table";
 //=============================================
 import { Container, Box, Grid, Divider, TextField, InputLabel } from "@mui/material/";
 //=============================================
 
-const Searching = () => {
+const Searching = ({ items }) => {
 	const [serchedProductName, setSerchedProductName] = useState("");
-	const dishes = useSelector((state) => state.dishes);
+
+	const [filtredItems, setFiltredItems] = useState();
+
+	function findItems() {
+		let filtredItems;
+		if (serchedProductName !== "" && serchedProductName.length > 1) {
+			filtredItems = items.filter((item) => {
+				if (item.name.toLowerCase().includes(serchedProductName.toLowerCase())) {
+					return item;
+				}
+			});
+		}
+		return filtredItems;
+	}
+
+	useMemo(() => {
+		const findedItems = findItems();
+		console.log(items);
+		if (findedItems != undefined && findedItems.length > 0 && serchedProductName.length >= 2) {
+			setFiltredItems(findedItems);
+		} else if (serchedProductName.length <= 2) {
+			setFiltredItems([]);
+		}
+	}, [serchedProductName]);
 
 	return (
 		<>
-			<TextField
-				onChange={(e) => {
-					setSerchedProductName(e.target.value);
-				}}
-				value={serchedProductName}
-				style={{ marginBottom: "20px" }}
-				// ref={serchedProductRef}
-				id="filled-basic"
-				label="Wyszukaj produkt:"
-				variant="outlined"
-				color="secondary"
-				size="large"
-				fullWidth
-			/>
-			<Grid container xs={12}>
-				<Divider />
+			<Grid container xs={12} direction="row" justifyContent="center" alignItems="center">
+				<Grid item>
+					<form autoComplete="off">
+						<TextField
+							onChange={(e) => {
+								setSerchedProductName(e.target.value);
+							}}
+							value={serchedProductName}
+							style={{ marginBottom: "20px" }}
+							// ref={serchedProductRef}
+							id="filled-basic"
+							label="Wyszukaj:"
+							variant="outlined"
+							color="secondary"
+							size="small"
+						/>
+					</form>
+				</Grid>
+				<Grid item xs={12}>
+					<Table data={filtredItems} />
+				</Grid>
 			</Grid>
-			{dishes
-				.filter((dishes) => {
-					if (serchedProductName === "" || serchedProductName.length <= 1) {
-						return "";
-					} else if (dishes.name.toLowerCase().includes(serchedProductName.toLowerCase())) {
-						return dishes;
-					}
-				})
-				.map((dishes) => {
-					return <SerchedItems />;
-				})}
 		</>
 	);
 };

@@ -36,19 +36,15 @@ const AddCalorie = () => {
 	});
 	const validatedCaloriesIn100 = () => {
 		if (selectedProduct.caloriesIn100 < 0 || selectedProduct.caloriesIn100 === "") {
-			console.log("1");
 			return setValidation((prevState) => ({ ...prevState, caloriesIn100: true }));
 		} else if (selectedProduct.caloriesIn100 > 0) {
-			console.log("2");
 			return setValidation((prevState) => ({ ...prevState, caloriesIn100: false }));
 		}
 	};
 	const validatedDefaultPortion = () => {
 		if (selectedProduct.defaultPortion < 0 || selectedProduct.defaultPortion === "") {
-			console.log("3");
 			return setValidation((prevState) => ({ ...prevState, defaultPortion: true }));
 		} else if (selectedProduct.defaultPortion > 0) {
-			console.log("4");
 			return setValidation((prevState) => ({ ...prevState, defaultPortion: false }));
 		}
 	};
@@ -63,7 +59,6 @@ const AddCalorie = () => {
 	const dishes = useSelector((state) => state.dishes);
 
 	const addtoform = (product) => {
-		console.log(product.listType);
 		setselectedProduct(product);
 		const actDate = dayjs().format("DD.MM.YYYY");
 		setselectedProduct((prevState) => ({
@@ -162,7 +157,6 @@ const AddCalorie = () => {
 							fullWidth
 							required
 						/>
-						{console.log(validation.caloriesIn100)}
 						<TextField
 							onChange={(e) => handleChange(e)}
 							name="caloriesIn100"

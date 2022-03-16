@@ -6,8 +6,6 @@ import Divider from "@mui/material/Divider";
 import Button from "@mui/material/Button";
 
 const SerchedItem = ({ product, addtoDish, setSerchedProductName }) => {
-	console.log(product);
-
 	return (
 		<>
 			<Grid container alignItems="center" justifyContent="center" key={product.name}>

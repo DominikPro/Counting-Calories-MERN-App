@@ -18,6 +18,9 @@ const SelectDate = ({ dateSelected, setDateSelected }) => {
 		setSelectedDay(e.target.value);
 	};
 
+	//Shorter version
+	// let productsForTheDate = data.filter((product) => product.date === selectedDay);
+	//A clearer version
 	let productsForTheDate = data.filter((product) => {
 		if (product.date === selectedDay) {
 			return product;
@@ -39,19 +42,10 @@ const SelectDate = ({ dateSelected, setDateSelected }) => {
 	}, [selectedDay, data]);
 
 	return (
-		// <Grid container spacing={1} justifyContent="left" alignItems="center">
 		<Grid xs={6} item>
 			<FormControl fullWidth>
 				<InputLabel id="demo-simple-select-label">Data</InputLabel>
-				<Select
-					size="small"
-					style={{ width: 130 }}
-					labelId="demo-simple-select-label"
-					id="demo-simple-select"
-					value={selectedDay}
-					label="Data"
-					onChange={(e) => handleChange(e)}
-				>
+				<Select size="small" style={{ width: 130 }} labelId="demo-simple-select-label" id="demo-simple-select" value={selectedDay} label="Data" onChange={(e) => handleChange(e)}>
 					{datesAvailable ? (
 						distinctDate.reverse().map((date) => (
 							<MenuItem key={date} value={date}>
@@ -64,7 +58,6 @@ const SelectDate = ({ dateSelected, setDateSelected }) => {
 				</Select>
 			</FormControl>
 		</Grid>
-		// </Grid>
 	);
 };
 

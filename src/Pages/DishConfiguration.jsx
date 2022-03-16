@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from "react";
 //=============================================
-import { Container, Grid, Button } from "@mui/material/";
+import { Container, Grid } from "@mui/material/";
 //=============================================
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 //=============================================
 import AddDish from "../Components/DischConfigComponents/AddDish";
 import Header from "../Components/Header/Header";
@@ -10,7 +10,6 @@ import ProductsListToSelct from "../Components/DischConfigComponents/ProductsLis
 import BottomNav from "../Components/BottomNav/BottomNav";
 import DishNameInput from "../Components/DischConfigComponents/DishNameInput";
 import SelectedProducts from "../Components/DischConfigComponents/SelectedProducts";
-import DishCalorieCounter from "../Components/DischConfigComponents/DishCalorieCounter";
 import ButtonSaveDish from "../Components/DischConfigComponents/ButtonSaveDish";
 import Searching from "../Components/DischConfigComponents/Searching";
 //=============================================
@@ -27,9 +26,7 @@ const DishConfiguration = () => {
 		products: [],
 	});
 
-	useEffect(() => {
-		console.log(configuredDish.products);
-	}, [configuredDish]);
+	useEffect(() => {}, [configuredDish]);
 
 	useMemo(() => {
 		let sumOfCalorie;
@@ -55,13 +52,13 @@ const DishConfiguration = () => {
 					<>
 						<Header title="Konfigurator dań" size={20} variant="h2" />
 
-						<Grid xs={12} container>
-							<Grid xs={12} container direction="row" justifyContent="center" alignItems="center" item>
+						<Grid container>
+							<Grid item xs={12} container direction="row" justifyContent="center" alignItems="center">
 								<Grid item>
 									<DishNameInput configuredDish={configuredDish} setConfiguredDish={setConfiguredDish} />
 								</Grid>
 							</Grid>
-							<Grid xs={12} container direction="row" justifyContent="center" alignItems="center">
+							<Grid item xs={12} container direction="row" justifyContent="center" alignItems="center">
 								<Grid item>
 									<SelectedProducts configuredDish={configuredDish} setConfiguredDish={setConfiguredDish} />
 								</Grid>
@@ -72,16 +69,16 @@ const DishConfiguration = () => {
 								</ButtonSaveDish>
 							</Grid>
 
-							<Grid xs={12} container direction="row" justifyContent="center" alignItems="center">
+							<Grid item xs={12} container direction="row" justifyContent="center" alignItems="center">
 								<Grid item>
 									<Searching setConfiguredDish={setConfiguredDish} />
 								</Grid>
 							</Grid>
 
-							<Grid xs={12} container direction="column " justifyContent="center" alignItems="center">
+							<Grid item xs={12} container direction="column " justifyContent="center" alignItems="center">
 								<Grid item>
 									{allProductsFromStore.map((product) => {
-										return <ProductsListToSelct product={product} setConfiguredDish={setConfiguredDish} />;
+										return <ProductsListToSelct key={product.id} product={product} setConfiguredDish={setConfiguredDish} />;
 									})}
 								</Grid>
 							</Grid>

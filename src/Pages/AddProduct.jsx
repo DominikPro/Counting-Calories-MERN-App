@@ -13,9 +13,9 @@ import BottomNav from "../Components/BottomNav/BottomNav";
 
 const AddProduct = () => {
 	const [validation, setValidation] = useState({
-		name: "",
-		caloriesIn100: "",
-		defaultPortion: "",
+		name: null,
+		caloriesIn100: null,
+		defaultPortion: null,
 	});
 	//=========================================================================================
 	const [product, setProduct] = useState({
@@ -67,17 +67,8 @@ const AddProduct = () => {
 	return (
 		<>
 			<Container maxWidth="sm" sx={{ paddingBottom: "70px" }}>
-				<Stack
-					direction="column"
-					justifyContent="flex-start"
-					alignItems="center"
-					spacing={2}
-				>
-					<Header
-						title="Dodaj nowy produkt do katalogu"
-						size={20}
-						variant="h2"
-					/>
+				<Stack direction="column" justifyContent="flex-start" alignItems="center" spacing={2}>
+					<Header title="Dodaj nowy produkt do katalogu" size={20} variant="h2" />
 					<form noValidate autoComplete="off">
 						<TextField
 							onChange={(e) => handleChange(e)}
@@ -120,24 +111,13 @@ const AddProduct = () => {
 							error={validation.defaultPortion}
 							onBlur={(e) => checkForm(e)}
 						/>
-						<TextField
-							onChange={(e) => handleChange(e)}
-							name="remarks"
-							value={product.remarks}
-							id="outlined-multiline-flexible"
-							variant="outlined"
-							fullWidth
-							label="Uwagi:"
-							multiline
-							minRows={2}
-						/>
+						<TextField onChange={(e) => handleChange(e)} name="remarks" value={product.remarks} id="outlined-multiline-flexible" variant="outlined" fullWidth label="Uwagi:" multiline minRows={2} />
 					</form>
 					<Button
 						onClick={() => {
 							handleAddProduct();
 						}}
-						variant="contained"
-					>
+						variant="contained">
 						Dodaj
 					</Button>
 					<BottomNav pageName="addProduct" />

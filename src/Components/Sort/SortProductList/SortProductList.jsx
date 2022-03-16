@@ -83,13 +83,12 @@ const SortProductList = ({ productList, setProductList }) => {
 		setSelectedSorting(e.target.value);
 	};
 	return (
-		<Grid container direction="row" justifyContent="space-around" alignItems="flex-end">
-			<Grid container justifyContent={{ xs: "center", sm: "space-around" }} xs={12} sm={6} md={5}>
-				<Searching />
-			</Grid>
-			<Grid item container justifyContent={{ xs: "center", sm: "space-around" }} xs={12}>
-				<Grid container justifyContent={{ xs: "center", sm: "space-around" }} xs={12} sm={6} md={2}>
+		<Grid container xs={12} direction="row" justifyContent={{ xs: "space-around", sm: "flex-end" }} alignItems="center">
+			<Grid item xs={8} sm={4} md={2}>
+				<Grid item>
 					<InputLabel id="Sort-Products">Soruj</InputLabel>
+				</Grid>
+				<Grid item>
 					<FormControl fullWidth>
 						<Select size="small" disabled={hidSortSelection} labelId="Sort-Products" label="Sort-Product-List" value={selectedSorting} onChange={(e) => handleSortType(e)}>
 							{selectMenuItem.map((item) => item)}

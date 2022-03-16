@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 //=============================================
-import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Button, Container, Avatar, Tooltip, MenuItem } from "@mui/material/";
+import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Button, Container, MenuItem } from "@mui/material/";
 import MenuIcon from "@mui/icons-material/Menu";
 //=============================================
 import CircularProgressCalorie from "../CircularProgressCalorie/CircularProgressCalorie";
@@ -198,19 +198,3 @@ const BottomNav = ({ pageName }) => {
 };
 
 export default BottomNav;
-
-// <Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }} elevation={2}>
-// 	<BottomNavigation>
-// 		{page.map((item) => {
-// 			return (
-// 				<GoToButton
-// 					to={item.to}
-// 					key={item.id}
-// 					goToButtonName={item.goToButtonName}
-// 				/>
-// 			);
-// 		})}
-// 	</BottomNavigation>
-
-// 	<CircularProgressCalorie value={1} />
-// </Paper>

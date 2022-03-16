@@ -1,23 +1,29 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import LinearProgress from "@mui/material/LinearProgress";
-import Header from "../Header/Header";
+//=============================================
+import { Box, LinearProgress, Grid } from "@mui/material/";
+// import  from "@mui/material/LinearProgress";
 import { Typography } from "@mui/material";
+//=============================================
+import Header from "../Header/Header";
+//=============================================
 
 export default function ProgresBar() {
 	return (
-		<Box sx={{ width: "100%" }}>
+		<Grid>
 			<Typography
 				sx={{
 					mt: "50vh",
 					fontSize: 20,
 					fontFamily: "Monospace",
 					textAlign: "center",
-				}}
-			>
+				}}>
 				Ładowanie strony . . .
 			</Typography>
-			<LinearProgress sx={{ height: "9px" }} />
-		</Box>
+			<Grid container xs={12} justifyContent="center" alignItems="center">
+				<Grid item>
+					<LinearProgress sx={{ height: "9px", width: "250px", alignContent: "center" }} />
+				</Grid>
+			</Grid>
+		</Grid>
 	);
 }

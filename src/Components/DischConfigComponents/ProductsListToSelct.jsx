@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 //=============================================
-import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 //=============================================
-import { Typography, Button, Grid, Tooltip, Container, IconButton, Accordion, AccordionDetails, AccordionSummary } from "@mui/material/";
+import { Typography, Grid, Container, IconButton, Accordion, AccordionDetails, AccordionSummary } from "@mui/material/";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import AddIcon from "@mui/icons-material/Add";
@@ -11,7 +10,6 @@ import AddIcon from "@mui/icons-material/Add";
 const ProductsListToSelct = ({ product, setConfiguredDish }) => {
 	const [expand, setExpand] = useState(false);
 	const toggleAcordion = () => {
-		console.log("działa");
 		setExpand((prev) => !prev);
 	};
 
@@ -28,13 +26,8 @@ const ProductsListToSelct = ({ product, setConfiguredDish }) => {
 				sx={{
 					marginTop: 1,
 				}}>
-				<Container
-					sx={{ maxWidth: { xs: "360px", sm: "xl", md: "lg" }, padding: { xs: 0 } }}
-					// sx={{ display: { xs: "none", sm: "block" } }}
-				>
+				<Container sx={{ maxWidth: { xs: "360px", sm: "xl", md: "lg" }, minWidth: { sm: "450px", md: "600px" }, padding: { xs: 0 } }}>
 					<Accordion
-						// expanded={expanded === "panel1"}
-						// onChange={handleChange("panel1")}
 						expanded={expand}
 						sx={{
 							":hover": {
@@ -51,15 +44,6 @@ const ProductsListToSelct = ({ product, setConfiguredDish }) => {
 							aria-controls="panel1bh-content"
 							id={"panel1bh-header"}>
 							<Grid container alignItems={"center"}>
-								{/* <Grid align="left" item xs={2}>
-                        {listType === "Products" ? (
-                            <Tooltip title="Dodaj do listy ulubionych" placement="left">
-                                <div>
-                                    <FavoriteCheckBox productId={productId} listType={listType} />
-                                </div>
-                            </Tooltip>
-                        ) : null}
-                    </Grid> */}
 								<Grid item xs={6}>
 									<Typography
 										sx={{
@@ -122,40 +106,10 @@ const ProductsListToSelct = ({ product, setConfiguredDish }) => {
 										{product.remarks}
 									</Typography>
 								</Grid>
-								{/* <Grid item xs={12} sm={6}>
-                                    <Typography align="Center">Data dodania:</Typography>
-                                    <Typography
-                                align="Center"
-                                sx={{
-                                    color: "text.secondary",
-                                }}>
-                                {date}
-                            </Typography>
-                                </Grid> */}
-
-								<Grid item alignItems="center">
-									<Button
-										item
-										// onClick={() => checkListTypeAndDisptach()}
-										variant="outlined"
-										sx={{
-											":hover": {
-												color: "red",
-												borderColor: "red",
-											},
-										}}>
-										Usyń
-									</Button>
-								</Grid>
-								{/* 
-                    <Grid item>
-                        <EditDialogWindow item listType={listType} productId={productId} productName={name} />
-                    </Grid> */}
 							</Grid>
 						</AccordionDetails>
 					</Accordion>
 				</Container>
-				{/* COL-1-========================================================================== */}
 			</Grid>
 		</>
 	);

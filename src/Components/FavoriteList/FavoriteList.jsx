@@ -32,7 +32,7 @@ export default function FavoriteList({ addtoform }) {
 				<Favorite />
 				<Typography ml={1}>Lista ulubionych </Typography>
 			</Button>
-			<SimpleDialog open={open} onClose={handleClose} addtoform={addtoform} favoriteProducts={favoriteProducts} favoriteDishes={favoriteDishes} />
+			<SimpleDialog sx={{ marginLeft: 0 }} open={open} onClose={handleClose} addtoform={addtoform} favoriteProducts={favoriteProducts} favoriteDishes={favoriteDishes} />
 		</div>
 	);
 }

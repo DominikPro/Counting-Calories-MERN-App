@@ -22,9 +22,6 @@ const ItemDish = ({ listType, productId, name, defaultPortion, caloriesIn100, pr
 		setExpanded(isExpanded ? panel : false);
 	};
 
-	console.log(productId);
-	console.log(listType);
-
 	return (
 		<>
 			<Container sx={{ maxWidth: { xs: "360px", sm: "xl", md: "lg" }, padding: { xs: 0 } }}>

@@ -12,7 +12,7 @@ const AddDish = ({ setConfiguredDish, setStartOfTheDishConfiguration }) => {
 		setConfiguredDish((prevState) => ({ ...prevState, id: uuidv4() }));
 	};
 	return (
-		<Grid xs={12} mt={"35px"} container direction="column" justifyContent="center" alignItems="center">
+		<Grid item xs={12} mt={"35px"} container direction="column" justifyContent="center" alignItems="center">
 			<Grid item>
 				<Button onClick={() => handleStartDishConfiguration()} size="small" variant="contained">
 					Stwórz danie

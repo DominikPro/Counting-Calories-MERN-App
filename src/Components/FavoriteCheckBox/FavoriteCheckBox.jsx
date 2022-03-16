@@ -17,17 +17,14 @@ const FavoriteCheckBox = ({ productId, listType }) => {
 	const dispatch = useDispatch();
 	const HandleChackBox = () => {
 		if (listType === "Products") {
-			console.log("lista productsss");
-			console.log(listType);
 			return dispatch(changeProductFavorite(productId));
 		} else if (listType === "Dish") {
-			console.log("lista dish");
 			return dispatch(changeDishFavorite(productId));
 		}
 	};
 
 	{
-		if (listType == "Products") {
+		if (listType === "Products") {
 			return (
 				<>
 					<Checkbox

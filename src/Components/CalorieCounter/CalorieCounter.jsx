@@ -5,8 +5,7 @@ import { useSelector } from "react-redux";
 //==========================================
 import Header from "../Header/Header";
 //==========================================
-import { Grid, Typography, Divider, Chip } from "@mui/material/";
-import MenuIcon from "@mui/icons-material/Menu";
+import { Grid, Typography, Chip } from "@mui/material/";
 import NetworkLockedIcon from "@mui/icons-material/NetworkLocked";
 import KitchenIcon from "@mui/icons-material/Kitchen";
 import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
@@ -28,30 +27,11 @@ const CalorieCounter = ({ dataToCount }) => {
 	if (userCalorieLimit > 0) {
 		return (
 			<>
-				<Grid
-					container
-					justifyContent="center"
-					xs={12}
-					mt={2}
-					mb={3}
-					alignItems="center"
-					item
-				>
+				<Grid container justifyContent="center" xs={12} mt={2} mb={3} alignItems="center" item>
 					{dataToCount.length > 0 ? (
 						<>
-							<Grid
-								xs={12}
-								container
-								justifyContent="space-evenly"
-								spacing={1}
-							>
-								<Grid
-									container
-									justifyContent="center"
-									item
-									xs={12}
-									md={1}
-								>
+							<Grid xs={12} container justifyContent="space-evenly" spacing={1}>
+								<Grid container justifyContent="center" item xs={12} md={1}>
 									<Chip
 										sx={{
 											boxShadow: 1,
@@ -64,19 +44,11 @@ const CalorieCounter = ({ dataToCount }) => {
 										label={`Limit kalorii: ${userCalorieLimit} kcl`}
 										variant="outlined"
 										color="primary"
-										icon={
-											<NetworkLockedIcon />
-										}
+										icon={<NetworkLockedIcon />}
 									/>
 								</Grid>
 
-								<Grid
-									container
-									justifyContent="center"
-									item
-									xs={12}
-									md={1}
-								>
+								<Grid container justifyContent="center" item xs={12} md={1}>
 									<Chip
 										sx={{
 											boxShadow: 1,
@@ -86,25 +58,14 @@ const CalorieCounter = ({ dataToCount }) => {
 											fontSize: 14,
 											minWidth: 230,
 										}}
-										label={`Dostępne kalorie: ${
-											userCalorieLimit -
-											sumCalorie
-										} kcl`}
+										label={`Dostępne kalorie: ${userCalorieLimit - sumCalorie} kcl`}
 										variant="outlined"
 										color="success"
-										icon={
-											<KitchenIcon />
-										}
+										icon={<KitchenIcon />}
 									/>
 								</Grid>
 
-								<Grid
-									container
-									justifyContent="center"
-									item
-									xs={12}
-									md={1}
-								>
+								<Grid container justifyContent="center" item xs={12} md={1}>
 									<Chip
 										sx={{
 											boxShadow: 1,
@@ -117,20 +78,13 @@ const CalorieCounter = ({ dataToCount }) => {
 										label={`Przyjęte kalorie: ${sumCalorie} kcl`}
 										variant="outlined"
 										color="warning"
-										icon={
-											<HourglassBottomIcon />
-										}
+										icon={<HourglassBottomIcon />}
 									/>
 								</Grid>
 							</Grid>
 						</>
 					) : (
-						<Header
-							title="Brak statysytk dla wybranej daty"
-							variant="h4"
-							size={20}
-							align="center"
-						/>
+						<Header title="Brak statysytk dla wybranej daty" variant="h4" size={20} align="center" />
 					)}
 				</Grid>
 			</>
@@ -138,8 +92,7 @@ const CalorieCounter = ({ dataToCount }) => {
 	} else
 		return (
 			<Typography sx={{ fontWeight: "bold" }} align="center">
-				Wprowadź dzienny limit kalorii w karcie Użykownik, by wyświetlić kalkulację
-				kalorii.
+				Wprowadź dzienny limit kalorii w karcie Użykownik, by wyświetlić kalkulację kalorii.
 			</Typography>
 		);
 };

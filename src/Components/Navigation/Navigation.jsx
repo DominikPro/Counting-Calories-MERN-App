@@ -3,7 +3,14 @@ import { Link } from "react-router-dom";
 //==========================================
 import logo from "../../Images/logo.png";
 //==========================================
-import { Button, Menu, MenuItem, Avatar, AppBar, Box, Toolbar, Typography, Stack } from "@mui/material/";
+import { Button, Menu, MenuItem, Avatar, AppBar, Box, Toolbar, Typography, Stack, IconButton } from "@mui/material/";
+import HomeIcon from "@mui/icons-material/Home";
+import BarChartIcon from "@mui/icons-material/BarChart";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import ListAltIcon from "@mui/icons-material/ListAlt";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import CoffeeMakerIcon from "@mui/icons-material/CoffeeMaker";
+import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 //==========================================
 
 const Navigation = () => {
@@ -16,13 +23,13 @@ const Navigation = () => {
 		setAnchorEl(null);
 	};
 	const ListOfMenuItems = [
-		{ name: "Strona główna", url: "/" },
-		{ name: "Statystyki", url: "/statistic" },
-		{ name: "Dodaj Kalorie", url: "/addCalorie" },
-		{ name: "Produkty i Dania", url: "/ProductDishList" },
-		{ name: "Dodaj Produkt", url: "/addProduct" },
-		{ name: "Knifguracja dań", url: "/dishConfiguration" },
-		{ name: "Użytkownik", url: "/user" },
+		{ name: "Strona główna", url: "/", icon: <HomeIcon /> },
+		{ name: "Statystyki", url: "/statistic", icon: <BarChartIcon /> },
+		{ name: "Dodaj Kalorie", url: "/addCalorie", icon: <AddCircleOutlineIcon /> },
+		{ name: "Produkty i Dania", url: "/ProductDishList", icon: <ListAltIcon /> },
+		{ name: "Dodaj Produkt", url: "/addProduct", icon: <AddCircleIcon /> },
+		{ name: "Knifguracja dań", url: "/dishConfiguration", icon: <CoffeeMakerIcon /> },
+		{ name: "Użytkownik", url: "/user", icon: <AssignmentIndIcon /> },
 	];
 
 	return (
@@ -68,21 +75,16 @@ const Navigation = () => {
 								"aria-labelledby": "basic-button",
 							}}>
 							{ListOfMenuItems.map((menuOption) => (
-								<MenuItem onClick={handleClose} component={Link} to={menuOption.url}>
+								<MenuItem key={menuOption.name} onClick={handleClose} component={Link} to={menuOption.url}>
+									<IconButton>{menuOption.icon}</IconButton>
 									{menuOption.name}
 								</MenuItem>
 							))}
 						</Menu>
-						<Button
-							variant="contained"
-							color="success"
-							id="basic-button"
-							aria-controls="basic-menu"
-							aria-haspopup="true"
-							aria-expanded={open ? "true" : undefined}
-							onClick={handleClick}>
+						<Button variant="contained" color="success" id="basic-button" aria-controls="basic-menu" aria-haspopup="true" aria-expanded={open ? "true" : undefined} onClick={handleClick}>
 							Menu
 						</Button>
+
 						<Stack direction="row" spacing={2}></Stack>
 					</Toolbar>
 				</AppBar>

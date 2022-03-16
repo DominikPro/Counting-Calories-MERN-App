@@ -20,7 +20,6 @@ function SimpleDialog({ onClose, selectedValue, open, editedProduct, setConfigur
 	//updates the modified product in state
 	useEffect(() => {
 		setChangedProductWeight(editedProduct);
-		console.log(editedProduct);
 	}, [editedProduct]);
 
 	const handleClose = () => {

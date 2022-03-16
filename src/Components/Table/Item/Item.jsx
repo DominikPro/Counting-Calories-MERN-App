@@ -8,7 +8,7 @@ import { removeProduct } from "../../../Redux/actions/productActions";
 import EditDialogWindow from "../../EditDialogWindow/EditDialogWindow";
 import FavoriteCheckBox from "../../FavoriteCheckBox/FavoriteCheckBox";
 //=============================================
-import { Typography, Button, Grid, Tooltip, Container, Box, Accordion, AccordionDetails, AccordionSummary } from "@mui/material/";
+import { Typography, Button, Grid, Tooltip, Container, Accordion, AccordionDetails, AccordionSummary } from "@mui/material/";
 //=============================================
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -40,7 +40,7 @@ const Item = ({ listType, productId, name, portion, amountOfKclIn100g, remarks, 
 					<Grid container item xs={12} justifyContent="center" alignItems="center">
 						{dishProducts.map((product) => {
 							return (
-								<Grid item xs={6} sm={2} md={1}>
+								<Grid item xs={6} sm={2} md={1} key={product.defaultPortion + product.name}>
 									<Typography align="Center">{product.name}</Typography>
 
 									<Typography
@@ -74,13 +74,11 @@ const Item = ({ listType, productId, name, portion, amountOfKclIn100g, remarks, 
 					<AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1bh-content" id="panel1bh-header">
 						<Grid container alignItems={"center"}>
 							<Grid align="left" item xs={2}>
-								{/* {listType === "Products" ? ( */}
 								<Tooltip title="Dodaj do listy ulubionych" placement="left">
 									<div>
 										<FavoriteCheckBox productId={productId} listType={listType} />
 									</div>
 								</Tooltip>
-								{/* ) : null} */}
 							</Grid>
 							<Grid item xs={6}>
 								<Typography sx={{ flexShrink: 0 }}>{name}</Typography>

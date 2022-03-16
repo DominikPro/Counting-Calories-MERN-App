@@ -79,7 +79,6 @@ function SimpleDialog({ onClose, selectedValue, open, listType, editedProduct })
 			} else setValidate((prevState) => ({ ...prevState, [name]: false }));
 		} else if (name === "name") {
 			if (changedProduct.name === "") {
-				console.log("jest3-1");
 				setValidate((prevState) => ({ ...prevState, [name]: true }));
 			} else setValidate((prevState) => ({ ...prevState, [name]: false }));
 		}
@@ -164,7 +163,6 @@ function SimpleDialog({ onClose, selectedValue, open, listType, editedProduct })
 SimpleDialog.propTypes = {
 	onClose: PropTypes.func.isRequired,
 	open: PropTypes.bool.isRequired,
-	selectedValue: PropTypes.string.isRequired,
 };
 //===============================================================================================================
 

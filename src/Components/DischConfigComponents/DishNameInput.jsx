@@ -1,26 +1,17 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 //=============================================
-import { Grid, TextField } from "@mui/material/";
+import { TextField } from "@mui/material/";
 //=============================================
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 //=============================================
 
 const DishNameInput = ({ setConfiguredDish, configuredDish }) => {
 	const allDishes = useSelector((state) => state.dishes);
+
 	const [helperTextInfo, setHelperTextInfo] = useState("");
 	const [validate, setValidate] = useState();
 
-	const checkIfTheNameOfTheDishIsUnique = () => {
-		console.log(allDishes);
-		console.log(configuredDish.name);
-
-		const testArray = ["aaaaa", "bbbbb", "ccccc"];
-		if (configuredDish.name.length > 2) {
-			let nameWasUsed = allDishes.includes(configuredDish.name);
-			console.log("test");
-			console.log(nameWasUsed);
-		}
-	};
+	const checkIfTheNameOfTheDishIsUnique = () => allDishes.some((dish) => dish.name.toUpperCase() === configuredDish.name.toUpperCase());
 
 	const validateInputAndSetNameInConfiguredDish = () => {
 		if (configuredDish.name === "") {
@@ -29,11 +20,10 @@ const DishNameInput = ({ setConfiguredDish, configuredDish }) => {
 		} else if (configuredDish.name.length < 3) {
 			setValidate(true);
 			setHelperTextInfo("Nazwa jest zbyt krótka");
-		}
-		// else if () {
-
-		// }
-		else {
+		} else if (checkIfTheNameOfTheDishIsUnique() === true) {
+			setValidate(true);
+			setHelperTextInfo("Danie o tej nazwie już istnieje");
+		} else {
 			setValidate(false);
 			setHelperTextInfo("Ok");
 		}
@@ -60,7 +50,6 @@ const DishNameInput = ({ setConfiguredDish, configuredDish }) => {
 			error={validate}
 			onBlur={() => {
 				validateInputAndSetNameInConfiguredDish();
-				checkIfTheNameOfTheDishIsUnique();
 			}}
 		/>
 	);
